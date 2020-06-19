@@ -1,0 +1,61 @@
+.find {
+    position: relative;
+}
+.find .submit,
+.find .submit:hover {
+    width: 34px;
+    height: 36px;
+    cursor: pointer;
+    border: 0px;
+    overflow: hidden;
+    text-indent: -200px;
+    font-size: 1px;
+    background: url(../images/ico-goi-search.png) no-repeat center center #aa2323;
+    position: absolute;
+    top: 0px;
+    left: 229px;
+    padding: 5px 20px;
+    margin: 0;
+}
+.find {
+    background-color: red;
+}
+.common-right ul li.ico-site-search  .google-find input[type="text"], .google-find input[type="text"] {
+    border: 2px solid #aa2323;
+    height: 36px;
+	background:#fff;
+    line-height: 34px;
+    padding: 0 40px 0 8px;
+    width: 270px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+}
+.common-right ul li.ico-site-search  .google-find input[type="submit"], .google-find input[type="submit"] {
+    width: 34px;
+    height: 36px;
+    cursor: pointer;
+    border: 0px;
+    overflow: hidden;
+    text-indent: -200px;
+    font-size: 1px;
+    background: url(../images/ico-goi-search.png) no-repeat center center #aa2323;
+    position: absolute;
+    top: 0px;
+    left: 229px;
+    padding: 5px 20px;
+    margin: 0;
+}
+.google-find div {
+    text-align: left;
+    padding: 7px;
+    background: #AA2323;
+    color: #fff;
+    font-size: 140%;
+    border-top: solid 1px;
+    border-color: #B35050;
+    text-transform: uppercase;
+}
+.google-find input[type="radio"] {
+    position: relative;
+    top: -2px;
+}

@@ -1,0 +1,130 @@
+<?php
+
+function   cmf_open_gov_block_info() {
+ $blocks = array();
+   $blocks['open_gov'] = array(
+    'info' => t('Open Gov Data'),
+  );
+  return $blocks;
+}
+
+function  cmf_open_gov_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'open_gov':
+      $block['subject'] = '';
+      $block['content'] = _cmf_open_gov_create_block();
+    break;	
+  }
+  return $block;
+}
+
+function _cmf_open_gov_create_block(){
+	$open_gov_url = variable_get("open_gov_url");
+	$open_gov_details_url = variable_get("open_gov_details_url");
+	$data = file_get_contents($open_gov_url);
+	$arr_data= json_decode($data);
+	$res_data = $arr_data[0];
+	$count = 0;
+	foreach($res_data as $key => $val){
+		if($key == 'Total-Number-Of-Catalog'){
+			$count = $val;
+		}
+	}
+	$str = '<ul>';
+    for($i=1; $i <= $count; $i++){
+		$str .= '<li><a href="'.$arr_data[$i]->URL.'" target="_blank">'.$arr_data[$i]->Title.'</a></li>';
+	}
+	$str .= '</ul><a href="'.$open_gov_details_url.'" title="'.t('External site that opens in a new window.').'" target="_blank">More...</a>';
+	return $str;
+}
+function cmf_open_gov_menu(){	
+	$items['admin/config/development/open_gov'] = array(
+		'title' => t('URL of Open Gov Data'),
+		'description' => t('URL of Open Gov Data'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('open_gov'),
+		'access arguments' => array('user access'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	$items['open_gov'] = array(
+		'title' => t('Our open Gov Data'),
+		'description' => t('Our open Gov Data'),
+		'page callback' => 'show_open_gov_data',
+		'access arguments' => array('Our open Gov Data'),
+		'access callback' =>TRUE,
+		'type' => MENU_CALLBACK,
+	);
+  	return $items;	
+}
+
+// Function for clearing cache for specific page
+function open_gov(){
+	if(variable_get("open_gov_url")){
+		$open_gov_url = variable_get("open_gov_url");
+	}else{
+		$open_gov_url = '';
+	}
+	if(variable_get("open_gov_details_url")){
+		$open_gov_details_url = variable_get("open_gov_details_url");
+	}else{
+		$open_gov_details_url = '';
+	}
+	$form = array();
+	$form['pages']= array(
+		'#type' => 'textfield',
+		'#title' => t('Enter page URL'),
+		'#cols' => 30,
+		'#rows' => 3,
+		'#required' => TRUE,
+		'#description' => t('The URL of JSON data.'),
+		'#value' => $open_gov_url,
+  	);
+	$form['details_url']= array(
+		'#type' => 'textfield',
+		'#title' => t('Enter details page URL'),
+		'#cols' => 50,
+		'#rows' => 3,
+		'#required' => TRUE,
+		'#description' => t('Enter details page URL'),
+		'#value' => $open_gov_details_url,
+  	);
+	// submit buton
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+	return $form;
+}
+function open_gov_submit($form, &$form_state){
+	$urls = $form_state['input']['pages'];
+	print_r($form_state['input']['pages']);
+	variable_set("open_gov_url", $urls);
+	$details_urls = $form_state['input']['details_url'];
+	variable_set("open_gov_details_url", $details_urls);
+}
+
+function show_open_gov_data(){
+	$open_gov_url = variable_get("open_gov_url");
+	$open_gov_details_url = variable_get("open_gov_details_url");
+	$data = file_get_contents($open_gov_url);
+	$arr_data= json_decode($data);
+	$res_data = $arr_data[0];
+	$count = 0;
+	foreach($res_data as $key => $val){
+		if($key == 'Total-Number-Of-Catalog'){
+			$count = $val;
+		}
+	}
+	$str = '<ul>';
+    for($i=1; $i <= $count; $i++){
+		@$str .= '<li><a href="'.$arr_data[$i]->URL.'" target="_blank">'.$arr_data[$i]->Title.'</a><p>'.$arr_data[$i]->Description.'</p></li>';
+	}
+	@$str .= '</ul><p><a href="'.$open_gov_details_url.'" title="'.t('External site that opens in a new window.').'" target="_blank">More...</a></div>';
+	return $str;
+}
+
+function cmf_open_gov_access($account = NULL) {
+	return user_access('administer blocks', $account) && user_access('administer menu', $account);
+}
+?>

@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Install file for the tag_it module.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+
+function page_feedback_install() {
+  drupal_install_schema('page_feedback_table');
+}
+
+function page_feedback_schema() {
+		$schema['page_feedback_table'] = array(
+		'description' => 'Store Page Feedback Email',
+		'fields' => array(
+		'id' => array(
+		'type' => 'serial',
+		'unsigned' => TRUE,
+		'not null' => TRUE,
+		'description' => 'Unique identifier for the {Page Feedback}.',
+		),   
+		'page_name' => array(
+		'type' => 'varchar',
+		'length' => 128,
+		'not null' => FALSE,
+		'description' => 'Page Name.',
+		),
+		'page_url' => array(
+		'type' => 'varchar',
+		'length' => 128,
+		'not null' => FALSE,
+		'description' => 'Page URL.',
+		),
+		'page_email' => array(
+		'type' => 'varchar',
+		'length' => 128,
+		'not null' => FALSE,
+		'description' => 'Page Email For Feedback',
+		),   
+
+		),
+		'primary key' => array('id'),
+		);
+
+		return $schema;
+}
+
+function page_feedback_uninstall() {
+  drupal_uninstall_schema('page_feedback_table');
+}

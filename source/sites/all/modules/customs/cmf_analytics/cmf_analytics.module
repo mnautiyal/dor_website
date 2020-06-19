@@ -1,0 +1,523 @@
+<?php
+function cmf_analytics_init(){
+	drupal_add_js('
+		var _paq = _paq || [];
+		_paq.push(["trackPageView"]);
+		_paq.push(["enableLinkTracking"]);
+		(function() {
+			var u="http://analytics.wrc.nic.in/cmfanalytics/";
+			_paq.push(["setTrackerUrl", u+"analytics"]);
+			var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+			g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"js/piwik.js"; s.parentNode.insertBefore(g,s);
+		}
+	)();', 'inline');
+}
+
+
+/********Block to create Analytics Block ************/
+function cmf_analytics_block_info() {
+	  $blocks = array();
+	  $blocks['cmf_analytics_block'] = array(
+	    'info' => t('Visitor Analytics Block'),
+	  );
+	  $blocks['referer_cmf_analytics_block'] = array(
+	    'info' => t('Visitor Analytics Referer Block'),
+	  );
+	  $blocks['browser_cmf_analytics_block'] = array(
+	    'info' => t('Visitor Analytics Browser Block'),
+	  );
+	  $blocks['browser_cat_cmf_analytics_block'] = array(
+	    'info' => t('Visitor Analytics Browser Category Block'),
+	  );
+	  
+  return $blocks;
+}
+function cmf_analytics_block_view($delta = ''){
+	$block = array();
+	  switch ($delta) {
+	    case 'cmf_analytics_block':
+	      $block['subject'] = '';
+	      $block['content'] = _cmf_analytics_block();
+	    case 'referer_cmf_analytics_block':
+	      $block['subject'] = '';
+	      $block['content1'] = _referer_cmf_analytics_block();
+	    case 'browser_cmf_analytics_block':
+	      $block['subject'] = '';
+	      $block['content2'] = _browser_cmf_analytics_block();
+	    case 'browser_cat_cmf_analytics_block':
+	      $block['subject'] = '';
+	      $block['content3'] = _browser_cat_cmf_analytics_block();
+	  }
+  return $block;
+}
+
+
+ /*
+ * Function is defined for creating Visitors Statistics analytics block
+ */
+function _cmf_analytics_block(){
+	global $base_url;
+	//...............................
+	if(variable_get("cmf_analytics_details_height")){
+		$cmfheight = variable_get("cmf_analytics_details_height");
+	}else{
+		$cmfheight = 250;
+	}
+	if(variable_get("cmf_analytics_details_width")){
+		$cmfwidth = variable_get("cmf_analytics_details_width");
+	}else{
+		$cmfwidth = 250;
+	}
+	//................................
+	$server_ip = str_replace("www.","",$_SERVER['SERVER_NAME']);
+	$output='';
+	$output.='<script type="text/javascript" src="http://analytics.wrc.nic.in/cmfanalytics/widget?div=cmf-analytics&domain='.$server_ip.'&width='.$cmfwidth.'&height='.$cmfheight.'&ana_type=pageviews"></script>';
+
+
+	$output.='<div id="cmf-analytics"></div>';
+	 //  javascript create view in table form........................ 
+
+    
+     //......................................................	
+return $output;
+}
+ /*
+ * Function is defined for creating Referer analytics block
+ */
+function _referer_cmf_analytics_block(){
+	global $base_url;
+	 //...............................
+	if(variable_get("cmf_analytics_details_height")){
+		$cmfheight = variable_get("cmf_analytics_details_height");
+	}else{
+		$cmfheight = 250;
+	}
+	if(variable_get("cmf_analytics_details_width")){
+		$cmfwidth = variable_get("cmf_analytics_details_width");
+	}else{
+		$cmfwidth = 250;
+	}
+	//................................
+	 $server_ip = str_replace("www.","",$_SERVER['SERVER_NAME']);
+	$output1='';
+	$output1.='<script type="text/javascript" src="http://analytics.wrc.nic.in/cmfanalytics/widget?div=cmf-analytics-referer&domain='.$server_ip.'&width='.$cmfwidth.'&height='.$cmfheight.'&ana_type=referer"></script>';
+	$output1.='<div id="cmf-analytics-referer"></div>';
+return $output1;
+}
+ /*
+ * Function is defined for creating Browser analytics block
+ */
+function _browser_cmf_analytics_block(){
+	global $base_url;
+	 //...............................
+	if(variable_get("cmf_analytics_details_height")){
+		$cmfheight = variable_get("cmf_analytics_details_height");
+	}else{
+		$cmfheight = 250;
+	}
+	if(variable_get("cmf_analytics_details_width")){
+		$cmfwidth = variable_get("cmf_analytics_details_width");
+	}else{
+		$cmfwidth = 250;
+	}
+	//................................
+	 $server_ip = str_replace("www.","",$_SERVER['SERVER_NAME']);
+	$output2='';
+	$output2.='<script type="text/javascript" src="http://analytics.wrc.nic.in/cmfanalytics/widget?div=cmf-analytics-browser&domain='.$server_ip.'&width='.$cmfwidth.'&height='.$cmfheight.'&ana_type=browser"></script>'; 
+	
+	
+	$output2.='<div id="cmf-analytics-browser"></div>';
+
+	
+return $output2;
+}
+ /*
+ * Function is defined for creating Devices analytics block
+ */
+function _browser_cat_cmf_analytics_block(){
+	global $base_url;
+	 //...............................
+	if(variable_get("cmf_analytics_details_height")){
+		$cmfheight = variable_get("cmf_analytics_details_height");
+	}else{
+		$cmfheight = 250;
+	}
+	if(variable_get("cmf_analytics_details_width")){
+		$cmfwidth = variable_get("cmf_analytics_details_width");
+	}else{
+		$cmfwidth = 250;
+	}
+	//................................
+	 $server_ip = str_replace("www.","",$_SERVER['SERVER_NAME']);
+	$output3='';
+	$output3.='<script type="text/javascript" src="http://analytics.wrc.nic.in/cmfanalytics/widget?div=browser_cat&domain='.$server_ip.'&width='.$cmfwidth.'&height='.$cmfheight.'&ana_type=browser_cat"></script>
+			<div id="browser_cat"></div> ';
+return $output3;
+}
+
+
+/*************** Hook Menu for the analytics Page ********/
+function cmf_analytics_menu(){
+	$items ['visitor-analytics'] = array(
+	    'title' => t('Visitor Analytics'),
+	    'page callback' => '_visitor_analytics_page',
+	    'access arguments' => array('access content'),
+	    'type' => MENU_CALLBACK,
+	  );
+	$items['admin/config/development/cmf-analytics-settings'] = array(
+		'title' => t('Visitor Analytics Height Width Settings'),
+		'description' => t('Visitor Analytics Height Width Settings For Block'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('cmf_analytics_settings'),
+        'access arguments' => array('access administration pages'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+  	return $items;	
+
+  return $items;
+}
+
+
+function _visitor_analytics_page(){
+	$server_ip = str_replace("www.","",$_SERVER['SERVER_NAME']);
+	$cmfheight = 250;
+ 	if(variable_get("cmf_analytics_details_height")){
+		$cmfheight = variable_get("cmf_analytics_details_height");
+	}
+	if(variable_get("cmf_analytics_display_type")){
+		$cmfanalyticsdisplay = variable_get("cmf_analytics_display_type");
+	}else{
+		$cmfanalyticsdisplay = 'list';
+	}
+	if($cmfanalyticsdisplay == 'list') {
+
+		$output = "<div class='analytics_".$cmfanalyticsdisplay."'><ul>";
+		$block = module_invoke('cmf_analytics', 'block_view', 'cmf_analytics_block');
+		$output.= '<li><h2>'.t("Visitors Statistics").'</h2>';
+		$output.= render($block['content']);
+		$output.= "<div id=".'table-cmf-analytics'."></div></li>";
+		$output.= '<script>
+                           function insertReply(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><caption><h2>Visitors Statistics</h2></caption><th>Date</th><th>Referer</th>";
+  
+    
+              for(var i = 0; i < content.json.length; i++) {
+              
+                   html += "<tr><td>" + content.json[i].date + "</td><td>" + content.json[i].count + "</td></tr>";
+                }
+                html += "</table>";
+              document.getElementById("table-cmf-analytics").innerHTML=html;
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=pageviews&callback=insertReply";
+          document.body.appendChild(script);
+
+        </script>';
+
+        
+		$block1 = module_invoke('cmf_analytics', 'block_view', 'referer_cmf_analytics_block');
+		$output.= '<li><h2>'.t("Referer").'</h2>';
+		$output.= render($block1['content1']);
+		$output.= "<div id=".'table-cmf-analytics-referer'."></div></li>";
+        $output.= '<script>
+                           function insertReplyref(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><caption><h2>Referer</h2></caption><th>Referer</th><th>&nbsp;</th>";
+  
+               var sum=0;
+              for(var j = 0; j < content.json.length; j++) {
+              	 if(content.json[j].domain_ref!=null) {
+                  sum += parseInt(content.json[j].count);
+                 }
+              }
+              for(var i = 0; i < content.json.length; i++) {
+              	 var parper =   ((content.json[i].count)/sum)*100;
+                 var percentwodigit = parper.toFixed(1); 
+                  if(content.json[i].domain_ref!=null) {
+            html += "<tr><td>" + content.json[i].domain_ref + "</td><td>" + percentwodigit +"%"+"</td></tr>";
+                  }
+                }
+                html += "</table>";
+              document.getElementById("table-cmf-analytics-referer").innerHTML=html;
+               
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=referer&callback=insertReplyref";
+          document.body.appendChild(script);
+
+        </script>';
+
+
+
+		
+		$block2 = module_invoke('cmf_analytics', 'block_view', 'browser_cmf_analytics_block');
+		$output.= '<li><h2>'.t("Browser").'</h2>';
+		$output.= render($block2['content2']);
+		$output.= "<div id=".'table-cmf-analytics-browser'."></div></li>";
+		
+        $output.= '<script>
+                           function insertReplybrow(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><caption><h2>Browser</h2></caption><th>Browser</th><th>&nbsp;</th>";
+             var sum=0;
+              for(var j = 0; j < content.json.length; j++) {
+                  sum += parseInt(content.json[j].count);
+              }
+    
+              for(var i = 0; i < content.json.length; i++) {
+              var parper =   ((content.json[i].count)/sum)*100;
+              var percentwodigit = parper.toFixed(1); 
+          html += "<tr><td>" + content.json[i].browser_name + "</td><td>" + percentwodigit +"%"+ "</td></tr>";
+                }
+                html += "</table>";
+              document.getElementById("table-cmf-analytics-browser").innerHTML=html;
+              
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=browser&callback=insertReplybrow";
+          document.body.appendChild(script);
+
+        </script>';
+
+
+		$block3 = module_invoke('cmf_analytics', 'block_view', 'browser_cat_cmf_analytics_block');
+		$output.= '<li><h2>'.t("Devices").'</h2>';
+		$output.= render($block3['content3']);
+		$output.= "<div id=".'table-browser_cat'."></div></li>";
+		
+        $output.= '<script>
+                           function insertReplybrcat(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><caption><h2>Devices</h2></caption><th>Device</th><th>&nbsp;</th>";
+             var sum=0;
+              for(var j = 0; j < content.json.length; j++) {
+                  sum += parseInt(content.json[j].count);
+              }
+    
+              for(var i = 0; i < content.json.length; i++) {
+                   var parper =   ((content.json[i].count)/sum)*100;
+                   var percentwodigit = parper.toFixed(1); 
+       html += "<tr><td>" + content.json[i].browser_cat + "</td><td>" + percentwodigit +"%" + "</td></tr>";
+                }
+                html += "</table>";
+              document.getElementById("table-browser_cat").innerHTML=html;
+              
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=browser_cat&callback=insertReplybrcat";
+          document.body.appendChild(script);
+
+        </script>';
+
+
+
+		$output.="</ul></div>";
+    } else {
+		drupal_add_js(drupal_get_path('module','cmf_analytics').'/js/jquery.ui.core.js', 'file');
+		drupal_add_js(drupal_get_path('module','cmf_analytics').'/js/jquery.ui.widget.js', 'file');
+		drupal_add_js(drupal_get_path('module','cmf_analytics').'/js/jquery.ui.tabs.js', 'file');
+		drupal_add_js(drupal_get_path('module','cmf_analytics').'/js/script.js', 'file');
+		drupal_add_css(drupal_get_path('module', 'cmf_analytics') . '/css/jquery.ui.theme.css');	
+		drupal_add_css(drupal_get_path('module', 'cmf_analytics') . '/css/jquery.ui.tabs.css');	
+		
+		@$output.= '<div id="tab-container" style="min-height:'.($cmfheight+50).'px;">';
+		$output.='<ul id="analytics_'.$cmfanalyticsdisplay.'">
+				<li><a href="#analytics1" tabindex="1">'.t('Visitors Statistics').'</a></li>
+				<li><a href="#analytics2" tabindex="1">'.t('Referer').'</a></li>
+				<li><a href="#analytics3" tabindex="1">'.t('Browser').'</a></li>
+				<li><a href="#analytics4" tabindex="1">'.t('Devices').'</a></li>
+			</ul>';
+	
+	
+		$block = module_invoke('cmf_analytics', 'block_view', 'cmf_analytics_block');
+		
+		$output.='<div class="analytics-content" id="analytics1">';	
+		$output.= render($block['content']);
+		$output.='<div id="table-cmf-analytics"></div></div>';
+		$output.= '<script>
+                           function insertReply(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><th>Date</th><th>Referer</th>";
+  
+    
+              for(var i = 0; i < content.json.length; i++) {
+              
+                   html += "<tr><td>" + content.json[i].date + "</td><td>" + content.json[i].count + "</td></tr>";
+                }
+                html += "</table>";
+              document.getElementById("table-cmf-analytics").innerHTML=html;
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=pageviews&callback=insertReply";
+          document.body.appendChild(script);
+
+        </script>';
+	
+		$block1 = module_invoke('cmf_analytics', 'block_view', 'referer_cmf_analytics_block');
+		$output.='<div class="analytics-content" id="analytics2">';
+		$output.= render($block1['content1']);
+		$output.='<div id="table-cmf-analytics-referer"></div></div>';
+		$output.= '<script>
+                           function insertReplyref(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><th>Referer</th><th>&nbsp;</th>";
+  
+               var sum=0;
+              for(var j = 0; j < content.json.length; j++) {
+              	 if(content.json[j].domain_ref!=null) {
+                  sum += parseInt(content.json[j].count);
+                 }
+              }
+              for(var i = 0; i < content.json.length; i++) {
+              	    var parper =   ((content.json[i].count)/sum)*100;
+                   var percentwodigit = parper.toFixed(1); 
+                  if(content.json[i].domain_ref!=null) {
+                  html += "<tr><td>" + content.json[i].domain_ref + "</td><td>" + percentwodigit +"%"+"</td></tr>";
+                  }
+                }
+                html += "</table>";
+              document.getElementById("table-cmf-analytics-referer").innerHTML=html;
+               
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=referer&callback=insertReplyref";
+          document.body.appendChild(script);
+
+        </script>';
+	
+		$block2 = module_invoke('cmf_analytics', 'block_view', 'browser_cmf_analytics_block');
+		$output.='<div class="analytics-content" id="analytics3">';
+		$output.= render($block2['content2']);
+		$output.='<div id="table-cmf-analytics-browser"></div></div>';
+		$output.= '<script>
+                           function insertReplybrow(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><th>Browser</th><th>&nbsp;</th>";
+             var sum=0;
+              for(var j = 0; j < content.json.length; j++) {
+                  sum += parseInt(content.json[j].count);
+              }
+    
+              for(var i = 0; i < content.json.length; i++) {
+              var parper =   ((content.json[i].count)/sum)*100;
+                   var percentwodigit = parper.toFixed(1); 
+ html += "<tr><td>" + content.json[i].browser_name + "</td><td>" + percentwodigit +"%"+ "</td></tr>";
+                }
+                html += "</table>";
+              document.getElementById("table-cmf-analytics-browser").innerHTML=html;
+              
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=browser&callback=insertReplybrow";
+          document.body.appendChild(script);
+
+        </script>';
+	
+		$block3 = module_invoke('cmf_analytics', 'block_view', 'browser_cat_cmf_analytics_block');
+		$output.='<div class="analytics-content" id="analytics4">';
+		$output.= render($block3['content3']);
+		$output.='<div id="table-browser_cat"></div></div>';
+		$output.= '<script>
+                           function insertReplybrcat(content) {
+               var appenddiv = document.getElementById("cmf-analytics");
+             var html = "<table><th>Device</th><th>&nbsp;</th>";
+             var sum=0;
+              for(var j = 0; j < content.json.length; j++) {
+                  sum += parseInt(content.json[j].count);
+              }
+    
+              for(var i = 0; i < content.json.length; i++) {
+                   var parper =   ((content.json[i].count)/sum)*100;
+                   var percentwodigit = parper.toFixed(1);
+                   html += "<tr><td>" + content.json[i].browser_cat + "</td><td>" + percentwodigit +"%" + "</td></tr>";
+                }
+                html += "</table>";
+              document.getElementById("table-browser_cat").innerHTML=html;
+              
+            }
+         var script = document.createElement("script");
+         script.src ="http://analytics.wrc.nic.in/cmfanalytics/stats?domain='.$server_ip.'&ana_type=browser_cat&callback=insertReplybrcat";
+          document.body.appendChild(script);
+
+        </script>';
+	
+		$output.='</div>';
+		
+		
+
+
+    } 
+	drupal_add_css(drupal_get_path('module', 'cmf_analytics') . '/css/cmf_analytics.css');	
+	return $output;	
+}
+function cmf_analytics_settings() {
+
+   if(variable_get("cmf_analytics_details_height")){
+		$cmfanalyticsheight = variable_get("cmf_analytics_details_height");
+	}else{
+		$cmfanalyticsheight = 250;
+	}
+	if(variable_get("cmf_analytics_details_width")){
+		$cmfanalyticswidth = variable_get("cmf_analytics_details_width");
+	}else{
+		$cmfanalyticswidth = 250;
+	}
+	if(variable_get("cmf_analytics_display_type")){
+		$cmfanalyticsdisplay = variable_get("cmf_analytics_display_type");
+	}else{
+		$cmfanalyticsdisplay = 'tab';
+	}
+		$options = array(
+		'tab' => t('Tab Wise'),
+		'list' => t('List Wise')
+		);
+
+  $form = array();
+	$form['height']= array(
+		'#type' => 'textfield',
+		'#title' => t('Enter Height'),
+		'#cols' => 30,
+		'#rows' => 3,
+		'#required' => TRUE,
+		'#default_value' => $cmfanalyticsheight,
+		'#description' => t('Enter Height For analytics'),
+  	);
+  	$form['width']= array(
+		'#type' => 'textfield',
+		'#title' => t('Enter Width'),
+		'#cols' => 30,
+		'#rows' => 3,
+		'#required' => TRUE,
+		'#default_value' => $cmfanalyticswidth,
+		'#description' => t('Enter Width For analytics'),
+  	);
+  	$form['display_type'] = array(
+    '#type' => 'radios',
+    '#title' => t('Display Type'),
+    '#required' => TRUE,
+    '#options' => $options,
+    '#default_value' =>  $cmfanalyticsdisplay
+   );
+	// submit buton
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+	return $form;
+
+}
+function cmf_analytics_settings_submit($form, &$form_state) {
+   
+   $fheight1 = (int)$form_state['input']['height'];
+   $fheight1 == 0 ? $fheight=250 : $fheight=$fheight1;
+   $fwidth1 = (int)$form_state['input']['width'];
+   $fwidth1 == 0 ? $fwidth=250 : $fwidth=$fwidth1;
+   $displayoption = (string)$form_state['input']['display_type'];
+   
+   variable_set("cmf_analytics_details_height", $fheight);
+   variable_set("cmf_analytics_details_width", $fwidth);
+   variable_set("cmf_analytics_display_type", $displayoption);
+   drupal_set_message(t('Your configuration has been saved.'));
+   drupal_goto($base_url.'/admin/config/development/cmf-analytics-settings');
+}

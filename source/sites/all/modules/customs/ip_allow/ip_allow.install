@@ -1,0 +1,43 @@
+<?php
+/**
+ * @file
+ * Install file for the ip_allow module.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+
+function  ip_allow_install() {
+  drupal_install_schema('ips_allow_list');
+}
+
+function  ip_allow_schema() {
+  $schema['ips_allow_list'] = array(
+    'description' => 'Open Admin for perticular IP.',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Unique identifier.',
+      ),     
+       'user_role' => array(
+        'type' => 'int',
+		'not null' => FALSE,
+        'description' => 'Role Id.',
+      ),
+      'ip_list' => array(
+        'type' => 'text',
+		'not null' => FALSE,
+        'description' => 'IP List.',
+      ),
+    ),
+	'primary key' => array('id'),
+  );
+  return $schema;
+}
+
+function  ip_allow_uninstall() {
+  drupal_uninstall_schema('validate_string');
+}

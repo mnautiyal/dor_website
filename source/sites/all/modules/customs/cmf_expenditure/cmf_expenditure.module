@@ -1,0 +1,444 @@
+<?php
+# Hook Menu Call
+#
+    function cmf_expenditure_menu() {
+        $items = array();
+
+        $items["dept-expenditure"] = array (
+        "title" => "Details of Expenditure Statements",
+        "page callback" => "cmf_get_expenditure_form",
+        "access arguments" => array("access content"),
+        "type" => MENU_CALLBACK
+        );
+        $items['admin/config/development/expenditure'] = array(
+        'title' => 'Expenditure Configuration',
+        'page callback' => 'set_expenditure_config',
+        'access callback' => 'cmf_expenditure_access',
+        'type' => MENU_NORMAL_ITEM,
+        );
+       $items['admin/config/development/expenditure/%/delete'] = array(
+       'title' => t('Delete expenditure'),
+       'page callback' => 'drupal_get_form',
+       'page arguments' => array('expenditure_delete_confirm', 2),
+       'access arguments' => array('access expenditure'),
+       'type' => MENU_CALLBACK,
+       );
+    return $items;
+    }
+#
+#
+    function cmf_get_expenditure_form() {
+        return drupal_get_form('cmf_expenditure_form_setails');
+    }
+#
+#
+    function cmf_expenditure_form_setails($form, &$form_state) {
+        // javascript code for form submit..
+        drupal_add_js(drupal_get_path('module', 'cmf_expenditure') . '/js/cmf_expenditure.js');
+        drupal_add_css(drupal_get_path('module', 'cmf_expenditure') . '/css/cmf_expenditure.css');
+        //....................................
+
+
+        # financial year select
+        $financialyear = db_select('expenditure_table','etfnc');
+        $financialyear->fields('etfnc', array('field_value', 'field_key'));
+        $financialyear->condition('etfnc.field_name', 'Financial Year');
+        $fncyearresult = $financialyear->execute();
+        $numfnc = $fncyearresult->rowCount();
+        if($numfnc > 0) {
+            foreach($fncyearresult as $sss) {
+             $finacialarr[$sss->field_key] = $sss->field_value;   
+            }
+        } else{
+          $finacialarr = array();  
+        } 
+        # Dept select
+        $deptselect = db_select('expenditure_table','etdept');
+        $deptselect->fields('etdept', array('field_value', 'field_key'));
+        $deptselect->condition('etdept.field_name', 'Department');
+        $deptrest = $deptselect->execute();
+        $numdept = $deptrest->rowCount();
+        if($numdept > 0) {
+            foreach($deptrest as $sss) {
+             $deptarr[$sss->field_key] = $sss->field_value;   
+            }
+        } else{
+          $deptarr = array();  
+        }
+        #report to view
+        $repttovwselect = db_select('expenditure_table','etrev');
+        $repttovwselect->fields('etrev', array('field_value', 'field_key'));
+        $repttovwselect->condition('etrev.field_name', 'Report To View');
+        $repttovwselectrest = $repttovwselect->execute();
+        $numreptview = $repttovwselectrest->rowCount();
+        if($numreptview > 0) {
+            foreach($repttovwselectrest as $sss) {
+             $reptviewarr[$sss->field_key] = $sss->field_value;   
+            }
+        } else{
+          $reptviewarr = array();  
+        }
+        # frequency..............
+        $freqselect = db_select('expenditure_table','etfreq');
+        $freqselect->fields('etfreq', array('field_value', 'field_key'));
+        $freqselect->condition('etfreq.field_name', 'Frequency');
+        $freqselectrest = $freqselect->execute();
+        $numfreqselect = $freqselectrest->rowCount();
+        if($numfreqselect > 0) {
+            foreach($freqselectrest as $sss) {
+             $frequencyarr[$sss->field_key] = $sss->field_value;   
+            }
+        } else{
+          $frequencyarr = array();  
+        }
+        # grant num 
+        $grntnoarr = array();
+        $montharr = array(
+        '1'=>'January','2'=>'February','3'=>'March','4'=>'April',
+        '5'=>'May','6'=>'June','7'=>'July','8'=>'August',
+        '9'=>'September','10'=>'October','11'=>'November','12'=>'December',
+        );
+        $form = array();
+
+     $value_grant_no = isset($form_state['input']['department']) ? $form_state['input']['department'] : '';
+
+
+        $form['financial_year']= array(
+        '#type' => 'select',
+        '#title' => t('Financial Year:'),
+        '#required' => TRUE,
+        '#options' => @$finacialarr,
+        );
+        $form['department']= array(
+        '#type' => 'select',
+        '#title' => t('Department:'),
+        '#required' => TRUE,
+        '#options' => $deptarr,
+        '#ajax' => array(
+            // When 'event' occurs, Drupal will perform an ajax request in the
+            // background. Usually the default value is sufficient (eg. change for
+            // select elements), but valid values include any jQuery event,
+            // most notably 'mousedown', 'blur', and 'submit'.
+            'event' => 'change',
+            'callback' => 'cmf_expenditure_ajax_callback',
+            'wrapper' => 'grant_number_replace',
+        ),
+        );
+        $form['report_to_view']= array(
+        '#type' => 'select',
+        '#title' => t('Report To View:'),
+        '#required' => TRUE,
+        '#options' => $reptviewarr,
+        );
+        $form['grant_no']= array(
+        '#type' => 'select',
+        '#title' => t('Grant No:'),
+        '#prefix' => '<div id="grant_number_replace">',
+        '#suffix' => '</div>',
+
+        '#required' => TRUE,
+        '#options' => cmf_expenditure_grantno_dropdown_options($value_grant_no),
+        );
+        $form['frequency']= array(
+        '#type' => 'select',
+        '#title' => t('Frequency:'),
+        '#required' => TRUE,
+        '#options' => $frequencyarr,
+        );
+        $form['month']= array(
+        '#type' => 'select',
+        '#title' => t('Month:'),
+        '#required' => TRUE,
+        '#options' => $montharr,
+        );
+        $form['submit_button'] = array(
+        '#type' => 'submit',
+        '#value' => t('Submit'),
+        );
+        $form['reset'] = array(
+        '#markup'   => '<input type="reset" class="form-submit" id="edit-submit-reset"/>',
+        '#title'    => 'Reset',
+        );
+        return $form; 
+    }
+
+    
+    function set_expenditure_config() {
+        return drupal_get_form('cmf_expenditure_config_form');
+    }
+    function cmf_expenditure_config_form($form, &$form_state) {
+          //  delete code start here...........................................
+
+          //....................end delete code...............................
+          if(@$_GET['editid']!='') {
+           $editid = $_GET['editid'];
+           if(is_numeric($editid)) {
+           $editselect = db_select('expenditure_table','etedit');
+           $editselect->fields('etedit', array('id', 'field_name','field_value','field_key','pid'));
+           $editselect->condition('etedit.id', $editid);
+           $resedit = $editselect->execute();
+           foreach($resedit as $edit) {
+            $editdata = array(
+                           'field_name'=>$edit->field_name,'field_value'=>$edit->field_value,
+                           'field_key'=>$edit->field_key,'pid'=>$edit->pid
+                         );
+           }
+           } else{
+           drupal_set_message(t('Your Id is not valid type'));
+           drupal_goto(current_path());
+           }
+           
+        }
+        if(@$_GET['editid']) {
+        $submitval = "Update";    
+        } else {
+        $submitval = "Submit";    
+        }
+        $fieldarr = array(
+        "Financial Year"=>"Financial Year","Department"=>"Department",
+        "Report To View"=>"Report To View","Grant No"=>"Grant No",
+        "Frequency"=>"Frequency"
+        );
+        
+        $query = db_select('expenditure_table', 'et');
+        $query->fields('et', array('id', 'field_value','field_key'));
+        $query->condition('et.field_name', 'Department');
+        $result = $query->execute();
+        $num = $result->rowCount();
+        if($num !=0) {
+        foreach($result as $sss) {
+         
+        $deptarr[$sss->id] = $sss->field_value;
+        }
+        } else {
+        $deptarr =array(""=>"Select Department"); 
+        }
+        $form = array();
+        $form['select_field']= array(
+        '#type' => 'select',
+        '#title' => t('Select Field:'),
+        '#required' => TRUE,
+        '#options' => $fieldarr,
+        '#default_value' =>@$editdata['field_name'],
+        );
+        $form['select_dept']= array(
+        '#type' => 'select',
+        '#title' => t('Select Department:'),
+        '#options' => $deptarr,
+        '#states' => array(
+            'visible' => array(
+            ':input[name="select_field"]' => array('value' => 'Grant No'),
+            ),
+        ),
+        '#default_value' =>@$editdata['pid'],
+        );
+        $form['field_value']= array(
+        '#type' => 'textfield',
+        '#title' => t('Enter Field Value'),
+        '#required' => TRUE,
+        '#description' => t('Field Value'),
+        '#default_value' =>@$editdata['field_value'],
+        );
+         $form['field_key']= array(
+        '#type' => 'textfield',
+        '#title' => t('Enter Field Key'),
+        '#required' => TRUE,
+        '#description' => t('Field Key'),
+        '#default_value' =>@$editdata['field_key'],
+        );
+        $form['submit_button'] = array(
+        '#type' => 'submit',
+        '#value' => t($submitval),
+        );
+        //...........................
+        $dbselect = db_select('expenditure_table', 'ets');
+        $dbselect->fields('ets', array('id', 'field_name','field_value','field_key','pid'));
+        $dbselect->orderby('id','DESC');
+        $rwresult = $dbselect->execute();
+        $numrow = $rwresult->rowCount();
+        if($numrow==0) {
+
+        @$rowdata = '';
+        } else {
+        foreach($rwresult as $res) {
+
+          $editoath ="?editid=$res->id";
+          $deleteid =base_path()."admin/config/development/expenditure/$res->id/delete";
+          if($res->pid!=NULL) {
+          $deptselect = db_select('expenditure_table','ejoin');
+          $deptselect->fields('ejoin',array('field_value'));
+          $deptselect->condition('ejoin.id',$res->pid);
+          $deptres = $deptselect->execute();
+          foreach($deptres as $de) {
+           $d = $de->field_value;
+          }
+          }
+         $rowdata[] = array(
+            'field_name'=>$res->field_name,'field_value'=>$res->field_value,
+            'field_key'=>$res->field_key,'pid'=>@$d,
+            'Action'=>'<a href='.$editoath.'>Edit</a> 
+            / <a href='.$deleteid.'>Delete</a>'
+            ); 
+           unset($d);    
+        }    
+        
+        }
+         $form['table'] = array(
+        '#theme' => 'table',
+         '#header' => array(t('Field Name'), t('Field Value'),t('Field Key'),t('Department Name'),t('Action')),
+          // Rows in the form table
+         '#rows' =>$rowdata
+         );
+         return $form;    
+    }
+
+    function cmf_expenditure_config_form_submit($form, &$form_state) {
+        //  .. insert query start here...............
+        if($form_state['input']['op']=='Submit') {
+        $fieldname = $form_state['input']['select_field'];
+        $fieldval = $form_state['input']['field_value'];
+        $fieldkey = $form_state['input']['field_key'];
+        $pids = $form_state['input']['select_dept'];
+        if(empty($pids)) {
+        $pid = NULL;    
+        } else {
+            if($form_state['input']['select_field']=='Grant No') {
+            $pid = $form_state['input']['select_dept'];   
+            } else{
+              $pid =NULL;  
+            }
+            
+        }
+        
+
+        $qr = db_insert('expenditure_table');
+        $qr->fields(array(
+                         'field_name' => $fieldname,'field_value' => $fieldval,
+                         'field_key' => $fieldkey,'pid'=>$pid
+                         )
+                     );
+        if($qr->execute()){
+        drupal_set_message(t('Your configuration has been saved.'));
+        drupal_goto(current_path());
+        } else {
+        drupal_set_message(t('Your configuration not saved please try again'));
+        drupal_goto(current_path());
+        }
+        //  update query start here...........................
+        } else {
+        $fieldname = $form_state['input']['select_field'];
+        $fieldval = $form_state['input']['field_value'];
+        $fieldkey = $form_state['input']['field_key'];
+        $pids = $form_state['input']['select_dept'];
+        if(empty($pids)) {
+        $pid = NULL;    
+        } else {
+            if($form_state['input']['select_field']=='Grant No') {
+            $pid = $form_state['input']['select_dept'];   
+            } else{
+              $pid =NULL;  
+            }
+        }
+        $qr = db_update('expenditure_table');
+        $qr->fields(array(
+                         'field_name' => $fieldname,'field_value' => $fieldval,
+                         'field_key' => $fieldkey,'pid'=>$pid
+                         )
+                     );
+        $qr->condition('id',$_GET['editid']);
+        if($qr->execute()) {
+        drupal_set_message(t('Your configuration Has been updated'));
+        drupal_goto(current_path());
+        } else {
+        drupal_set_message(t('Your configuration Not update please try again'));
+        drupal_goto(current_path());
+        }
+        }
+
+
+    }
+    function expenditure_delete_confirm($form, &$form_state, $the_id) {
+        $form = array();
+        $form['the_id'] = array(
+        '#type' => 'value',
+        '#value' => $the_id,
+        );
+
+        $form['expenditure_table'] = array(
+        '#type' => 'value',
+        '#value' => arg(4),
+        );
+
+        return confirm_form(
+        $form,
+        t('Are you sure you want to delete this item?'),
+        'admin/config/development/expenditure',
+        t('This action cannot be undone.'),
+        t('Delete'),
+        t('Cancel')
+        );
+
+
+        return $form;
+
+
+    }
+    function expenditure_delete_confirm_submit($form, &$form_state) {
+        //dpm($form_state['values']);
+        $delid = $form_state['values']['expenditure_table'];
+        
+        if(is_numeric($delid)) {
+        $num_deleted = db_delete('expenditure_table');
+        $num_deleted->condition('id', $delid);
+        $num_deleted->execute();
+
+        drupal_set_message('One Record deleted');
+        $form_state['redirect'] = 'admin/config/development/expenditure'; 
+        } else {
+        drupal_set_message('Invalid Argument supplied.');
+        $form_state['redirect'] = 'admin/config/development/expenditure';   
+        }
+        
+        }
+    
+    function cmf_expenditure_ajax_callback($form, $form_state) {
+            
+            return $form['grant_no'];
+     } 
+
+    function cmf_expenditure_grantno_dropdown_options($key = '') {
+       
+
+            if($key != ''){
+            $fetchpid = db_select('expenditure_table', 'etpid');
+            $fetchpid->fields('etpid',array('id'));
+            $fetchpid->condition('etpid.field_key',$key);
+            $pidres = $fetchpid->execute();
+
+            foreach($pidres as $de) {
+            $respid = $de->id;
+            }
+
+            $selectallgrant = db_select('expenditure_table','etgrt');
+            $selectallgrant->fields('etgrt',array('field_value','field_key'));
+            $selectallgrant->condition('etgrt.field_name','Grant No');
+            $selectallgrant->condition('etgrt.pid',$respid);
+            $allgrantres = $selectallgrant->execute();
+            $arrgrt= array();
+            foreach($allgrantres as $grt) {
+            $arrgrt[$grt->field_key] = $grt->field_value;
+
+
+            }
+            return $arrgrt; 
+
+
+            }  else{
+            return array(); 
+            }
+
+     }   
+    function cmf_expenditure_access($account = NULL) {
+    return user_access('administer blocks', $account) && user_access('administer menu', $account);
+    }
+

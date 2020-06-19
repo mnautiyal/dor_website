@@ -1,0 +1,12 @@
+name = CMF Preset
+package = CMF
+description = Allows Developer to define predefined function and js.
+core = 7.x
+
+version = "7.x-1.1"
+project = "form_example"
+datestamp = "1353872502"
+required = TRUE
+tapas.cse.talukder@gmail.com
+
+

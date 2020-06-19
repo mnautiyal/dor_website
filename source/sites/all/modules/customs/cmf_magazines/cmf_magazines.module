@@ -1,0 +1,89 @@
+<?php
+# hook Menu Call
+    /* function cmf_magazines_init() {
+    // $re = getcontentData();
+    // echo "<pre>";
+     //print_r($re);
+     //die;
+    } */
+
+ /*	function cmf_magazines_menu() {
+    $items = array();
+    $items["flipebook"] = array (
+        "title" => "Ebook",
+        "page callback" => "cmf_customtpl",
+        "access arguments" => array("access content"),
+        "type" => MENU_CALLBACK
+        );
+
+
+    return $items;
+	}
+    */
+   /*
+	function cmf_customtpl() {
+        $re = getcontentData();
+
+        
+		return theme('cmf_magazines_custom_template',array('tempdata' => $re));
+	}
+
+    */
+	/*
+ * Implement hook_theme().
+ */
+ /*  
+function cmf_magazines_theme(){
+    return array(
+        'cmf_magazines_custom_template' => array(
+        	  
+            // file name will be custom-page.tpl.php
+            'template' => 'template/cmf_magazines',
+        ),
+    );
+}
+*/
+
+/*
+function getcontentData() {
+
+       $query = db_select('node', 'n');
+        $query->join("field_data_field_flip_image", "fi", "fi.entity_id = n.nid");
+        $query->fields('fi', array('field_flip_image_fid'));
+        $query->condition('n.status', 1);
+        $query->condition('n.type', 'flipimage');
+        $query->orderBy('fi.delta', 'ASC');
+        $res = $query->execute();
+
+       
+
+        foreach($res as $delta) {
+           
+
+        $qr1 = db_select('file_managed', 'fm');
+        $qr1->condition('fm.fid', $delta->field_flip_image_fid);
+        $qr1->fields('fm', array('filename'));
+        @$res55[] = $qr1->execute()->fetchField();
+       
+        
+        }
+        
+        
+       return @$res55; 
+       
+}
+*/
+
+function cmf_magazines_theme($existing, $type, $theme, $path) {
+  return array (
+    'views_view__flip_ebook__block' => array (
+      'variables' => array('view' => NULL, 'options' => NULL, 'rows' => NULL, 'title' => NULL),
+      'template' => 'views-view--flip-ebook--block' ,
+      'base hook' => 'views_view',
+      'path' => drupal_get_path('module', 'cmf_magazines').'/template',
+    ),
+  ); 
+}
+
+
+?>

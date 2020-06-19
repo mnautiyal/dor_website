@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the CMF core feature.
+ */
+
+include_once 'cmf_core.features.inc';

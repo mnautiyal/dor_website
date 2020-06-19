@@ -1,0 +1,44 @@
+core = 7.x
+description = Egovrev is a custom theme that is all about going with the flow. It takes care of key reset and utility tasks so that sub-themes can get on with their job.
+name = Egovrev
+
+; Regions =====================================================================
+
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+regions[main_menu_content] = Main Menu Content
+regions[content] = Content
+regions[header] = Header
+regions[header_top] = Header Top
+regions[help] = Help
+regions[footer] = Footer
+regions[footer_top] = Footer Top
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[highlighted] = Highlighted
+regions[inner_left_menu] = Inner Left Menu
+
+; Stylesheets =================================================================
+
+
+stylesheets[all][] = 'css/ma5gallery.css'
+;stylesheets[all][] = 'css/base.css'
+;stylesheets[all][] = 'css/base-responsive.css'
+stylesheets[all][] = 'css/site.css'
+stylesheets[all][] = 'css/site-responsive.css'
+;stylesheets[all][] = 'css/flexslider.css'
+stylesheets[all][] = 'css/back_to_top.css'
+
+
+; Java Script =================================================================
+
+;scripts[] = 'js/ma5gallery.js'
+scripts[] = 'js/custom.js'
+
+
+; Information added by Drupal.org packaging script on 2014-03-18
+version = "7.x-3.1"
+core = "7.x"
+project = "Egovrev"
+datestamp = "1395127156"
+

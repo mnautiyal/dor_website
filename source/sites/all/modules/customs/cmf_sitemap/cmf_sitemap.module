@@ -1,0 +1,209 @@
+<?php
+
+function sitemap_render_menu ($menu) {
+    $output = "";
+    foreach ($menu as $item) {
+    	$link = $item["link"];
+    	if ($link["hidden"]) {
+    	    continue;
+    	}
+       
+        $ff = url($link["href"]);
+        if (strpos($ff, '%3Cnolink%3E') !== false) {
+        $class1 = 'nolink_class';
+        $output .= "<li><a class=".$class1." href='#'" . "\">" . $link["title"] . "</a>";
+        } else {
+          $class1 ='normal_class' ; 
+          $output .= "<li><a class=".$class1." href=\"" . check_url(url($link["href"], $link["options"])) . "\">" . $link["title"] . "</a>";
+        }
+        
+    	
+
+    	if ($item["below"]) {
+            
+    	    $output .= sitemap_render_menu($item["below"]);
+            
+    	}
+        $output .= '</li>';
+    }
+    if($output != ''){
+        $output = "<ul>".$output."</ul>";
+    }
+    
+    return $output;
+}
+
+function sitemap_content () {
+
+    drupal_add_css(drupal_get_path('module', 'cmf_sitemap') . '/css/cmf_sitemap.css');
+    
+    $query11 = db_select('sitemap_table', 'st');
+    $query11->fields('st', array('menu_name', 'menu_machine_name'));
+    $query11->condition('st.is_show', 1);
+    $query11->orderBy('st.sitemap_order', 'ASC');
+    $result11 = $query11->execute();
+    foreach($result11 as $sss) {
+    $arr[] = array('machine_name'=>$sss->menu_machine_name,'menu_name'=>$sss->menu_name);
+
+    }
+
+    $output = "";
+    $output .= "<div id=\"sitemap\">";
+    if(!empty($arr)) {
+    foreach($arr as $a) {
+        $menutree_alldata = menu_tree_all_data($a['machine_name']);
+        if(!empty($menutree_alldata)) {   
+        $output .= sitemap_render_menu(menu_tree_all_data($a['machine_name']));
+        }
+    }
+    }
+    $output .= "</div>";
+    return $output;
+}
+
+
+function cmf_sitemap_menu() {
+    $items = array();
+
+    $items["site-map"] = array (
+	    "title" => "Sitemap",
+	    "page callback" => "sitemap_content",
+	    "access arguments" => array("access content"),
+	    "type" => MENU_CALLBACK
+        );
+    $items['admin/config/development/site-map'] = array(
+        'title' => 'Site Map Configuration',
+        'page callback' => 'set_site_site_map',
+        'access callback' => 'cmf_sitemap_access',
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    return $items;
+}
+function set_site_site_map() {
+  
+ return drupal_get_form('custom_site_map_setting_form');
+}
+
+function custom_site_map_setting_form($form, &$form_state) {
+
+    $form = array();
+
+    $form['site_map_setting'] = array(
+
+    '#type' => 'fieldset',
+        
+    '#prefix' => '<table>',
+    '#suffix' => '</table>',
+    '#tree' => TRUE,
+    );
+   
+    $form['site_map_setting']['header'] = array(
+    '#markup' => '<thead>
+    <tr>
+    <td colspan="3" align="center"><h1>Site Map Settings<h1></td>
+    </tr>
+    <tr>
+    <th>Menu Name</th>
+    <th>Show On Sitemap</th>
+    <th>Site Map Order</th>
+    </tr>
+    </thead>',
+    );
+
+    $query = db_select('sitemap_table', 'st');
+    $query->fields('st', array('menu_name', 'menu_machine_name','is_show','sitemap_order'));
+    $result = $query->execute();
+
+    foreach ($result as $value) {
+        
+        $data2[] = $value->menu_machine_name;
+    }
+    $allmenulist = menu_get_menus();
+    $j =0;
+    foreach ($allmenulist as $key1 => $value1) {
+
+        if(!in_array($key1,$data2)) {
+            $query22 = db_insert('sitemap_table')->fields(array(
+                'menu_name','menu_machine_name','is_show','sitemap_order'
+                )
+            );
+            $query22->values(array(
+                'menu_name' => $value1,'menu_machine_name'=>$key1,
+                'is_show'=>0,'sitemap_order'=>0
+                )
+            );
+            $query22->execute();
+        }
+
+        $opt[] = $j;
+        $j++;
+    }
+    
+   //.............................
+    $que = db_select('sitemap_table', 'st1');
+    $que->fields('st1', array('menu_name', 'menu_machine_name','is_show','sitemap_order'));
+    $rest = $query->execute();
+
+    $i=0;
+    foreach ($rest as $value) {
+
+        $form['site_map_setting'][$value->menu_machine_name] = array(
+        '#prefix' => '<tr>',
+        '#suffix' => '</tr>',
+        );
+        $form['site_map_setting'][$value->menu_machine_name]['manu_name'] = array(
+        '#markup' => $value->menu_name,
+        '#prefix' => '<td>',
+        '#suffix' => '</td>',
+        );
+
+        $form['site_map_setting'][$value->menu_machine_name]['checkbox'] = array(
+        '#type' => 'checkbox',
+        '#options' => array(0 => "off", 1 => "on"),
+        '#default_value' => $value->is_show,
+        '#prefix' => '<td>',
+        '#suffix' => '</td>',
+        );
+
+        $form['site_map_setting'][$value->menu_machine_name]['select'] = array(
+        '#type' => 'select',
+        '#options' => $opt,
+        '#default_value' => array( $value->sitemap_order ),
+        '#prefix' => '<td>',
+        '#suffix' => '</td>',
+        );
+        $i++; 
+    }
+    $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+    );
+    return $form;
+
+
+}
+
+function custom_site_map_setting_form_submit($form, &$form_state) {
+   $allmenulist = menu_get_menus();
+    foreach ($allmenulist as $key => $value) {
+
+     
+     $iccheck = $form_state['input']['site_map_setting'][$key]['checkbox'];
+     $order = $form_state['input']['site_map_setting'][$key]['select'];
+     db_update('sitemap_table') 
+     ->fields(array('is_show' =>$iccheck,'sitemap_order'=>$order))
+     ->condition('menu_machine_name',$key)
+     ->execute();
+     
+
+    
+    }
+    drupal_set_message(t('Your configuration has been saved.'));
+    drupal_goto(current_path());
+    
+
+}
+function cmf_sitemap_access($account = NULL) {
+    return user_access('administer blocks', $account) && user_access('administer menu', $account);
+}

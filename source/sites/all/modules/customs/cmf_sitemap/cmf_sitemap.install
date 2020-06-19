@@ -1,0 +1,70 @@
+<?php
+
+function cmf_sitemap_install(){
+  drupal_install_schema('sitemap_table');
+   $allmenulist = menu_get_menus();
+ 
+ $query12 = db_insert('sitemap_table')->fields(array(
+                                                  'menu_name','menu_machine_name','is_show','sitemap_order')
+                                              );
+ foreach ($allmenulist as $key => $value) {
+  if($key!='user-menu') {
+  $query12->values(array(
+    'menu_name' => $value,
+    'menu_machine_name'=>$key,
+    'is_show'=>1,
+    'sitemap_order'=>0
+    )
+  );
+  } 
+ }
+ $query12->execute();  
+}
+
+function cmf_sitemap_uninstall(){
+ drupal_uninstall_schema('sitemap_table');
+ 
+}
+
+
+function cmf_sitemap_schema(){
+   $schema['sitemap_table'] = array(
+    'description' => 'Store sitemap Settings',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Unique identifier for the {Sitemap}.',
+      ),   
+	  'menu_name' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'Menu Name.',
+      ),
+       'menu_machine_name' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'Menu Machine Name',
+      ),   
+      'is_show' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'show on site map.',
+      ),
+      'sitemap_order' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'Csite map order.',
+      ),
+	  
+    ),
+	'primary key' => array('id'),
+  );
+  
+  return $schema;
+   }

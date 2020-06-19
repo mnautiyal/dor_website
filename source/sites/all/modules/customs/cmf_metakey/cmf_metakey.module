@@ -1,0 +1,74 @@
+<?php
+function cmf_metakey_init(){
+	$meta_keywords = 'tax, central, circulars, all,  press, release, committee,  rules, view, state, finance, GST, Law, Excise, service tax, CEIB, CBEC, invest, IRS, NDPS, money, laundering, foerign, exchange';
+	$meta_description = 'Department of Revenue functions under the overall direction and control 
+of the Secretary (Revenue). It exercises control in respect of matters 
+relating to all the Direct and Indirect Union Taxes through two 
+statutory Boards namely, the Central Board of Direct Taxes (CBDT) and 
+the Central Board of Excise and Customs (CBEC).';
+	if(!variable_get('cmf_metakeywords')){
+		variable_set('cmf_metakeywords', $meta_keywords);  
+	}
+	if(!variable_get('cmf_metadescription')){
+		variable_set('cmf_metadescription', $meta_description);  
+	}
+	
+}
+function cmf_metakey_menu(){
+	$items['admin/config/development/cmf_metakey'] = array(
+		'title' => t('Genarel Meta Keywords'),
+		'description' => t('Meta Keywords'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('cmf_metakey_form'),
+        'access arguments' => array('access administration pages'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+  	return $items;	
+}
+
+// Function for clearing cache for specific page
+function cmf_metakey_form()
+{
+	$form = array();
+	$keyword = '';
+	if(variable_get('cmf_metakeywords')){
+		$keyword = variable_get('cmf_metakeywords');
+	}
+	if(variable_get('cmf_metadescription')){
+		$metadescription = variable_get('cmf_metadescription');
+	}
+	$form['meta_keywords']= array(
+		'#type' => 'textfield',
+		'#title' => t('Enter Genarel Meta Keywords'),
+		'#cols' => 70,
+		'#rows' => 4,
+		'#required' => TRUE,
+		'#value' => $keyword,
+		'#description' => t('Enter , after a meta Keyword.'),
+  	);
+	$form['meta_description']= array(
+		'#type' => 'textfield',
+		'#title' => t('Enter Meta Description'),
+		'#cols' => 70,
+		'#rows' => 4,
+		'#required' => TRUE,
+		'#value' => $metadescription,
+  	);
+	// submit buton
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+	return $form;
+}
+function cmf_metakey_form_submit($form, &$form_state){
+	
+	$values = $form_state['input'];
+	$meta_keywords = $values['meta_keywords'];
+	variable_set('cmf_metakeywords', $meta_keywords);  
+	$meta_description = $values['meta_description'];
+	variable_set('cmf_metadescription', $meta_description);
+	drupal_set_message(t('Successfully Save.'));
+}
+
+?>

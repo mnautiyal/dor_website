@@ -1,0 +1,140 @@
+<?php
+function ip_allow_init(){
+	check_allow_ips();
+}
+function get_client_ip() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+       $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+function ip_allow_menu(){
+	$items['admin/config/development/ip-allow'] = array( 
+		'title' => 'IPs Configure role wise.',
+		'description' => 'Allowed IPs of admin page',
+		'page callback' => 'drupal_get_form', 
+		'page arguments' => array('ip_allow_form'), 
+		'access arguments' => array('user access'),
+		'type' => MENU_NORMAL_ITEM,
+
+	  );
+	return $items;	
+}
+function ip_allow_form(){
+ 	$form = array();
+	$res = db_query("SELECT * FROM role WHERE weight >= 0");
+	$row = $res->fetchAll();
+	$i = 0;
+	foreach($row as $key => $val){
+		$ip_list = '';
+		$result = db_query("SELECT * FROM ips_allow_list WHERE user_role = :rid", array(":rid" => $val->rid));
+
+		if($result->rowCount() > 0){
+			$ip_row = $result->fetchAll();
+			$ip_list = $ip_row[0]->ip_list;
+		}
+		
+		 $form['ip['.$i.']'] = array(
+			'#type' => 'textarea',
+			'#cols' => 6,
+			'#title' => t('Provide IPs for '.$val->name.' role'),
+			'#description' => t('Provide IPs for '.$val->name.' role'),
+			'#value' => $ip_list
+		  );
+		  $form['row_no['.$i.']'] = array(
+			'#type' => 'hidden',
+			'#title' => t('Provide User role id'),
+			'#description' => t('Provide User role id'),
+			'#value' => $val->rid
+		  );
+		  $i++;
+	}
+	 $form['no_of_row'] = array(
+		'#type' => 'hidden',
+		'#title' => t('No of row'),
+		'#description' => t('No of row'),
+		'#value' => $i
+	  );
+	$form['submit_button'] = array(
+		'#type' => 'submit',
+		'#value' => t('Save'),
+	   
+	  );
+	 
+	  return $form;
+}
+
+
+function ip_allow_form_validate($form, &$form_state) {
+	  /*if (!($form_state['values']['price'] > 0)){
+		form_set_error('price', t('Price must be a positive number.'));
+	  }*/
+}
+function ip_allow_form_submit($form, &$form_state) {
+	for($i =0; $i < $_POST['no_of_row']; $i++){
+		$result = db_query("SELECT * FROM ips_allow_list WHERE user_role = :rid", array(":rid" => $_POST["row_no"][$i]));
+		$ip_row = $result->fetchAll();		
+		if($result->rowCount() == 0){
+			$res =  db_insert('ips_allow_list')
+				->fields(array('user_role','ip_list'))
+				->values(array(
+					'user_role' => $_POST["row_no"][$i],
+					'ip_list' => $_POST["ip"][$i],
+				))
+				->execute();
+		}else{
+			$res =  db_update('ips_allow_list')
+				->fields(array(
+					'user_role' => $_POST["row_no"][$i],
+					'ip_list' => $_POST["ip"][$i],
+				))
+				->condition('user_role', $_POST["row_no"][$i], '=')
+				->execute();
+		}
+		
+	}
+}
+function allowips_for_role($role){
+	global $base_url;
+	$result = db_query("SELECT ip_list FROM ips_allow_list WHERE user_role = :rid", array(":rid" => $role));
+	$ip_row = $result->fetchAll();
+	if($result->rowCount() > 0 && trim($ip_row[0]->ip_list) != ''){		
+		$ips_array = explode("\n",$ip_row[0]->ip_list);
+	}
+	return $ips_array;
+}
+
+function check_allow_ips(){
+	global $base_url;
+	global $user;
+	$result = db_query("SELECT * FROM ips_allow_list");
+	if($result->rowCount() > 0){
+		$ip_list = array();
+		if($user->uid == 0){
+			$ip_list = allowips_for_role(1);
+		}else{
+			$roles_array = $user->roles;
+			foreach($roles_array as $key => $val){
+				$ip_list = array_merge($ip_list,allowips_for_role($key));
+				
+			}
+		}
+		$path = explode("/",request_path());
+		if(!in_array(get_client_ip(),$ip_list) && $path[0] != 'ip-restriction'){
+			form_set_error('body', 'Restriceted URL');
+			drupal_goto($base_url."/ip-restriction");
+		}	
+	}
+}

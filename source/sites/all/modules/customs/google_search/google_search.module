@@ -1,0 +1,108 @@
+<?php
+/**
+ * Implementation of hook_install().
+ */
+function google_search_init(){
+	drupal_add_css(drupal_get_path('module','google_search').'/css/result.css', 'file');
+}
+function  google_search_block_info() {
+ $blocks = array();
+   $blocks['google_search_box'] = array(
+    'info' => t('Google Search'),
+  );
+  return $blocks;
+}
+
+function google_search_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'google_search_box':
+      $block['subject'] = '';
+      $block['content'] = _google_search_create_block();
+    break;	
+  }
+  return $block;
+}
+
+function _google_search_create_block(){
+	global $base_url;
+	@$get_var = variable_get('search_site');
+	if(!empty($get_var)){
+		$site = variable_get('search_site');
+	}else{
+		$site = $base_url;
+	}
+	$str = '<div class="google-find">				
+				<form method="get" action="http://www.google.com/search" target="_blank"> 
+				    <label for="search_key_g" class="notdisplay">Search</label>
+					<input type="text" name="q" value="" id="search_key_g"/> 
+					<input type="submit" value="'.t('Search').'" class="submit" /> 
+					<div class="">
+					<input type="radio" name="sitesearch" value="" id="the_web"/> 
+					<label for="the_web">The Web</label> 
+ <input type="radio" name="sitesearch" value="'.$site.'" checked id="the_domain"/> <label for="the_domain"> '.strtoupper($site).'</label></div>
+				</form>
+			</div>';
+
+	$arg = arg(0);
+	if($arg != "gsearch"){
+		return $str;
+	}
+	
+}
+
+function google_search_menu(){
+	$items['gsearch'] = array(
+		'title' => 'Search Result',
+		'page callback' => 'google_search_result',
+    	'access arguments' => array('access content'),
+    	'type' => MENU_CALLBACK,
+	);
+	return $items;
+}
+
+
+function google_search_result(){
+	$output = '';
+	@$search_key = $_GET['search_key'];
+	if(isset($search_key)){		
+		if(!goisearch_key_validation($search_key)){
+			$search_key = '';
+			form_set_error("search_key", 'Please enter a valid value.'); 
+		}
+	}else{
+		$search_key = '';
+	}
+	global $base_url;
+	$output.='<script>
+		  (function() {
+			var cx = "018377472947745243605:erpl7a7cn1m";
+			var gcse = document.createElement("script");
+			gcse.type = "text/javascript";
+			gcse.async = true;
+			gcse.src = (document.location.protocol == "https:" ? "https:" : "http:") +
+				"//www.google.com/cse/cse.js?cx=" + cx;
+			var s = document.getElementsByTagName("script")[0];
+
+			s.parentNode.insertBefore(gcse, s);
+		  })();
+		</script>
+		<gcse:searchresults-only></gcse:searchresults-only>';
+	return $output;
+}
+
+function google_search_key_validation($str = ''){
+	$white_parameter = variable_get('whitebox_pattern');
+	if(empty($white_parameter)){
+		$white_parameter = "\x{900}-\x{97F}\ a-zA-Z0-9 | | @&$%,:.\-\_\(\)";
+	}else{
+		$white_parameter = variable_get('whitebox_pattern');
+	}
+	$pattern = "/^([".$white_parameter."])+$/ui";
+	if(trim(preg_match($pattern, $str))){
+		return TRUE;
+	} else{
+		return FALSE;
+	}	
+}
+

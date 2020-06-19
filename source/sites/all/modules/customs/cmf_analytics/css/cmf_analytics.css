@@ -1,0 +1,40 @@
+
+.ui-tabs { position: relative; padding: .2em; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; width:100%; height:47px; }
+.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 0; margin: 1px .2em 0 0; border-bottom: 0; padding: 0; white-space: nowrap; padding-bottom:0; }
+.ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-active { margin-bottom: -1px; padding-bottom: 1px; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-tabs-loading a { cursor: text; }
+.ui-tabs .ui-tabs-nav li a, .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
+#analytics_tab li {padding-bottom:0;}
+#analytics_tab li.ui-state-active{ background:#666 none repeat scroll 0 0; border:1px solid #666;}
+.ui-tabs a:focus{border:1px dotted #000;}
+
+
+
+.analytics_list ul li{display:block;}
+.analytics_list ul li {padding: 13px 10px;
+    border: 1px solid #f4f4f4;
+    margin-bottom: 10px;}
+.analytics_list ul li:before, .analytics_list ul li:after, .analytics_list ul li h2:before, .analytics_list ul li h2:after {
+	display: table;
+	line-height: 0;
+	content: "";
+}
+.analytics_list ul li h2:after, .analytics_list ul li:after {
+	clear: both;
+}
+.analytics_list ul li h2{    padding-bottom: 10px;
+    font-size: 120%;
+    text-transform: uppercase;
+    font-weight: 600;
+} 
+.analytics_list ul li #cmf-analytics-browser, .analytics_list ul li #browser_cat, .analytics_list ul li #cmf-analytics-referer,  .analytics_list ul li #cmf-analytics{float:left; width:48%;}
+.analytics_list ul li #table-cmf-analytics-browser, .analytics_list ul li #table-browser_cat, .analytics_list ul li #table-cmf-analytics-referer,  .analytics_list ul li #table-cmf-analytics{float:right; width:48%;}
+
+ @media all and (max-width : 767px) {
+	
+	 .analytics_list ul li #cmf-analytics-browser, .analytics_list ul li #browser_cat, .analytics_list ul li #cmf-analytics-referer,  .analytics_list ul li #cmf-analytics{float:none; width:100%;}
+.analytics_list ul li #table-cmf-analytics-browser, .analytics_list ul li #table-browser_cat, .analytics_list ul li #table-cmf-analytics-referer,  .analytics_list ul li #table-cmf-analytics{float:none; width:100%;}
+	 }

@@ -1,0 +1,12 @@
+name = CMF Modules Details
+package = CMF
+description = This module to handle the data export for mobile apps.
+core = 7.x
+
+version = "7.x-1"
+core = "7.x"
+project = "module_details"
+datestamp = "1353872502"
+tapas.cse.talukder@gmail.com
+
+

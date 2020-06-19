@@ -1,0 +1,12 @@
+name = Cache Clear of drupal
+package = CMF
+description = Cache Clear of drupal.
+
+version = "7.x-1.1"
+core = "7.x"
+project = "cache_clear"
+datestamp = "1353872502"
+required = TRUE
+tapas.cse.talukder@gmail.com
+
+

@@ -1,0 +1,244 @@
+<?php
+/**
+ * Implementation of hook_install().
+ */
+
+function  goisearch_block_info() {
+ $blocks = array();
+   $blocks['goisearch_box'] = array(
+    'info' => t('GOI Search'),
+  );
+  return $blocks;
+}
+
+function goisearch_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'goisearch_box':
+      $block['subject'] = '';
+      $block['content'] = _goisearch_create_block();
+    break;	
+  }
+  return $block;
+}
+
+function _goisearch_create_block(){
+	global $base_url;
+	$str = '<div class="find">
+			<form name="searchForm" action="'.$base_url.'/goisearch">
+				<label for="search_key" class="notdisplay">Search</label>
+				<input type="text" name="search_key" id="search_key" onkeyup="autoComplete()" autocomplete="off" required />
+				<input type="submit" value="Search" class="bttn-search"/>
+			</form>
+			<div id="auto_suggesion"></div>
+			</div>';
+
+	$arg = arg(0);
+	if($arg != "goisearch"){
+		return $str;
+	}
+	
+}
+
+function goisearch_init(){
+	global $base_url;
+	@$get_var = variable_get('search_site');
+	if(!empty($get_var)){
+		$site = variable_get('search_site');
+	}else{
+		$site = $base_url;
+	}
+	@$search_key = $_GET['search_key'];
+	if(isset($search_key)){		
+		if(!goisearch_key_validation($search_key)){
+			$search_key = '';
+			form_set_error("search_key", 'Please enter a valid value.'); 
+		}
+	}else{
+		$search_key = '';
+	}
+	
+	drupal_add_js(drupal_get_path('module','goisearch').'/js/custom_result_jsversion.js', 'file');
+	drupal_add_js(drupal_get_path('module','goisearch').'/js/auto_jsversion.js', 'file');
+	drupal_add_css(drupal_get_path('module','goisearch').'/css/custom_result.css', 'file');
+	drupal_add_css('http://goisas.nic.in/content/scripts/jquery.1.8.7/themes/base/jquery.ui.all.css', 'file');
+	//...............
+     //drupal_add_js(drupal_get_path('module','goisearch').'/js/custom_result.js', 'file');
+     //drupal_add_js(drupal_get_path('module','goisearch').'/js/auto.js', 'file');
+	//................
+	drupal_add_css(drupal_get_path('module','goisearch').'/css/add-css.css', 'file');
+	drupal_add_js('
+		jQuery(document).ready(function(){
+			var searchStr = "'.$search_key.'";
+			if(searchStr != ""){
+				fetchResult();
+			}
+		});	
+		var currentKey = 0;
+		settings = new Array();
+		settings["searchServer"] = "http://goisearch.gov.in";
+		settings["textBoxId"] = "q";
+		settings["callBackFunction"] = "callBack";
+		loadSuggestionControls(settings);
+
+		function callBack() {
+			settings["q"] = document.getElementById("search_key").value;
+			settings["count"] = "10";
+			settings["site"] = "'.$site.'";
+			loadResultControls(settings);
+		}
+
+		settings = new Array();
+		settings["searchServer"] = "http://goisearch.gov.in";
+		settings["textBoxId"] = "search_key";
+		settings["site"] = "'.$site.'";
+		settings["q"] = "";
+		loadResultControls(settings);
+
+		function modifySettings(key1) {
+			if (document.getElementById("search_key").value != null) {
+				settings[key1] = document.getElementById("search_key").value;
+				settings["count"] = "10";
+				settings["site"] = "'.$site.'";
+				loadResultControls(settings);
+			}
+			hideAutoComplete();
+		}
+
+		function fetchResult() {
+			var str = window.document.URL.toString();
+			str=escape(str);
+			var q = str.indexOf("?search_key=") + 12;
+			settings["q"] = str.slice(q);
+			settings["count"] = "10";
+			settings["site"] = "'.$site.'";
+			loadResultControls(settings);
+		}
+
+		function escape(string) {
+				return ("" + string).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/"/g, "&#x27;").replace(/\//g, "&#x2F;").replace(/\+/g," ");
+		};
+		', "inline");
+}
+
+
+function goisearch_menu(){
+	$items['admin/config/development/search-config'] = array(
+		'title' => 'GOI Search Confiruration',
+		'page callback' => 'set_site_for_search',
+		'access callback' => 'goi_search_access',
+		'type' => MENU_NORMAL_ITEM,
+	); 
+	$items['goisearch'] = array(
+		'title' => 'Search Result',
+		'page callback' => 'goisearch_result',
+    	'access arguments' => array('access content'),
+    	'type' => MENU_CALLBACK,
+	);
+return $items;
+}
+
+
+/**
+ * Determine whether the user has permission to use menu_block module.
+ */
+function goi_search_access($account = NULL) {
+	return user_access('administer blocks', $account) && user_access('administer menu', $account);
+}
+
+function set_site_for_search(){
+	return drupal_get_form('custom_search_site_form');
+}
+
+function custom_search_site_form($form, &$form_state){
+	global $base_url;
+	$form = array();
+	$get_var = variable_get('search_site');
+	if(!empty($get_var)){
+		$get_var = str_replace("www.","",str_replace("http://","",str_replace("https://","",$get_var)));
+		$site = variable_get('search_site');
+	}else{
+		$site = str_replace("www.","",str_replace("http://","",str_replace("https://","",$base_url)));
+	}
+	$form['search_site'] = array(
+		'#title' => t('Add site to search'),
+		'#type' => 'textfield',
+		'#description' => t('Field to add site URL whom you want to search.'),
+		'#required' => true,
+		'#default_value' => $site,
+	);
+	$form['submit_button'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+return $form;
+}
+
+function custom_search_site_form_submit($form, &$form_state){
+	global $base_url;
+	variable_set('search_site', $form_state['input']['search_site']);
+    drupal_set_message(t('Your configuration has been saved.'));
+	drupal_goto($base_url.'/admin/config/development/search-config');
+}
+
+
+function goisearch_result(){
+	$output = '';
+	@$search_key = $_GET['search_key'];
+	if(isset($search_key)){		
+		if(!goisearch_key_validation($search_key)){
+			$search_key = '';
+			form_set_error("search_key", 'Please enter a valid value.'); 
+		}
+	}else{
+		$search_key = '';
+	}
+	global $base_url;
+	$output1 = '';
+	$var = 0;
+	$class = '';
+	$mcnt = 0;
+	
+	if (module_exists('google_search')) { 
+		$block = module_invoke('google_search', 'block_view', 'google_search_box');
+		$output1.=render($block['content']);
+		$class = 'both-search';
+		$mcnt++;
+	}
+	
+	if($mcnt == 0){ 
+		$block = module_invoke('search', 'block_view', 'form');
+		$output1.=render($block['content']);
+	}
+	
+		
+	$output.=' <div class="search-drop '.$class.'">'.$output1.'</div>';
+	$output.='<div class="result-page-form">
+				<div class="main-goi-form">
+					<label for="search_key" class="notdisplay">Search</label>
+					<input type="text" name="search_key" id="search_key" onkeyup="autoComplete()" autocomplete="off" required value="'.$search_key.'"/>
+					<input type="button" value="Search" onclick="modifySettings(\'q\');" >
+					<a href="http://goisearch.nic.in/" title="'.t("External site that open in new window").'" /> <img src="'.$base_url.'/'.drupal_get_path('module','goisearch').'/images/goi-search-powerdby.png" alt="GOI Search" /></a>
+				</div>
+				<div id="auto_suggesion"></div>
+			  </div>
+				<!--This Div will be used for showing results -->
+				<div id="result_area" align="left"></div>';
+return $output;
+}
+
+function goisearch_key_validation($str = ''){
+	$white_parameter = variable_get('whitebox_pattern');
+	if(empty($white_parameter)){
+		$white_parameter = "\x{900}-\x{97F}\ a-zA-Z0-9 | | @&$%,:.\-\_\(\)";
+	}else{
+		$white_parameter = variable_get('whitebox_pattern');
+	}
+	$pattern = "/^([".$white_parameter."])+$/ui";
+	if(trim(preg_match($pattern, $str))){
+		return TRUE;
+	} else{
+		return FALSE;
+	}	
+}
+

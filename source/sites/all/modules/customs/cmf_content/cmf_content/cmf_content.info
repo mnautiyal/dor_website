@@ -1,0 +1,10 @@
+name= CMF Content
+description = CMF Content header and footer
+package = CMF
+version = "7.x-1.1"
+configure = admin/config/system/site-hindi-name
+core = "7.x"
+project = "cmf_content"
+datestamp = "1353872502"
+required = TRUE
+tapas.cse.talukder@gmail.com

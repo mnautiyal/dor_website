@@ -1,0 +1,53 @@
+<?php
+
+function cmf_expenditure_install(){
+  drupal_install_schema('expenditure_table');
+   
+}
+
+function cmf_expenditure_uninstall(){
+ drupal_uninstall_schema('expenditure_table');
+ 
+}
+
+
+function cmf_expenditure_schema(){
+   $schema['expenditure_table'] = array(
+    'description' => 'Store Expenditure Settings',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Unique identifier for the {Expenditure}.',
+      ),   
+	  'field_name' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'Field Name.',
+      ),
+       'field_value' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'Field Value',
+      ),   
+      'field_key' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'field key for url',
+      ),
+      'pid' => array(
+        'type' => 'int',
+        'not null' => FALSE,
+        'description' => 'primary id for field',
+      ),
+	  
+    ),
+	'primary key' => array('id'),
+  );
+  
+  return $schema;
+   }

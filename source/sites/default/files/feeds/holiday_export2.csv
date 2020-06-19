@@ -1,0 +1,990 @@
+Nid,Title,Body,Path,Post date,Uid,Published,Language,Holiday Date,Holiday Type
+24095,Republic Day,"Republic Day
+",/content/republic-day,11-01-2012 13:36,1,1,en,26-01-2012,Gazetted
+24098,Pongal,"Pongal/Makar Sankranti/Magh Bihu
+",/content/pongal,12-01-2012 13:34,1,1,en,15-01-2012,Restricted
+24099,Milad-Un-Nabi or Id-E-Milad,"Milad-Un-Nabi or Id-E-Milad
+",/content/milad-un-nabi-or-id-e-milad,12-01-2012 13:39,1,1,en,05-02-2012,Gazetted
+24100,Guru Ravidas Jayanti,"Guru Ravidas Jayanti
+",/content/guru-ravidas-jayanti,12-01-2012 13:39,1,1,en,07-02-2012,Restricted
+24202,New Year's Day ,"New Year's Day 
+",/content/new-years-day,23-01-2012 11:48,1,1,en,01-01-2012,Restricted
+24203,Makar Sankranti,"Makar Sankranti
+",/content/makar-sankranti,23-01-2012 13:05,1,1,en,14-01-2012,Restricted
+24204,Basanta Panchami/Shree Panchami,"Basanta Panchami/Shree Panchami
+",/content/basanta-panchamishree-panchami,23-01-2012 13:07,1,1,en,28-01-2012,Restricted
+24205,Maharshi Dayanand Saraswati Jayanti,"Maharshi Dayanand Saraswati Jayanti
+",/content/maharshi-dayanand-saraswati-jayanti,23-01-2012 13:08,1,1,en,16-02-2012,Restricted
+24206,Shivaji Jayanti,"Shivaji Jayanti
+",/content/shivaji-jayanti,23-01-2012 13:10,1,1,en,19-02-2012,Restricted
+24207,Maha Shivaratri,"Maha Shivaratri
+",/content/maha-shivaratri,23-01-2012 13:11,1,1,en,20-02-2012,Gazetted
+24208,Holika Dahan (Dolyatra),"Holika Dahan (Dolyatra)
+",/content/holika-dahan-dolyatra,23-01-2012 13:54,1,1,en,07-03-2012,Restricted
+24209,Holi,"Holi
+",/content/holi,23-01-2012 13:55,1,1,en,08-03-2012,Gazetted
+24210,Chaitra Sukhladi/Gudi Padava/Ugadi/Cheti Chand,"Chaitra Sukhladi/Gudi Padava/Ugadi/Cheti Chand
+",/content/chaitra-sukhladigudi-padavaugadicheti-chand,23-01-2012 14:08,1,1,en,23-03-2012,Restricted
+24211,Ram Navami,"Ram Navami
+",/content/ram-navami,23-01-2012 14:10,1,1,en,01-04-2012,Restricted
+24212,Mahavir Jayanti,"Mahavir Jayanti
+",/content/mahavir-jayanti,23-01-2012 14:11,1,1,en,05-04-2012,Gazetted
+24213,Good Friday,"Good Friday
+",/content/good-friday,23-01-2012 14:11,1,1,en,06-04-2012,Gazetted
+24214,Easter,"Easter
+",/content/easter,23-01-2012 14:12,1,1,en,08-04-2012,Restricted
+24215,Vaisakhi/Vishu,"Vaisakhi/Vishu
+",/content/vaisakhivishu,23-01-2012 14:13,1,1,en,13-04-2012,Restricted
+24216,Mesadi/Vaisakhadi (Bengal)/Bahag Bihu (Assam),"Mesadi/Vaisakhadi (Bengal)/Bahag Bihu (Assam)
+",/content/mesadivaisakhadi-bengalbahag-bihu-assam,23-01-2012 14:14,1,1,en,14-04-2012,Restricted
+24217,Buddha Purnima,"Buddha Purnima
+",/content/buddha-purnima,23-01-2012 14:25,1,1,en,06-05-2012,Gazetted
+24218,Guru Rabindranath's Birthday,"Guru Rabindranath's Birthday
+",/content/guru-rabindranaths-birthday,23-01-2012 14:26,1,1,en,08-05-2012,Restricted
+24219,Hazarat Ali's Birthday,"Hazarat Ali's Birthday
+",/content/hazarat-alis-birthday,23-01-2012 14:28,1,1,en,04-06-2012,Restricted
+24220,Rath Yatra,"Rath Yatra
+",/content/rath-yatra,23-01-2012 14:28,1,1,en,21-06-2012,Restricted
+24221,Raksha Bandhan,"Raksha Bandhan
+",/content/raksha-bandhan,23-01-2012 14:29,1,1,en,02-08-2012,Restricted
+24222,Janamashtami (Vaisnava),"Janamashtami (Vaisnava)
+",/content/janamashtami-vaisnava,23-01-2012 14:30,1,1,en,10-08-2012,Gazetted
+24223,Independence Day,"Independence Day
+",/content/independence-day,23-01-2012 14:30,1,1,en,15-08-2012,Gazetted
+24224,Jamat-Ul-Vida,"Jamat-Ul-Vida
+",/content/jamat-ul-vida,23-01-2012 14:31,1,1,en,17-08-2012,Restricted
+24225,Parsi New Year,"Parsi New Year
+",/content/parsi-new-year,23-01-2012 14:32,1,1,en,18-08-2012,Restricted
+24226,Id-ul-Fitr,"Id-ul-Fitr
+",/content/id-ul-fitr,23-01-2012 14:32,1,1,en,20-08-2012,Gazetted
+24227,Vinayaka Chaturthi,"Vinayaka Chaturthi
+",/content/vinayaka-chaturthi,23-01-2012 14:33,1,1,und,21-08-2012,Restricted
+24228,Onam,"Onam
+",/content/onam,23-01-2012 14:33,1,1,en,29-08-2012,Restricted
+24229,Ganesh Chaturthi,"Ganesh Chaturthi
+",/content/ganesh-chaturthi,23-01-2012 14:35,1,1,en,19-09-2012,Restricted
+24230,Mahatma Gandhi Jayanti,"Mahatma Gandhi Jayanti
+",/content/mahatma-gandhi-jayanti,23-01-2012 14:36,1,1,en,02-10-2012,Gazetted
+24231,Maha Saptami,"Maha Saptami
+",/content/maha-saptami,23-01-2012 14:37,1,1,en,21-10-2012,Restricted
+24232,Maha Ashtami,"Maha Ashtami
+",/content/maha-ashtami,23-01-2012 14:37,1,1,en,22-10-2012,Restricted
+24233,Maha Navami,"Maha Navami
+",/content/maha-navami,23-01-2012 14:38,1,1,und,23-10-2012,Restricted
+24234,Dussehra (Vijaya Dashami),"Dussehra (Vijaya Dashami)
+",/content/dussehra-vijaya-dashami,23-01-2012 14:39,1,1,en,24-10-2012,Gazetted
+24235,Id-ul-Zuha (Bakrid),"Id-ul-Zuha (Bakrid)
+",/content/id-ul-zuha-bakrid,23-01-2012 14:40,1,1,en,27-10-2012,Gazetted
+24236,Maharishi Valmiki Jayanti,"Maharishi Valmiki Jayanti
+",/content/maharishi-valmiki-jayanti,23-01-2012 14:41,1,1,en,29-10-2012,Restricted
+24237,Karaka Chaturthi (Karva Chouth),"Karaka Chaturthi (Karva Chouth)
+",/content/karaka-chaturthi-karva-chouth,23-01-2012 14:45,1,1,en,02-11-2012,Restricted
+24238,Naraka Chaturdasi,"Naraka Chaturdasi
+",/content/naraka-chaturdasi,23-01-2012 14:46,1,1,und,12-11-2012,Restricted
+24239,Diwali (Deepavali),"Diwali (Deepavali)
+",/content/diwali-deepavali,23-01-2012 14:47,1,1,en,13-11-2012,Gazetted
+24240,Govardhan Puja,"Govardhan Puja
+",/content/govardhan-puja,23-01-2012 14:48,1,1,und,14-11-2012,Restricted
+24241,Bhai Duj,"Bhai Duj
+",/content/bhai-duj,23-01-2012 14:48,1,1,en,15-11-2012,Restricted
+24242,Pratihar Sashthi/Surya Sashthi (Chhat Puja),"Pratihar Sashthi/Surya Sashthi (Chhat Puja)
+",/content/pratihar-sashthisurya-sashthi-chhat-puja,23-01-2012 14:49,1,1,en,19-11-2012,Restricted
+24243,Guru Teg Bahadur's Martyrdom Day,"Guru Teg Bahadur's Martyrdom Day
+",/content/guru-teg-bahadurs-martyrdom-day,23-01-2012 14:49,1,1,en,24-11-2012,Restricted
+24244,Muharram,"Muharram
+",/content/muharram,23-01-2012 14:50,1,1,en,25-11-2012,Gazetted
+24245,Guru Nanak Jayanti,"Guru Nanak Jayanti
+",/content/guru-nanak-jayanti,23-01-2012 14:50,1,1,en,28-11-2012,Gazetted
+24246,Christmas Eve,"Christmas Eve
+",/content/christmas-eve,23-01-2012 14:50,1,1,en,24-12-2012,Restricted
+24247,Christmas,"Christmas
+",/content/christmas,23-01-2012 14:51,1,1,en,25-12-2012,Gazetted
+80667,Republic Day,"Republic Day
+",/content/republic-day-0,17-09-2012 14:47,1,1,en,26-01-2011,Gazetted
+80668,Milad-Un-Nabi,"Milad-Un-Nabi
+",/content/milad-un-nabi,17-09-2012 14:54,1,1,und,16-02-2011,Gazetted
+80669,Maha Shivaratri,"Maha Shivaratri
+",/content/maha-shivaratri-0,17-09-2012 14:56,1,1,en,02-03-2011,Gazetted
+80670,Ram Navami,"Ram Navami
+",/content/ram-navami-0,17-09-2012 14:57,1,1,en,12-04-2011,Gazetted
+80671,Ambedkar Jayanti,"Ambedkar Jayanti
+",/content/ambedkar-jayanti,17-09-2012 14:59,1,1,en,14-04-2011,Gazetted
+80672,Mahavir Jayanti,"Mahavir Jayanti
+",/content/mahavir-jayanti-0,17-09-2012 15:00,1,1,en,16-04-2011,Gazetted
+80673,Good Friday,"Good Friday
+",/content/good-friday-0,17-09-2012 15:02,1,1,en,22-04-2011,Gazetted
+80674,Buddha Purnima,"Buddha Purnima
+",/content/buddha-purnima-0,17-09-2012 15:03,1,1,en,17-05-2011,Gazetted
+80675,Independence Day,"Independence Day
+",/content/independence-day-0,17-09-2012 15:04,1,1,en,15-08-2011,Gazetted
+80676,Janamashtami,"Janamashtami
+",/content/janamashtami,17-09-2012 15:05,1,1,en,22-08-2011,Gazetted
+80677,Id-ul-Fitr,"Id-ul-Fitr
+",/content/id-ul-fitr-0,17-09-2012 15:06,1,1,en,31-08-2011,Gazetted
+80678,Mahatma Gandhi Jayanti,"Mahatma Gandhi Jayanti
+",/content/mahatma-gandhi-jayanti-0,17-09-2012 15:07,1,1,en,02-10-2011,Gazetted
+80679,Dussehra(Vijaya Dashami),"Dussehra(Vijaya Dashami)
+",/content/dussehravijaya-dashami,17-09-2012 15:08,1,1,en,06-10-2011,Gazetted
+80680,Diwali (Deepavali),"Diwali (Deepavali)
+",/content/diwali-deepavali-0,17-09-2012 15:09,1,1,en,26-10-2011,Gazetted
+80682,Id-ul-Zuha (Bakrid),"Id-ul-Zuha (Bakrid)
+",/content/id-ul-zuha-bakrid-0,17-09-2012 15:16,1,1,en,07-11-2011,Gazetted
+80683,Guru Nanak Jayanti,"Guru Nanak Jayanti
+",/content/guru-nanak-jayanti-0,17-09-2012 15:18,1,1,en,10-11-2011,Gazetted
+80684,Muharram,"Muharram
+",/content/muharram-0,17-09-2012 15:20,1,1,en,06-12-2011,Gazetted
+80685,Christmas,"Christmas
+",/content/christmas-0,17-09-2012 15:21,1,1,en,25-12-2011,Gazetted
+80686,New Year's Day,"New Year's Day
+",/content/new-years-day-0,17-09-2012 15:24,1,1,en,01-01-2011,Restricted
+80687,Guru Govind Singh Jayanti,"Guru Govind Singh Jayanti
+",/content/guru-govind-singh-jayanti,17-09-2012 15:26,1,1,und,05-01-2011,Restricted
+80688,Makara Sankranti,"Makara Sankranti
+",/content/makara-sankranti,17-09-2012 15:27,1,1,und,14-01-2011,Restricted
+80689,Pongal,"Pongal
+",/content/pongal-0,17-09-2012 15:28,1,1,en,15-01-2011,Restricted
+80690,Basanta Panchami/Shree Panchami,"Basanta Panchami/Shree Panchami
+",/content/basanta-panchamishree-panchami-0,17-09-2012 15:29,1,1,en,08-02-2011,Restricted
+80691,Guru Ravidas Jayanti,"Guru Ravidas Jayanti
+",/content/guru-ravidas-jayanti-0,17-09-2012 15:31,1,1,en,18-02-2011,Restricted
+80692,Shivaji Jayanti,"Shivaji Jayanti
+",/content/shivaji-jayanti-0,17-09-2012 15:34,1,1,en,19-02-2011,Restricted
+80693,Maharishi Dayanand Sarawati Jayanti,"Maharishi Dayanand Sarawati Jayanti
+",/content/maharishi-dayanand-sarawati-jayanti,17-09-2012 15:36,1,1,und,27-02-2011,Restricted
+80694,Holikadahana(Dolyatra),"Holikadahana(Dolyatra)
+",/content/holikadahanadolyatra,17-09-2012 15:37,1,1,en,19-03-2011,Restricted
+80696,Holi,"Holi
+",/content/holi-0,17-09-2012 15:56,1,1,en,20-03-2011,Restricted
+80697,Chaitra Sukhladi/Gudi Padava/Ugadi/Cheti Chand,"Chaitra Sukhladi/Gudi Padava/Ugadi/Cheti Chand
+",/content/chaitra-sukhladigudi-padavaugadicheti-chand-0,17-09-2012 15:57,1,1,en,04-04-2011,Restricted
+80698,Vaisakhadi (Bengal)/Bahag Bihu (Assam),"Vaisakhadi (Bengal)/Bahag Bihu (Assam)
+",/content/vaisakhadi-bengalbahag-bihu-assam,17-09-2012 15:59,1,1,en,15-04-2011,Restricted
+80705,Easter,"Easter
+",/content/easter-0,17-09-2012 16:00,1,1,en,24-04-2011,Restricted
+80714,Guru Rabindranath's Birthday,"Guru Rabindranath's Birthday
+",/content/guru-rabindranaths-birthday-0,17-09-2012 16:03,1,1,en,09-05-2011,Restricted
+80716,Hazarat Ali's Birthday,"Hazarat Ali's Birthday
+",/content/hazarat-alis-birthday-0,17-09-2012 16:08,1,1,en,16-06-2011,Restricted
+80717,Rath Yatra,"Rath Yatra
+",/content/rath-yatra-0,17-09-2012 16:12,1,1,en,03-07-2011,Restricted
+80718,Raksha Bandha,"Raksha Bandha
+",/content/raksha-bandha,17-09-2012 16:17,1,1,und,13-08-2011,Restricted
+80719,Parsi New Year,"Parsi New Year
+",/content/parsi-new-year-0,17-09-2012 16:19,1,1,en,19-08-2011,Restricted
+80720,Jamat-Ul-Vida,"Jamat-Ul-Vida
+",/content/jamat-ul-vida-0,17-09-2012 16:20,1,1,en,26-08-2011,Restricted
+80721,Ganesh Chaturthi/Vinayaka Chaturthi,"Ganesh Chaturthi/Vinayaka Chaturthi
+",/content/ganesh-chaturthivinayaka-chaturthi,17-09-2012 16:21,1,1,en,01-09-2011,Restricted
+80722,Onam,"Onam
+",/content/onam-0,17-09-2012 16:22,1,1,en,09-09-2011,Restricted
+80723,Maha Saptami,"Maha Saptami
+",/content/maha-saptami-0,17-09-2012 16:23,1,1,en,03-10-2011,Restricted
+80724,Maha Ashtami,"Maha Ashtami
+",/content/maha-ashtami-0,17-09-2012 16:24,1,1,en,04-10-2011,Restricted
+80725,Maha Navami,"Maha Navami
+",/content/maha-navami-0,17-09-2012 16:25,1,1,und,05-10-2011,Restricted
+80726,Maharishi Valmiki Jayanti,"Maharishi Valmiki Jayanti
+",/content/maharishi-valmiki-jayanti-0,17-09-2012 16:26,1,1,en,11-10-2011,Restricted
+80727,Govardhan Puja,"Govardhan Puja
+",/content/govardhan-puja-0,17-09-2012 16:28,1,1,und,27-10-2011,Restricted
+80728,Bhai Duj,"Bhai Duj
+",/content/bhai-duj-0,17-09-2012 16:29,1,1,en,28-10-2011,Restricted
+80730,Pratihar Sashthi/Surya Sashthi (Chhat Puja),"Pratihar Sashthi/Surya Sashthi (Chhat Puja)
+",/content/pratihar-sashthisurya-sashthi-chhat-puja-0,17-09-2012 16:31,1,1,en,01-11-2011,Restricted
+80731,Guru Teg Bahadur's Martyrdom Day,"Guru Teg Bahadur's Martyrdom Day
+",/content/guru-teg-bahadurs-martyrdom-day-0,17-09-2012 16:33,1,1,en,24-11-2011,Restricted
+80732,Christmas Eve,"Christmas Eve
+",/content/christmas-eve-0,17-09-2012 16:34,1,1,en,24-12-2011,Restricted
+80733,Milad-Un-Nabi or Id-E-Milad,"Milad-Un-Nabi or Id-E-Milad
+",/content/milad-un-nabi-or-id-e-milad-0,17-09-2012 16:36,1,1,en,25-01-2013,Gazetted
+80734,Republic Day,"Republic Day
+",/content/republic-day-1,17-09-2012 16:40,1,1,en,26-01-2013,Gazetted
+80735,Holi,"Holi
+",/content/holi-1,17-09-2012 16:41,1,1,en,27-03-2013,Gazetted
+80736,Good Friday,"Good Friday
+",/content/good-friday-1,17-09-2012 16:56,1,1,en,29-03-2013,Gazetted
+80737,Ram Navami,"Ram Navami
+",/content/ram-navami-1,17-09-2012 16:58,1,1,en,19-04-2013,Gazetted
+80738,Mahavir Jayanti,"Mahavir Jayanti
+",/content/mahavir-jayanti-1,17-09-2012 16:59,1,1,en,24-04-2013,Gazetted
+80740,Buddha Purnima,"Buddha Purnima
+",/content/buddha-purnima-1,17-09-2012 17:00,1,1,en,25-05-2013,Gazetted
+80746,Id-ul-Fitr,"Id-ul-Fitr
+",/content/id-ul-fitr-1,17-09-2012 17:01,1,1,en,09-08-2013,Gazetted
+80747,Independence Day,"Independence Day
+",/content/independence-day-1,17-09-2012 17:05,1,1,en,15-08-2013,Gazetted
+80748,Janamashtami,"Janamashtami
+",/content/janamashtami-0,17-09-2012 17:09,1,1,en,28-08-2013,Gazetted
+80749,Mahatma Gandhi Jayanti,"Mahatma Gandhi Jayanti
+",/content/mahatma-gandhi-jayanti-1,17-09-2012 17:11,1,1,en,02-10-2013,Gazetted
+80750,Dussehra (Vijaya Dashami),"Dussehra (Vijaya Dashami)
+",/content/dussehra-vijaya-dashami-0,17-09-2012 17:12,1,1,en,13-10-2013,Gazetted
+80751,Id-ul-Zuha (Bakrid),"Id-ul-Zuha (Bakrid)
+",/content/id-ul-zuha-bakrid-1,17-09-2012 17:14,1,1,en,16-10-2013,Gazetted
+80752,Diwali (Deepavali),"Diwali (Deepavali)
+",/content/diwali-deepavali-1,17-09-2012 17:15,1,1,en,03-11-2013,Gazetted
+80753,Muharram,"Muharram
+",/content/muharram-1,17-09-2012 17:17,1,1,en,15-11-2013,Gazetted
+80754,Guru Nanak Jayanti,"Guru Nanak Jayanti
+",/content/guru-nanak-jayanti-1,17-09-2012 17:18,1,1,en,17-11-2013,Gazetted
+80755,Christmas,"Christmas
+",/content/christmas-1,17-09-2012 17:19,1,1,en,25-12-2013,Gazetted
+80757,New Year's Day,"New Year's Day
+",/content/new-years-day-1,17-09-2012 17:22,1,1,en,01-01-2013,Restricted
+80758,Makar Sankranti,"Makar Sankranti
+",/content/makar-sankranti-0,17-09-2012 17:23,1,1,en,13-01-2013,Restricted
+80759,Pongal,"Pongal
+",/content/pongal-1,17-09-2012 17:27,1,1,en,14-01-2013,Restricted
+80760,Guru Gobind Singh Jayanti,"Guru Gobind Singh Jayanti
+",/content/guru-gobind-singh-jayanti,17-09-2012 17:31,1,1,en,18-01-2013,Restricted
+80761,Shree Panchami,"Shree Panchami
+",/content/shree-panchami,17-09-2012 17:35,1,1,en,14-02-2013,Restricted
+80762,Basanta Panchami,"Basanta Panchami
+",/content/basanta-panchami,17-09-2012 17:37,1,1,en,15-02-2013,Restricted
+80763,Shivaji Jayanti,"Shivaji Jayanti
+",/content/shivaji-jayanti-1,17-09-2012 17:39,1,1,en,19-02-2013,Restricted
+80764,Guru Ravidas Jayanti,Guru Ravidas Jayanti,/content/guru-ravidas-jayanti-1,17-09-2012 17:40,1,1,en,25-02-2013,Restricted
+81059,Maharshi Dayanand Saraswati Jayanti,"Maharshi Dayanand Saraswati Jayanti
+",/content/maharshi-dayanand-saraswati-jayanti-0,18-09-2012 09:41,1,1,en,07-03-2013,Restricted
+81060,Maha Shivaratri,"Maha Shivaratri
+",/content/maha-shivaratri-1,18-09-2012 09:43,1,1,en,10-03-2013,Restricted
+81061,Holika Dahan (Dolyatra),"Holika Dahan (Dolyatra)
+",/content/holika-dahan-dolyatra-0,18-09-2012 09:45,1,1,en,26-03-2013,Restricted
+81063,Easter,"Easter
+",/content/easter-1,18-09-2012 09:47,1,1,en,31-03-2013,Restricted
+81064,Chaitra Sukhladi/Gudi Padava/Ugadi/Cheti Chand,"Chaitra Sukhladi/Gudi Padava/Ugadi/Cheti Chand
+",/content/chaitra-sukhladigudi-padavaugadicheti-chand-1,18-09-2012 09:48,1,1,en,11-04-2013,Restricted
+81065,Vaisakhi/Vishu,"Vaisakhi/Vishu
+",/content/vaisakhivishu-0,18-09-2012 09:49,1,1,en,13-04-2013,Restricted
+81066,Birthday of Dr. B.R. Ambedkar,"Birthday of Dr. B.R. Ambedkar
+",/content/birthday-dr-br-ambedkar,18-09-2012 09:50,1,1,en,14-04-2013,Gazetted
+81067,Vaisakhadi (Bengal)/Bahag Bihu (Assam),"Vaisakhadi (Bengal)/Bahag Bihu (Assam)
+",/content/vaisakhadi-bengalbahag-bihu-assam-0,18-09-2012 09:51,1,1,en,15-04-2013,Restricted
+81068,Guru Rabindranath's Birthday,"Guru Rabindranath's Birthday
+",/content/guru-rabindranaths-birthday-1,18-09-2012 09:52,1,1,en,09-05-2013,Restricted
+81069,Hazarat Ali's Birthday,"Hazarat Ali's Birthday
+",/content/hazarat-alis-birthday-1,18-09-2012 09:53,1,1,en,24-05-2013,Restricted
+81070,Rath Yatra,"Rath Yatra
+",/content/rath-yatra-1,18-09-2012 09:54,1,1,en,10-07-2013,Restricted
+81071,Jamat-Ul-Vida,"Jamat-Ul-Vida
+",/content/jamat-ul-vida-1,18-09-2012 09:55,1,1,en,02-08-2013,Restricted
+81072,Parsi New Year,"Parsi New Year
+",/content/parsi-new-year-1,18-09-2012 09:56,1,1,en,18-08-2013,Restricted
+81073,Raksha Bandhan,"Raksha Bandhan
+",/content/raksha-bandhan-0,18-09-2012 09:57,1,1,en,20-08-2013,Restricted
+81074,Vinayaka Chaturthi/Ganesh Chaturthi,"Vinayaka Chaturthi/Ganesh Chaturthi
+",/content/vinayaka-chaturthiganesh-chaturthi,18-09-2012 09:59,1,1,en,09-09-2013,Restricted
+81075,Onam,"Onam
+",/content/onam-1,18-09-2012 10:00,1,1,en,16-09-2013,Restricted
+81084,Maha Saptami,"Maha Saptami
+",/content/maha-saptami-1,18-09-2012 10:01,1,1,en,11-10-2013,Restricted
+81085,Maha Ashtami,"Maha Ashtami
+",/content/maha-ashtami-1,18-09-2012 10:02,1,1,en,12-10-2013,Restricted
+81086,Maharishi Valmiki Jayanti,"Maharishi Valmiki Jayanti
+",/content/maharishi-valmiki-jayanti-1,18-09-2012 10:03,1,1,en,18-10-2013,Restricted
+81087,Karaka Chaturthi (Karva Chouth),"Karaka Chaturthi (Karva Chouth)
+",/content/karaka-chaturthi-karva-chouth-0,18-09-2012 10:04,1,1,en,22-10-2013,Restricted
+81088,Deepavali (South India)/Naraka Chaturdasi,"Deepavali (South India)/Naraka Chaturdasi
+",/content/deepavali-south-indianaraka-chaturdasi,18-09-2012 10:05,1,1,en,02-11-2013,Restricted
+81089,Bhai Duj,"Bhai Duj
+",/content/bhai-duj-1,18-09-2012 10:06,1,1,en,05-11-2013,Restricted
+81090,Pratihar Sashthi/Surya Sashthi (Chhat Puja),"Pratihar Sashthi/Surya Sashthi (Chhat Puja)
+",/content/pratihar-sashthisurya-sashthi-chhat-puja-1,18-09-2012 10:08,1,1,en,08-11-2013,Restricted
+81091,Guru Teg Bahadur's Martyrdom Day,"Guru Teg Bahadur's Martyrdom Day
+",/content/guru-teg-bahadurs-martyrdom-day-1,18-09-2012 10:09,1,1,en,24-11-2013,Restricted
+81092,Christmas Eve,"Christmas Eve
+",/content/christmas-eve-1,18-09-2012 10:10,1,1,en,24-12-2013,Restricted
+370449,Milad-Un-Nabi or Id-E-Milad (Birthday of Prophet Mohammad),"Milad-Un-Nabi or Id-E-Milad (Birthday of Prophet Mohammad)
+",/content/milad-un-nabi-or-id-e-milad-birthday-prophet-mohammad,12-07-2013 14:41,1,1,en,14-01-2014,Gazetted
+370450,Republic Day,"Republic Day
+",/content/republic-day-2,12-07-2013 14:43,1,1,en,26-01-2014,Gazetted
+370451,Holi,"Holi
+",/content/holi-2,12-07-2013 14:44,1,1,en,17-03-2014,Gazetted
+370460,Ram Navami,"Ram Navami
+",/content/ram-navami-2,12-07-2013 14:45,1,1,en,08-04-2014,Gazetted
+370461,Mahavir Jayanti,"Mahavir Jayanti
+",/content/mahavir-jayanti-2,12-07-2013 14:46,1,1,en,13-04-2014,Gazetted
+370462,Good Friday,"Good Friday
+",/content/good-friday-2,12-07-2013 14:47,1,1,en,18-04-2014,Gazetted
+370463,Buddha Purnima,"Buddha Purnima
+",/content/buddha-purnima-2,12-07-2013 14:48,1,1,en,14-05-2014,Gazetted
+370464,Idu'l Fitr,"Idu'l Fitr
+",/content/idul-fitr,12-07-2013 14:49,1,1,en,29-07-2014,Gazetted
+370465,Independence day,"Independence day
+",/content/independence-day-2,12-07-2013 14:50,1,1,en,15-08-2014,Gazetted
+370466,Janmashtami,"Janmashtami
+",/content/janmashtami,12-07-2013 14:51,1,1,en,18-08-2014,Gazetted
+370467,Mahatma Gandhi's Birthday,"Mahatma Gandhi's Birthday
+",/content/mahatma-gandhis-birthday,12-07-2013 14:51,1,1,en,02-10-2014,Gazetted
+370468,Dussehra,"Dussehra
+",/content/dussehra,12-07-2013 14:52,1,1,en,03-10-2014,Gazetted
+370470,Id-ul-Zuha(Bakrid),"Id-ul-Zuha(Bakrid)
+",/content/id-ul-zuhabakrid,12-07-2013 14:54,1,1,en,06-10-2014,Gazetted
+370471,Diwali (Deepavali),"Diwali (Deepavali)
+",/content/diwali-deepavali-2,12-07-2013 14:55,1,1,en,23-10-2014,Gazetted
+370472,Muharram,"Muharram
+",/content/muharram-2,12-07-2013 14:56,1,1,en,04-11-2014,Gazetted
+370473,Guru Nanak's Birthday,Guru Nanak's Birthday,/content/guru-nanaks-birthday,12-07-2013 14:56,1,1,en,06-11-2014,Gazetted
+370474,Christmas Day,"Christmas Day
+",/content/christmas-day,12-07-2013 14:57,1,1,en,25-12-2014,Gazetted
+370507,New Year's Day,"New Year's Day
+",/content/new-years-day-2,12-07-2013 15:00,1,1,en,01-01-2014,Restricted
+370558,Guru Gobind Singh's Birthday,"Guru Gobind Singh's Birthday
+",/content/guru-gobind-singhs-birthday,12-07-2013 15:02,1,1,en,07-01-2014,Restricted
+370559,Makar Sankranti,"Makar Sankranti
+",/content/makar-sankranti-1,12-07-2013 15:03,1,1,en,14-01-2014,Restricted
+370560,Pongal,"Pongal
+",/content/pongal-2,12-07-2013 15:04,1,1,en,14-01-2014,Restricted
+370561,Basant Panchami/Sri Panchami,"Basant Panchami/Sri Panchami
+",/content/basant-panchamisri-panchami,12-07-2013 15:05,1,1,en,04-02-2014,Restricted
+370562,Guru Ravidas's Birthday,"Guru Ravidas's Birthday
+",/content/guru-ravidass-birthday,12-07-2013 15:06,1,1,en,14-02-2014,Restricted
+370563,Shivaji Jayanti,"Shivaji Jayanti
+",/content/shivaji-jayanti-2,12-07-2013 15:07,1,1,en,19-02-2014,Restricted
+370564,Swami Dayananda Saraswati Jayanti,"Swami Dayananda Saraswati Jayanti
+",/content/swami-dayananda-saraswati-jayanti,12-07-2013 15:08,1,1,en,24-02-2014,Restricted
+370565,Maha Shivaratri,"Maha Shivaratri
+",/content/maha-shivaratri-2,12-07-2013 15:08,1,1,en,27-02-2014,Restricted
+370566,Holika Dahan,"Holika Dahan
+",/content/holika-dahan,12-07-2013 15:09,1,1,en,16-03-2014,Restricted
+370567,Chaitra Suldadi/Gudi Padava/Ugadi/Cheti Chand,"Chaitra Suldadi/Gudi Padava Ugadi/Cheti Chand
+",/content/chaitra-suldadigudi-padavaugadicheti-chand,12-07-2013 15:10,1,1,en,31-03-2014,Restricted
+370570,Vaisakhadi(Bengal)/Bahag Bihu (Assam),"Vaisakhadi(Bengal)/Bahag Bihu (Assam)
+",/content/vaisakhadibengalbahag-bihu-assam,12-07-2013 15:15,1,1,en,15-04-2014,Restricted
+370578,Easter Sunday,"Easter Sunday
+",/content/easter-sunday,12-07-2013 15:15,1,1,en,20-04-2014,Restricted
+370579,Guru Rabindranath's birthday,"Guru Rabindranath's birthday
+",/content/guru-rabindranaths-birthday-2,12-07-2013 15:16,1,1,en,09-05-2014,Restricted
+370580,Hazarat Ali's Birthday,"Hazarat Ali's Birthday
+",/content/hazarat-alis-birthday-2,12-07-2013 15:17,1,1,en,13-05-2014,Restricted
+370581,Rath Yatra,"Rath Yatra
+",/content/rath-yatra-2,12-07-2013 15:17,1,1,en,29-06-2014,Restricted
+370582,Jamat-Ul-Vida,"Jamat-Ul-Vida
+",/content/jamat-ul-vida-2,12-07-2013 15:18,1,1,en,25-07-2014,Restricted
+370583,Raksha Bandhan,"Raksha Bandhan
+",/content/raksha-bandhan-1,12-07-2013 15:19,1,1,en,10-08-2014,Restricted
+370584,Parsi New Year's day/Nauroz,"Parsi New Year's day/Nauroz
+",/content/parsi-new-years-daynauroz,12-07-2013 15:20,1,1,en,18-08-2014,Restricted
+370585,Vinayaka Chaturthi/Ganesh Chaturthi,"Vinayaka Chaturthi/Ganesh Chaturthi
+",/content/vinayaka-chaturthiganesh-chaturthi-0,12-07-2013 15:21,1,1,en,29-08-2014,Restricted
+370586,Onam,"Onam
+",/content/onam-2,12-07-2013 15:22,1,1,en,07-09-2014,Restricted
+370587,Dussehra (Maha Saptami) (Additional),"Dussehra (Maha Saptami)(Additional)
+",/content/dussehra-maha-saptami-additional,12-07-2013 15:22,1,1,en,01-10-2014,Restricted
+370589,Dussehra (Maha Ashtami) (Additional),"Dussehra (Maha Ashtami)(Additional)
+",/content/dussehra-maha-ashtami-additional,12-07-2013 15:24,1,1,en,02-10-2014,Restricted
+370590,Dussehra (Maha Navmi),"Dussehra (Maha Navmi)
+",/content/dussehra-maha-navmi,12-07-2013 15:25,1,1,en,03-10-2014,Restricted
+370591,Maharishi Valmiki's Birthday,"Maharishi Valmiki's Birthday
+",/content/maharishi-valmikis-birthday,12-07-2013 15:26,1,1,en,08-10-2014,Restricted
+370592,Karaka Chaturthi (Karva Chouth),"Karaka Chaturthi (Karva Chouth)
+",/content/karaka-chaturthi-karva-chouth-1,12-07-2013 15:26,1,1,en,11-10-2014,Restricted
+370593,Deepavali (South India),"Deepavali (South India)
+",/content/deepavali-south-india,12-07-2013 15:27,1,1,en,22-10-2014,Restricted
+370594,Naraka Chaturdasi,"Naraka Chaturdasi
+",/content/naraka-chaturdasi-0,12-07-2013 15:28,1,1,en,22-10-2014,Restricted
+370595,Govardhan Puja,"Govardhan Puja
+",/content/govardhan-puja-1,12-07-2013 15:28,1,1,und,24-10-2014,Restricted
+370596,Bhai Duj,"Bhai Duj
+",/content/bhai-duj-2,12-07-2013 15:29,1,1,en,25-10-2014,Restricted
+370597,Pratihar Sashthi/Surya Sashthi (Chhat Puja),"Pratihar Sashthi/Surya Sashthi (Chhat Puja)
+",/content/pratihar-sashthisurya-sashthi-chhat-puja-2,12-07-2013 15:29,1,1,en,29-10-2014,Restricted
+370681,Guru Teg Bahadur's Martyrdom Day,"Guru Teg Bahadur's Martyrdom Day
+",/content/guru-teg-bahadurs-martyrdom-day-2,12-07-2013 15:31,1,1,en,24-11-2014,Restricted
+370682,Christmas Eve,"Christmas Eve
+",/content/christmas-eve-2,12-07-2013 15:31,1,1,en,24-12-2014,Restricted
+540000,Maha Navmi,"Maha Navmi
+",/content/maha-navmi,26-08-2013 12:05,1,1,en,13-10-2013,Restricted
+608724,महा नवमी,महा नवमी,/node/608724,17-09-2013 12:12,1,1,hi,13-10-2013,Restricted
+609265,क्रिसमस पूर्व संध्या,"क्रिसमस पूर्व संध्या
+",/node/609265,17-09-2013 15:16,1,1,hi,24-12-2014,Restricted
+609266,गुरु तेग बहादुर शहीद दिवस,"गुरु तेग बहादुर के शहीदी दिवस
+",/node/609266,17-09-2013 15:17,1,1,hi,24-11-2014,Restricted
+609267,प्रतिहार षष्ठी/सूर्य षष्ठी(छठ),"Pratihar Sashthi/Surya Sashthi (Chhat Puja)
+",/node/609267,17-09-2013 15:22,1,1,hi,29-10-2014,Restricted
+609601,नया साल/नव वर्ष,"नया साल/नव वर्ष
+",/node/609601,17-09-2013 17:12,1,1,hi,01-01-2014,Restricted
+609602,नया साल/नव वर्ष,"नया साल/नव वर्ष
+",/node/609602,17-09-2013 17:12,1,1,hi,01-01-2013,Restricted
+609603,नया साल/नव वर्ष,"नया साल/नव वर्ष
+",/node/609603,17-09-2013 17:13,1,1,hi,01-01-2011,Restricted
+609604,नया साल/नव वर्ष,"नया साल/नव वर्ष
+",/node/609604,17-09-2013 17:13,1,1,hi,01-01-2012,Restricted
+609605,मकर संक्रांति,"मकर संक्रांति
+",/node/609605,17-09-2013 17:14,1,1,hi,14-01-2014,Restricted
+609611,मकर संक्रांति,"मकर संक्रांति
+",/node/609611,17-09-2013 17:16,1,1,hi,13-01-2013,Restricted
+609612,मकर संक्रांति,"मकर संक्रांति
+",/node/609612,17-09-2013 17:16,1,1,hi,14-01-2012,Restricted
+609613,पोंगल ,"पोंगल 
+",/node/609613,17-09-2013 17:18,1,1,hi,14-01-2014,Restricted
+609614,पोंगल ,"पोंगल 
+",/node/609614,17-09-2013 17:18,1,1,hi,14-01-2013,Restricted
+609615,पोंगल,"पोंगल
+",/node/609615,17-09-2013 17:19,1,1,hi,15-01-2011,Restricted
+609616,पोंगल,"पोंगल/मकर संक्रांति
+",/node/609616,17-09-2013 17:20,1,1,hi,15-01-2012,Restricted
+609617,गुरु गोविन्द सिंह जयंती,"गुरु गोविन्द सिंह जयंती
+",/node/609617,17-09-2013 17:22,1,1,hi,18-01-2013,Restricted
+609618,ईद-ए-मिलाद,"ईद-ए-मिलाद
+",/node/609618,17-09-2013 17:23,1,1,hi,14-01-2014,Gazetted
+609619,ईद-ए-मिलाद,"ईद-ए-मिलाद
+",/node/609619,17-09-2013 17:24,1,1,hi,25-01-2013,Gazetted
+609620,ईद-ए-मिलाद,"ईद-ए-मिलाद
+",/node/609620,17-09-2013 17:26,1,1,hi,05-02-2012,Gazetted
+609621,गणतंत्र दिवस,"गणतंत्र दिवस
+",/node/609621,17-09-2013 17:27,1,1,hi,26-01-2014,Gazetted
+609622,गणतंत्र दिवस,"गणतंत्र दिवस
+",/node/609622,17-09-2013 17:28,1,1,hi,26-01-2013,Gazetted
+609623,गणतंत्र दिवस,"गणतंत्र दिवस
+",/node/609623,17-09-2013 17:28,1,1,hi,26-01-2011,Gazetted
+609625,गणतंत्र दिवस,"गणतंत्र दिवस
+",/node/609625,17-09-2013 17:29,1,1,hi,26-01-2012,Gazetted
+609716,श्री पंचमी,"श्री पंचमी
+",/node/609716,17-09-2013 17:31,1,1,hi,14-02-2013,Restricted
+609718,श्री पंचमी / वसंत पंचमी,"श्री पंचमी / वसंत पंचमी
+",/node/609718,17-09-2013 17:31,1,1,hi,08-02-2011,Restricted
+609719,श्री पंचमी / वसंत पंचमी,"श्री पंचमी / वसंत पंचमी
+",/node/609719,17-09-2013 17:32,1,1,hi,28-01-2012,Restricted
+609720,वसंत पंचमी,"वसंत पंचमी
+",/node/609720,17-09-2013 17:34,1,1,hi,15-02-2013,Restricted
+609722,शिवाजी जयंती,"शिवाजी जयंती
+",/node/609722,17-09-2013 17:39,1,1,hi,19-02-2014,Restricted
+609723,शिवाजी जयंती,"शिवाजी जयंती
+",/node/609723,17-09-2013 17:40,1,1,hi,19-02-2013,Restricted
+609724,शिवाजी जयंती,"शिवाजी जयंती
+",/node/609724,17-09-2013 17:40,1,1,hi,19-02-2011,Restricted
+609725,शिवाजी जयंती,"शिवाजी जयंती
+",/node/609725,17-09-2013 17:41,1,1,hi,19-02-2012,Restricted
+609726,गुरु रविदास जयंती,"गुरु रविदास जयंती
+",/node/609726,17-09-2013 17:42,1,1,hi,25-02-2013,Restricted
+609727,गुरु रविदास जयंती,"गुरु रविदास जयंती
+",/node/609727,17-09-2013 17:43,1,1,hi,18-02-2011,Restricted
+609728,गुरु रविदास जयंती,"गुरु रविदास जयंती
+",/node/609728,17-09-2013 17:44,1,1,hi,07-02-2012,Restricted
+609733,महर्षि दयानंद सरस्वती जयंती,"महर्षि दयानंद सरस्वती जयंती
+",/node/609733,17-09-2013 17:45,1,1,hi,07-03-2013,Restricted
+609735,महर्षि दयानंद सरस्वती जयंती,"महर्षि दयानंद सरस्वती जयंती
+",/node/609735,17-09-2013 17:45,1,1,hi,16-02-2012,Restricted
+609736,महा शिवरात्रि,"महा शिवरात्रि
+",/node/609736,17-09-2013 17:46,1,1,hi,27-02-2014,Restricted
+609737,महा शिवरात्रि,"महा शिवरात्रि
+",/node/609737,17-09-2013 17:47,1,1,hi,10-03-2013,Restricted
+609738,महा शिवरात्रि,"महा शिवरात्रि
+",/node/609738,17-09-2013 17:47,1,1,hi,02-03-2011,Gazetted
+609739,महा शिवरात्रि,"महा शिवरात्रि
+",/node/609739,17-09-2013 17:48,1,1,hi,20-02-2012,Gazetted
+612308,होलिका दहन,"होलिका दहन
+",/node/612308,18-09-2013 10:26,1,1,hi,16-03-2014,Restricted
+612309,होलिका दहन (डोलयात्रा),"होलिका दहन (डोलयात्रा)
+",/node/612309,18-09-2013 10:27,1,1,hi,26-03-2013,Restricted
+612310,होलिका दहन (डोलयात्रा),"होलिका दहन (डोलयात्रा)
+",/node/612310,18-09-2013 10:28,1,1,hi,07-03-2012,Restricted
+612494,होली,"होली
+",/node/612494,18-09-2013 11:10,1,1,hi,17-03-2014,Gazetted
+612495,होली,"होली
+",/node/612495,18-09-2013 11:11,1,1,hi,27-03-2013,Gazetted
+612496,होली,"होली
+",/node/612496,18-09-2013 11:11,1,1,hi,20-03-2011,Restricted
+612497,होली,"होली
+",/node/612497,18-09-2013 11:12,1,1,hi,08-03-2012,Gazetted
+612498,होलिका दहन (डोलयात्रा),"होलिका दहन (डोलयात्रा)
+",/node/612498,18-09-2013 11:12,1,1,hi,19-03-2011,Restricted
+612499,गुड फ्राइडे ,"गुड फ्राइडे 
+",/node/612499,18-09-2013 11:13,1,1,hi,18-04-2014,Gazetted
+612500,गुड फ्राइडे,"गुड फ्राइडे
+",/node/612500,18-09-2013 11:14,1,1,hi,29-03-2013,Gazetted
+612502,गुड फ्राइडे,"गुड फ्राइडे
+",/node/612502,18-09-2013 11:14,1,1,hi,06-04-2012,Gazetted
+612509,गुड फ्राइडे,"गुड फ्राइडे
+",/node/612509,18-09-2013 11:15,1,1,hi,22-04-2011,Gazetted
+612512,ईस्टर,"ईस्टर
+",/node/612512,18-09-2013 11:16,1,1,hi,20-04-2014,Restricted
+612513,ईस्टर,"ईस्टर
+",/node/612513,18-09-2013 11:16,1,1,hi,31-03-2013,Restricted
+612517,ईस्टर,"ईस्टर
+",/node/612517,18-09-2013 11:17,1,1,hi,24-04-2011,Restricted
+612518,ईस्टर,"ईस्टर
+",/node/612518,18-09-2013 11:17,1,1,hi,08-04-2012,Restricted
+612519,चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद,"चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद
+",/node/612519,18-09-2013 11:18,1,1,hi,11-04-2013,Restricted
+612520,चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद,"चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद
+",/node/612520,18-09-2013 11:19,1,1,hi,04-04-2011,Restricted
+612521,चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद,"चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद
+",/node/612521,18-09-2013 11:19,1,1,hi,23-03-2012,Restricted
+612527,वैशाखी/विष्णु,"वैशाखी/विष्णु
+",/node/612527,18-09-2013 11:21,1,1,hi,13-04-2013,Restricted
+612530,वैशाखी/विष्णु,"वैशाखी/विष्णु
+",/node/612530,18-09-2013 11:21,1,1,hi,13-04-2012,Restricted
+612531,डॉ भीमराव अम्बेडकर जयंती,"डॉ भीमराव अम्बेडकर जयंती
+",/node/612531,18-09-2013 11:22,1,1,hi,14-04-2013,Gazetted
+612532,डॉ भीमराव अम्बेडकर जयंती,"डॉ भीमराव अम्बेडकर जयंती
+",/node/612532,18-09-2013 11:23,1,1,hi,14-04-2011,Gazetted
+612533,वैशाखी(बंगाल)/बहाग बिहू(असम),"वैशाखी(बंगाल)/बहाग बिहू(असम)
+",/node/612533,18-09-2013 11:24,1,1,hi,15-04-2014,Restricted
+612534,वैशाखी(बंगाल)/बहाग बिहू(असम),"वैशाखी(बंगाल)/बहाग बिहू(असम)
+",/node/612534,18-09-2013 11:24,1,1,hi,15-04-2013,Restricted
+612536,वैशाखी(बंगाल)/बहाग बिहू(असम),"वैशाखी(बंगाल)/बहाग बिहू(असम)
+",/node/612536,18-09-2013 11:25,1,1,hi,15-04-2011,Restricted
+612537,वैशाखी(बंगाल)/बहाग बिहू(असम),"वैशाखी(बंगाल)/बहाग बिहू(असम)
+",/node/612537,18-09-2013 11:26,1,1,hi,14-04-2012,Restricted
+612538,महावीर जयंती,"महावीर जयंती
+",/node/612538,18-09-2013 11:29,1,1,hi,13-04-2014,Gazetted
+612539,महावीर जयंती,"महावीर जयंती
+",/node/612539,18-09-2013 11:29,1,1,hi,24-04-2013,Gazetted
+612545,महावीर जयंती,"महावीर जयंती
+",/node/612545,18-09-2013 11:30,1,1,hi,16-04-2011,Gazetted
+612621,महावीर जयंती,"महावीर जयंती
+",/node/612621,18-09-2013 11:30,1,1,hi,05-04-2012,Gazetted
+612636,गुरु रविंद्रनाथ जन्मदिवस,"गुरु रविंद्रनाथ जन्मदिवस
+",/node/612636,18-09-2013 11:38,1,1,hi,09-05-2014,Restricted
+612637,गुरु रविंद्रनाथ जन्मदिवस,"गुरु रविंद्रनाथ जन्मदिवस
+",/node/612637,18-09-2013 11:38,1,1,hi,09-05-2013,Restricted
+612638,गुरु रविंद्रनाथ जन्मदिवस,"गुरु रविंद्रनाथ जन्मदिवस
+",/node/612638,18-09-2013 11:39,1,1,hi,09-05-2011,Restricted
+612639,गुरु रविंद्रनाथ जन्मदिवस,"गुरु रविंद्रनाथ जन्मदिवस
+",/node/612639,18-09-2013 11:40,1,1,hi,08-05-2012,Restricted
+612640,हज़रत अली जन्मदिवस,"हज़रत अली जन्मदिवस
+",/node/612640,18-09-2013 11:44,1,1,hi,13-05-2014,Restricted
+612641,हज़रत अली जन्मदिवस,"हज़रत अली जन्मदिवस
+",/node/612641,18-09-2013 11:45,1,1,hi,24-05-2013,Restricted
+612648,हज़रत अली जन्मदिवस,"हज़रत अली जन्मदिवस
+",/node/612648,18-09-2013 11:45,1,1,hi,16-06-2011,Restricted
+612649,हज़रत अली जन्मदिवस,"हज़रत अली जन्मदिवस
+",/node/612649,18-09-2013 11:45,1,1,hi,04-06-2012,Restricted
+612650,बुद्ध पूर्णिमा,"बुद्ध पूर्णिमा
+",/node/612650,18-09-2013 11:53,1,1,hi,14-05-2014,Gazetted
+612651,बुद्ध पूर्णिमा,"बुद्ध पूर्णिमा
+",/node/612651,18-09-2013 11:53,1,1,hi,25-05-2013,Gazetted
+612652,बुद्ध पूर्णिमा,"बुद्ध पूर्णिमा
+",/node/612652,18-09-2013 11:54,1,1,hi,17-05-2011,Gazetted
+612653,बुद्ध पूर्णिमा,"बुद्ध पूर्णिमा
+",/node/612653,18-09-2013 11:55,1,1,hi,06-05-2012,Gazetted
+612654,रामनवमी,"रामनवमी
+",/node/612654,18-09-2013 11:56,1,1,hi,08-04-2014,Gazetted
+612655,रामनवमी,"रामनवमी
+",/node/612655,18-09-2013 11:56,1,1,hi,19-04-2013,Gazetted
+612656,रामनवमी,"रामनवमी
+",/node/612656,18-09-2013 11:57,1,1,hi,12-04-2011,Gazetted
+612657,रामनवमी,"रामनवमी
+",/node/612657,18-09-2013 11:57,1,1,hi,01-04-2012,Restricted
+612658,रथ यात्रा,"रथ यात्रा
+",/node/612658,18-09-2013 11:59,1,1,hi,29-06-2014,Restricted
+612659,रथ यात्रा,"रथ यात्रा
+",/node/612659,18-09-2013 11:59,1,1,hi,10-07-2013,Restricted
+612669,रथ यात्रा,"रथ यात्रा
+",/node/612669,18-09-2013 12:00,1,1,hi,03-07-2011,Restricted
+612743,रथ यात्रा,"रथ यात्रा
+",/node/612743,18-09-2013 12:00,1,1,hi,21-06-2012,Restricted
+612746,जमात-उल-विदा,"जमात-उल-विदा
+",/node/612746,18-09-2013 12:09,1,1,hi,25-07-2014,Restricted
+612747,जमात-उल-विदा,"जमात-उल-विदा
+",/node/612747,18-09-2013 12:09,1,1,hi,02-08-2013,Restricted
+612748,जमात-उल-विदा,"जमात-उल-विदा
+",/node/612748,18-09-2013 12:10,1,1,hi,26-08-2011,Restricted
+612749,जमात-उल-विदा,"जमात-उल-विदा
+",/node/612749,18-09-2013 12:11,1,1,hi,17-08-2012,Restricted
+612750,ईद-उल-फ़ितर,"ईद-उल-फ़ितर
+",/node/612750,18-09-2013 12:12,1,1,hi,09-08-2013,Gazetted
+612751,ईद-उल-फ़ितर,"ईद-उल-फ़ितर
+",/node/612751,18-09-2013 12:12,1,1,hi,31-08-2011,Gazetted
+612752,ईद-उल-फ़ितर,"ईद-उल-फ़ितर
+",/node/612752,18-09-2013 12:13,1,1,hi,20-08-2012,Gazetted
+612753,स्वतंत्रता दिवस,"स्वतंत्रता दिवस
+",/node/612753,18-09-2013 12:14,1,1,hi,15-08-2014,Gazetted
+612761,स्वतंत्रता दिवस,"स्वतंत्रता दिवस
+",/node/612761,18-09-2013 12:16,1,1,hi,15-08-2013,Gazetted
+612763,स्वतंत्रता दिवस,"स्वतंत्रता दिवस
+",/node/612763,18-09-2013 12:17,1,1,hi,15-08-2011,Gazetted
+612764,स्वतंत्रता दिवस,"स्वतंत्रता दिवस
+",/node/612764,18-09-2013 12:18,1,1,hi,15-08-2012,Gazetted
+612856,पारसी नव वर्ष,"पारसी नव वर्ष
+",/node/612856,18-09-2013 12:33,1,1,hi,18-08-2014,Restricted
+612857,पारसी नव वर्ष,"पारसी नव वर्ष
+",/node/612857,18-09-2013 12:33,1,1,hi,18-08-2013,Restricted
+612858,पारसी नव वर्ष,"पारसी नव वर्ष
+",/node/612858,18-09-2013 12:33,1,1,hi,19-08-2011,Restricted
+612859,पारसी नव वर्ष,"पारसी नव वर्ष
+",/node/612859,18-09-2013 12:34,1,1,hi,18-08-2012,Restricted
+612860,रक्षा बंधन,"रक्षा बंधन
+",/node/612860,18-09-2013 12:35,1,1,hi,10-08-2014,Restricted
+612861,रक्षा बंधन,"रक्षा बंधन
+",/node/612861,18-09-2013 12:35,1,1,hi,20-08-2013,Restricted
+612862,रक्षा बंधन,"रक्षा बंधन
+",/node/612862,18-09-2013 12:36,1,1,hi,02-08-2012,Restricted
+612863,कृष्णा जन्माष्टमी,"कृष्णा जन्माष्टमी
+",/node/612863,18-09-2013 12:38,1,1,hi,28-08-2013,Gazetted
+612864,कृष्णा जन्माष्टमी,"कृष्णा जन्माष्टमी
+",/node/612864,18-09-2013 12:38,1,1,hi,22-08-2011,Gazetted
+612865,कृष्णा जन्माष्टमी,"कृष्णा जन्माष्टमी
+",/node/612865,18-09-2013 12:38,1,1,hi,10-08-2012,Gazetted
+612867,गणेशोत्सव,"गणेशोत्सव
+",/node/612867,18-09-2013 12:41,1,1,hi,29-08-2014,Restricted
+612868,गणेशोत्सव,"गणेशोत्सव
+",/node/612868,18-09-2013 12:42,1,1,hi,09-09-2013,Restricted
+612869,गणेशोत्सव,"गणेशोत्सव
+",/node/612869,18-09-2013 12:42,1,1,hi,01-09-2011,Restricted
+612870,गणेशोत्सव,"गणेशोत्सव
+",/node/612870,18-09-2013 12:42,1,1,hi,19-09-2012,Restricted
+612871,ओणम,"ओणम
+",/node/612871,18-09-2013 12:43,1,1,hi,07-09-2014,Restricted
+612872,ओणम,"ओणम
+",/node/612872,18-09-2013 12:44,1,1,hi,16-09-2013,Restricted
+612873,ओणम,"ओणम
+",/node/612873,18-09-2013 12:44,1,1,hi,09-09-2011,Restricted
+612880,ओणम,"ओणम
+",/node/612880,18-09-2013 12:45,1,1,hi,29-08-2012,Restricted
+612881,गाँधी जयंती,"गाँधी जयंती
+",/node/612881,18-09-2013 12:56,1,1,hi,02-10-2013,Gazetted
+612882,गाँधी जयंती,"गाँधी जयंती
+",/node/612882,18-09-2013 12:57,1,1,hi,02-10-2011,Gazetted
+612883,गाँधी जयंती,"गाँधी जयंती
+",/node/612883,18-09-2013 12:57,1,1,hi,02-10-2012,Gazetted
+612969,महा सप्तमी,"महा सप्तमी
+",/node/612969,18-09-2013 13:01,1,1,hi,01-10-2014,Restricted
+612970,महा सप्तमी,"महा सप्तमी
+",/node/612970,18-09-2013 13:02,1,1,hi,11-10-2013,Restricted
+612971,महा सप्तमी,"महा सप्तमी
+",/node/612971,18-09-2013 13:02,1,1,hi,03-10-2011,Restricted
+612972,महा सप्तमी,"महा सप्तमी
+",/node/612972,18-09-2013 13:03,1,1,hi,21-10-2012,Restricted
+613086,महा अष्टमी,"महा अष्टमी
+",/node/613086,18-09-2013 14:00,1,1,hi,02-10-2014,Restricted
+613173,महा अष्टमी,"महा अष्टमी
+",/node/613173,18-09-2013 14:00,1,1,hi,12-10-2013,Restricted
+613174,महा अष्टमी,"महा अष्टमी
+",/node/613174,18-09-2013 14:01,1,1,hi,04-10-2011,Restricted
+613175,महा अष्टमी,"महा अष्टमी
+",/node/613175,18-09-2013 14:01,1,1,hi,22-10-2012,Restricted
+613176,महा नवमी,"महा नवमी
+",/node/613176,18-09-2013 14:03,1,1,hi,03-10-2014,Restricted
+613177,दशहरा(विजयादशमी),"दशहरा(विजयादशमी)
+",/node/613177,18-09-2013 14:04,1,1,hi,03-10-2014,Gazetted
+613178,दशहरा(विजयादशमी),"दशहरा(विजयादशमी)
+",/node/613178,18-09-2013 14:04,1,1,hi,13-10-2013,Gazetted
+613179,दशहरा(विजयादशमी),"दशहरा(विजयादशमी)
+",/node/613179,18-09-2013 14:05,1,1,hi,06-10-2011,Gazetted
+613180,दशहरा(विजयादशमी),"दशहरा(विजयादशमी)
+",/node/613180,18-09-2013 14:05,1,1,hi,24-10-2012,Gazetted
+613181,बकरीद(ईद-उल-ज़ुहा),"बकरीद(ईद-उल-ज़ुहा)
+",/node/613181,18-09-2013 14:07,1,1,hi,06-10-2014,Gazetted
+613182,बकरीद(ईद-उल-ज़ुहा),"बकरीद(ईद-उल-ज़ुहा)
+",/node/613182,18-09-2013 14:07,1,1,hi,16-10-2013,Gazetted
+613183,बकरीद(ईद-उल-ज़ुहा),"बकरीद(ईद-उल-ज़ुहा)
+",/node/613183,18-09-2013 14:08,1,1,hi,07-11-2011,Gazetted
+613184,बकरीद(ईद-उल-ज़ुहा),"बकरीद(ईद-उल-ज़ुहा)
+",/node/613184,18-09-2013 14:08,1,1,hi,27-10-2012,Gazetted
+613185,महर्षि वाल्मीकि जयंती,"महर्षि वाल्मीकि जयंती
+",/node/613185,18-09-2013 14:09,1,1,hi,08-10-2014,Restricted
+613186,महर्षि वाल्मीकि जयंती,"महर्षि वाल्मीकि जयंती
+",/node/613186,18-09-2013 14:10,1,1,hi,18-10-2013,Restricted
+613187,महर्षि वाल्मीकि जयंती,"महर्षि वाल्मीकि जयंती
+",/node/613187,18-09-2013 14:10,1,1,hi,11-10-2011,Restricted
+613188,महर्षि वाल्मीकि जयंती,"महर्षि वाल्मीकि जयंती
+",/node/613188,18-09-2013 14:11,1,1,hi,29-10-2012,Restricted
+613189,करवा चौथ,"करवा चौथ
+",/node/613189,18-09-2013 14:12,1,1,hi,11-10-2014,Restricted
+613190,करवा चौथ,"करवा चौथ
+",/node/613190,18-09-2013 14:12,1,1,hi,22-10-2013,Restricted
+613191,करवा चौथ,"करवा चौथ
+",/node/613191,18-09-2013 14:13,1,1,hi,02-11-2012,Restricted
+613199,दीपावली(दक्षिण भारत)/नारक चतुर्दशी,"दीपावली(दक्षिण भारत)/नारक चतुर्दशी
+",/node/613199,18-09-2013 14:24,1,1,hi,02-11-2013,Restricted
+613200,दीपावली(दक्षिण भारत),"दीपावली(दक्षिण भारत)
+",/node/613200,18-09-2013 14:24,1,1,hi,22-10-2014,Restricted
+613201,दीवाली,"दीवाली
+",/node/613201,18-09-2013 14:25,1,1,hi,23-10-2014,Gazetted
+613202,दीवाली,"दीवाली
+",/node/613202,18-09-2013 14:26,1,1,hi,03-11-2013,Gazetted
+613204,दीवाली,"दीवाली
+",/node/613204,18-09-2013 14:26,1,1,hi,26-10-2011,Gazetted
+613205,दीवाली,"दीवाली
+",/node/613205,18-09-2013 14:27,1,1,hi,13-11-2012,Gazetted
+613206,भैयादूज,"भैयादूज
+",/node/613206,18-09-2013 14:28,1,1,hi,25-10-2014,Restricted
+613209,भैयादूज,"भैयादूज
+",/node/613209,18-09-2013 14:28,1,1,hi,05-11-2013,Restricted
+613210,भैयादूज,"भैयादूज
+",/node/613210,18-09-2013 14:29,1,1,hi,28-10-2011,Restricted
+613211,भैयादूज,"भैयादूज
+",/node/613211,18-09-2013 14:29,1,1,hi,15-11-2012,Restricted
+613302,प्रतिहार षष्ठी/सूर्य षष्ठी(छठ),"प्रतिहार षष्ठी/सूर्य षष्ठी(छठ)
+",/node/613302,18-09-2013 14:31,1,1,hi,08-11-2013,Restricted
+613303,प्रतिहार षष्ठी/सूर्य षष्ठी(छठ),"प्रतिहार षष्ठी/सूर्य षष्ठी(छठ)
+",/node/613303,18-09-2013 14:31,1,1,hi,01-11-2011,Restricted
+613305,प्रतिहार षष्ठी/सूर्य षष्ठी(छठ),"प्रतिहार षष्ठी/सूर्य षष्ठी(छठ)
+",/node/613305,18-09-2013 14:32,1,1,hi,19-11-2012,Restricted
+613306,मुहर्रम,"मुहर्रम
+",/node/613306,18-09-2013 14:32,1,1,hi,04-11-2014,Gazetted
+613308,मुहर्रम,"मुहर्रम
+",/node/613308,18-09-2013 14:33,1,1,hi,15-11-2013,Gazetted
+613309,मुहर्रम,"मुहर्रम
+",/node/613309,18-09-2013 14:33,1,1,hi,06-12-2011,Gazetted
+613310,मुहर्रम,"मुहर्रम
+",/node/613310,18-09-2013 14:34,1,1,hi,25-11-2012,Gazetted
+613311,गुरु नानक जयंती,"गुरु नानक जयंती
+",/node/613311,18-09-2013 14:35,1,1,hi,17-11-2013,Gazetted
+613312,गुरु नानक जयंती,"गुरु नानक जयंती
+",/node/613312,18-09-2013 14:36,1,1,hi,10-11-2011,Gazetted
+613313,गुरु नानक जयंती,"गुरु नानक जयंती
+",/node/613313,18-09-2013 14:36,1,1,hi,28-11-2012,Gazetted
+613314,गुरु तेग बहादुर शहीद दिवस,"गुरु तेग बहादुर शहीद दिवस
+",/node/613314,18-09-2013 14:39,1,1,hi,24-11-2013,Restricted
+613315,गुरु तेग बहादुर शहीद दिवस,"गुरु तेग बहादुर शहीद दिवस
+",/node/613315,18-09-2013 14:40,1,1,hi,24-11-2011,Restricted
+613316,गुरु तेग बहादुर शहीद दिवस,"गुरु तेग बहादुर शहीद दिवस
+",/node/613316,18-09-2013 14:40,1,1,hi,24-11-2012,Restricted
+613317,क्रिसमस पूर्व संध्या,"क्रिसमस पूर्व संध्या
+",/node/613317,18-09-2013 14:41,1,1,hi,24-12-2013,Restricted
+613318,क्रिसमस पूर्व संध्या,"क्रिसमस पूर्व संध्या
+",/node/613318,18-09-2013 14:42,1,1,hi,24-12-2011,Restricted
+613319,क्रिसमस पूर्व संध्या,"क्रिसमस पूर्व संध्या
+",/node/613319,18-09-2013 14:43,1,1,hi,24-12-2012,Restricted
+613320,क्रिसमस,"क्रिसमस
+",/node/613320,18-09-2013 14:44,1,1,hi,25-12-2013,Gazetted
+613321,क्रिसमस,"क्रिसमस
+",/node/613321,18-09-2013 14:44,1,1,hi,25-12-2014,Gazetted
+613328,क्रिसमस,"क्रिसमस
+",/node/613328,18-09-2013 14:45,1,1,hi,25-12-2011,Gazetted
+613329,क्रिसमस,"क्रिसमस
+",/node/613329,18-09-2013 14:45,1,1,hi,25-12-2012,Gazetted
+613330,गुरु रविदास जयंती,"गुरु रविदास जयंती
+",/node/613330,18-09-2013 14:48,1,1,hi,14-02-2014,Restricted
+613331,स्वामी दयानंद सरस्वती जयंती,"स्वामी दयानंद सरस्वती जयंती
+",/node/613331,18-09-2013 14:52,1,1,hi,24-02-2014,Restricted
+613332,वसंत पंचमी/श्री पंचमी ,"वसंत पंचमी/श्री पंचमी
+",/node/613332,18-09-2013 14:54,1,1,hi,04-02-2014,Restricted
+613333,चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद,"चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद
+",/node/613333,18-09-2013 14:55,1,1,hi,31-03-2014,Restricted
+613334,ईद-उल-फ़ितर,"ईद-उल-फ़ितर
+",/node/613334,18-09-2013 14:57,1,1,hi,29-07-2014,Gazetted
+613335,कृष्णा जन्माष्टमी,"कृष्णा जन्माष्टमी
+",/node/613335,18-09-2013 14:58,1,1,hi,18-08-2014,Gazetted
+613427,गाँधी जयंती,"गाँधी जयंती
+",/node/613427,18-09-2013 15:02,1,1,hi,02-10-2014,Gazetted
+613429,नारक चतुर्दशी,"नारक चतुर्दशी
+",/node/613429,18-09-2013 15:08,1,1,hi,22-10-2014,Restricted
+613431,गुरु नानक जयंती,"गुरु नानक जयंती
+",/node/613431,18-09-2013 15:09,1,1,hi,06-11-2014,Gazetted
+692949,Guru Gobind Singh's Birthday,"Guru Gobind Singh's Birthday
+",/content/guru-gobind-singhs-birthday-0,07-10-2013 17:26,1,1,en,28-12-2014,Restricted
+692950,गुरु गोबिंद सिंह का जन्मदिन,"गुरु गोबिंद सिंह का जन्मदिन
+",/node/692950,07-10-2013 17:27,1,1,hi,28-12-2014,Restricted
+692951,गुरु गोबिंद सिंह का जन्मदिन,"गुरु गोबिंद सिंह का जन्मदिन
+",/node/692951,07-10-2013 17:27,1,1,hi,07-01-2014,Restricted
+1121072,Birthday of Dr. B.R. Ambedkar,"Birthday of Dr. B.R. Ambedkar
+",/content/birthday-dr-br-ambedkar-0,13-03-2014 10:34,1,1,en,14-04-2014,Gazetted
+1121073,डॉ. बी.आर. अम्बेडकर का जन्मदिन,"डॉ. बी.आर. अम्बेडकर का जन्मदिन
+",/node/1121073,13-03-2014 10:35,1,1,hi,14-04-2014,Gazetted
+1121074,Vaisakhi/Vishu/Masadi,"Vaisakhi/Vishu/Masadi
+",/content/vaisakhivishumasadi,13-03-2014 10:45,1,1,en,14-04-2014,Restricted
+1121075,वैशाखी/विष्णु,"वैशाखी/विष्णु
+",/node/1121075,13-03-2014 10:45,1,1,hi,14-04-2014,Restricted
+1133317,Milad-Un-Nabi or Id-E-Milad (Birthday of Prophet Mohammad),"Milad-Un-Nabi or Id-E-Milad (Birthday of Prophet Mohammad)
+",/content/milad-un-nabi-or-id-e-milad-birthday-prophet-mohammad-0,22-07-2014 15:17,1,1,en,04-01-2015,Gazetted
+1133318,ईद-ए-मिलाद,"ईद-ए-मिलाद
+",/node/1133318,22-07-2014 15:18,1,1,hi,04-01-2015,Gazetted
+1133320,Republic Day,"Republic Day
+",/content/republic-day-3,22-07-2014 15:19,1,1,en,26-01-2015,Gazetted
+1133321,गणतंत्र दिवस,"गणतंत्र दिवस
+",/node/1133321,22-07-2014 15:20,1,1,hi,26-01-2015,Gazetted
+1133322,Holi,"Holi
+",/content/holi-3,22-07-2014 15:21,1,1,en,06-03-2015,Gazetted
+1133323,होली,"होली
+",/node/1133323,22-07-2014 15:21,1,1,hi,06-03-2015,Gazetted
+1133324,Ram Navami,"Ram Navami
+",/content/ram-navami-3,22-07-2014 15:22,1,1,en,28-03-2015,Gazetted
+1133325,रामनवमी,"रामनवमी
+",/node/1133325,22-07-2014 15:22,1,1,hi,28-03-2015,Gazetted
+1133326,Mahavir Jayanti,"Mahavir Jayanti
+",/content/mahavir-jayanti-3,22-07-2014 15:23,1,1,en,02-04-2015,Gazetted
+1133327,महावीर जयंती,"महावीर जयंती
+",/node/1133327,22-07-2014 15:24,1,1,hi,02-04-2015,Gazetted
+1133328,Good Friday,"Good Friday
+",/content/good-friday-3,22-07-2014 15:24,1,1,en,03-04-2015,Gazetted
+1133329,गुड फ्राइडे,"गुड फ्राइडे
+",/node/1133329,22-07-2014 15:25,1,1,hi,03-04-2015,Gazetted
+1133330,Buddha Purnima,"Buddha Purnima
+",/content/buddha-purnima-3,22-07-2014 15:26,1,1,en,04-05-2015,Gazetted
+1133331,बुद्ध पूर्णिमा,"बुद्ध पूर्णिमा
+",/node/1133331,22-07-2014 15:26,1,1,hi,04-05-2015,Gazetted
+1133332,Idu'l Fitr,"Idu'l Fitr
+",/content/idul-fitr-0,22-07-2014 15:27,1,1,en,18-07-2015,Gazetted
+1133333,ईद-उल-फ़ितर,"ईद-उल-फ़ितर
+",/node/1133333,22-07-2014 15:28,1,1,hi,18-07-2015,Gazetted
+1133334,Independence day,"Independence day
+",/content/independence-day-11,22-07-2014 15:29,1,1,en,15-08-2015,Gazetted
+1133335,स्वतंत्रता दिवस,"स्वतंत्रता दिवस
+",/node/1133335,22-07-2014 15:29,1,1,hi,15-08-2015,Gazetted
+1133336,Janmashtami,"Janmashtami
+",/content/janmashtami-0,22-07-2014 15:30,1,1,en,05-09-2015,Gazetted
+1133337,कृष्णा जन्माष्टमी,"कृष्णा जन्माष्टमी
+",/node/1133337,22-07-2014 15:31,1,1,hi,05-09-2015,Gazetted
+1133340,Id-ul-Zuha(Bakrid),"Id-ul-Zuha(Bakrid)
+",/content/id-ul-zuhabakrid-0,22-07-2014 15:32,1,1,en,25-09-2015,Gazetted
+1133341,बकरीद(ईद-उल-ज़ुहा),"बकरीद(ईद-उल-ज़ुहा)
+",/node/1133341,22-07-2014 15:32,1,1,hi,25-09-2015,Gazetted
+1133342,Mahatma Gandhi's Birthday,"Mahatma Gandhi's Birthday
+",/content/mahatma-gandhis-birthday-0,22-07-2014 15:33,1,1,en,02-10-2015,Gazetted
+1133343,गाँधी जयंती,"गाँधी जयंती
+",/node/1133343,22-07-2014 15:34,1,1,hi,02-10-2015,Gazetted
+1133344,Dussehra,"Dussehra
+",/content/dussehra-0,22-07-2014 15:34,1,1,en,22-10-2015,Gazetted
+1133345,दशहरा(विजयादशमी),"दशहरा(विजयादशमी)
+",/node/1133345,22-07-2014 15:35,1,1,hi,22-10-2015,Gazetted
+1133346,Muharram,"Muharram
+",/content/muharram-3,22-07-2014 15:35,1,1,en,24-10-2015,Gazetted
+1133347,मुहर्रम,"मुहर्रम
+",/node/1133347,22-07-2014 15:36,1,1,hi,24-10-2015,Gazetted
+1133349,Diwali (Deepavali),"Diwali (Deepavali)
+",/content/diwali-deepavali-3,22-07-2014 15:45,1,1,en,11-11-2015,Gazetted
+1133350,दीवाली,"दीवाली
+",/node/1133350,22-07-2014 15:46,1,1,hi,11-11-2015,Gazetted
+1133351,Guru Nanak's Birthday,"Guru Nanak's Birthday
+",/content/guru-nanaks-birthday-0,22-07-2014 15:46,1,1,en,25-11-2015,Gazetted
+1133352,गुरु नानक जयंती,"गुरु नानक जयंती
+",/node/1133352,22-07-2014 15:47,1,1,hi,25-11-2015,Gazetted
+1133353,Milad-Un-Nabi,"Milad-Un-Nabi
+",/content/milad-un-nabi-0,22-07-2014 15:52,1,1,en,24-12-2015,Gazetted
+1133354,मिलाद-उन-नबी,"मिलाद-उन-नबी
+",/node/1133354,22-07-2014 15:52,1,1,hi,24-12-2015,Gazetted
+1133355,Christmas Day,"Christmas Day
+",/content/christmas-day-0,22-07-2014 15:53,1,1,en,25-12-2015,Gazetted
+1133356,क्रिसमस,"क्रिसमस
+",/node/1133356,22-07-2014 15:53,1,1,hi,25-12-2015,Gazetted
+1133357,New Year's Day,"New Year's Day
+",/content/new-years-day-3,22-07-2014 16:15,1,1,en,01-01-2015,Restricted
+1133358,नया साल/नव वर्ष,"नया साल/नव वर्ष
+",/node/1133358,22-07-2014 16:15,1,1,hi,01-01-2015,Restricted
+1133359,Makar Sankranti,"Makar Sankranti
+",/content/makar-sankranti-2,22-07-2014 16:16,1,1,en,14-01-2015,Restricted
+1133360,मकर संक्रांति,"मकर संक्रांति
+",/node/1133360,22-07-2014 16:17,1,1,hi,14-01-2015,Restricted
+1133361,Pongal,"Pongal
+",/content/pongal-3,22-07-2014 16:17,1,1,en,15-01-2015,Restricted
+1133362,पोंगल,"पोंगल
+",/node/1133362,22-07-2014 16:18,1,1,hi,15-01-2015,Restricted
+1133363,Basant Panchami/Sri Panchami,"Basant Panchami/Sri Panchami
+",/content/basant-panchamisri-panchami-0,22-07-2014 16:18,1,1,en,24-01-2015,Restricted
+1133364,वसंत पंचमी/श्री पंचमी,"वसंत पंचमी/श्री पंचमी
+",/node/1133364,22-07-2014 16:19,1,1,hi,24-01-2015,Restricted
+1133365,Guru Ravidas's Birthday,"Guru Ravidas's Birthday
+",/content/guru-ravidass-birthday-0,22-07-2014 16:20,1,1,en,03-02-2015,Restricted
+1133366,गुरु रविदास जयंती,"गुरु रविदास जयंती
+",/node/1133366,22-07-2014 16:20,1,1,hi,03-02-2015,Restricted
+1133369,Swami Dayananda Saraswati Jayanti,"Swami Dayananda Saraswati Jayanti
+",/content/swami-dayananda-saraswati-jayanti-0,22-07-2014 16:21,1,1,en,14-02-2015,Restricted
+1133370,स्वामी दयानंद सरस्वती जयंती,"स्वामी दयानंद सरस्वती जयंती
+",/node/1133370,22-07-2014 16:21,1,1,hi,14-02-2015,Restricted
+1133371,Shivaji Jayanti,"Shivaji Jayanti
+",/content/shivaji-jayanti-3,22-07-2014 16:22,1,1,en,19-02-2015,Restricted
+1133372,शिवाजी जयंती,"शिवाजी जयंती
+",/node/1133372,22-07-2014 16:22,1,1,hi,19-02-2015,Restricted
+1133373,Holika Dahan,"Holika Dahan
+",/content/holika-dahan-0,22-07-2014 16:23,1,1,en,05-03-2015,Restricted
+1133374,होलिका दहन,"होलिका दहन
+",/node/1133374,22-07-2014 16:23,1,1,hi,05-03-2015,Restricted
+1133375,Chaitra Suldadi/Gudi Padava/Ugadi/Cheti Chand,"Chaitra Suldadi/Gudi Padava/Ugadi/Cheti Chand
+",/content/chaitra-suldadigudi-padavaugadicheti-chand-0,22-07-2014 16:24,1,1,en,21-03-2015,Restricted
+1133376,चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद,"चैत्र सुख्लादी/गुड़ी पर्व/उगादी/चैती चाँद
+",/node/1133376,22-07-2014 16:24,1,1,hi,21-03-2015,Restricted
+1133377,Easter Sunday,"Easter Sunday
+",/content/easter-sunday-0,22-07-2014 16:26,1,1,en,05-04-2015,Restricted
+1133378,ईस्टर,"ईस्टर
+",/node/1133378,22-07-2014 16:27,1,1,hi,05-04-2015,Restricted
+1133379,Vaisakhi/Vishu/Masadi,"Vaisakhi/Vishu/Masadi
+",/content/vaisakhivishumasadi-0,22-07-2014 16:28,1,1,en,14-04-2015,Restricted
+1133380,वैशाखी/विष्णु,"वैशाखी/विष्णु
+",/node/1133380,22-07-2014 16:28,1,1,hi,14-04-2015,Restricted
+1133381,Vaisakhadi(Bengal)/Bahag Bihu (Assam),"Vaisakhadi(Bengal)/Bahag Bihu (Assam)
+",/content/vaisakhadibengalbahag-bihu-assam-0,22-07-2014 16:29,1,1,en,15-04-2015,Restricted
+1133382,वैशाखी(बंगाल)/बहाग बिहू(असम),"वैशाखी(बंगाल)/बहाग बिहू(असम)
+",/node/1133382,22-07-2014 16:29,1,1,hi,15-04-2015,Restricted
+1133383,Hazarat Ali's Birthday,"Hazarat Ali's Birthday
+",/content/hazarat-alis-birthday-3,22-07-2014 16:30,1,1,en,03-05-2015,Restricted
+1133384,हज़रत अली जन्मदिवस,"हज़रत अली जन्मदिवस
+",/node/1133384,22-07-2014 16:31,1,1,hi,03-05-2015,Restricted
+1133385,Guru Rabindranath's birthday,"Guru Rabindranath's birthday
+",/content/guru-rabindranaths-birthday-3,22-07-2014 16:32,1,1,en,09-05-2015,Restricted
+1133386,गुरु रविंद्रनाथ जन्मदिवस,"गुरु रविंद्रनाथ जन्मदिवस
+",/node/1133386,22-07-2014 16:32,1,1,hi,09-05-2015,Restricted
+1133387,Jamat-Ul-Vida,"Jamat-Ul-Vida
+",/content/jamat-ul-vida-3,22-07-2014 16:33,1,1,en,17-07-2015,Restricted
+1133388,जमात-उल-विदा,"जमात-उल-विदा
+",/node/1133388,22-07-2014 16:34,1,1,hi,17-07-2015,Restricted
+1133389,Rath Yatra,"Rath Yatra
+",/content/rath-yatra-3,22-07-2014 16:34,1,1,en,18-07-2015,Restricted
+1133390,रथ यात्रा,"रथ यात्रा
+",/node/1133390,22-07-2014 16:35,1,1,hi,18-07-2015,Restricted
+1133396,Parsi New Year's day/Nauroz,"Parsi New Year's day/Nauroz
+",/content/parsi-new-years-daynauroz-0,22-07-2014 17:11,1,1,en,18-08-2015,Restricted
+1133397,पारसी नव वर्ष,"पारसी नव वर्ष
+",/node/1133397,22-07-2014 17:12,1,1,hi,18-08-2015,Restricted
+1133399,Onam,"Onam
+",/content/onam-3,22-07-2014 17:14,1,1,en,28-08-2015,Restricted
+1133400,ओणम,"ओणम
+",/node/1133400,22-07-2014 17:15,1,1,hi,28-08-2015,Restricted
+1133401,Raksha Bandhan,"Raksha Bandhan
+",/content/raksha-bandhan-2,22-07-2014 17:16,1,1,en,29-08-2015,Restricted
+1133403,रक्षा बंधन,"रक्षा बंधन
+",/node/1133403,22-07-2014 17:16,1,1,hi,29-08-2015,Restricted
+1133404,Vinayaka Chaturthi/Ganesh Chaturthi,"Vinayaka Chaturthi/Ganesh Chaturthi
+",/content/vinayaka-chaturthiganesh-chaturthi-1,22-07-2014 17:17,1,1,en,17-09-2015,Restricted
+1133405,गणेशोत्सव,"गणेशोत्सव
+",/node/1133405,22-07-2014 17:17,1,1,hi,17-09-2015,Restricted
+1133406,Dussehra (Maha Saptami) (Additional),"Dussehra (Maha Saptami) (Additional)
+",/content/dussehra-maha-saptami-additional-0,22-07-2014 17:19,1,1,en,20-10-2015,Restricted
+1133407,महा सप्तमी,"महा सप्तमी
+",/node/1133407,22-07-2014 17:19,1,1,hi,20-10-2015,Restricted
+1133408,Dussehra (Maha Ashtami) (Additional),"Dussehra (Maha Ashtami) (Additional)
+",/content/dussehra-maha-ashtami-additional-0,22-07-2014 17:20,1,1,en,21-10-2015,Restricted
+1133409,महा अष्टमी,"महा अष्टमी
+",/node/1133409,22-07-2014 17:20,1,1,hi,21-10-2015,Restricted
+1133410,Dussehra (Maha Navmi),"Dussehra (Maha Navmi)
+",/content/dussehra-maha-navmi-0,22-07-2014 17:21,1,1,en,22-10-2015,Restricted
+1133411,महा नवमी,"महा नवमी
+",/node/1133411,22-07-2014 17:21,1,1,hi,22-10-2015,Restricted
+1133412,Maharishi Valmiki's Birthday,"Maharishi Valmiki's Birthday
+",/content/maharishi-valmikis-birthday-0,22-07-2014 17:22,1,1,en,27-10-2015,Restricted
+1133413,महर्षि वाल्मीकि जयंती,"महर्षि वाल्मीकि जयंती
+",/node/1133413,22-07-2014 17:22,1,1,hi,27-10-2015,Restricted
+1133414,Karaka Chaturthi (Karva Chouth),"Karaka Chaturthi (Karva Chouth)
+",/content/karaka-chaturthi-karva-chouth-2,22-07-2014 17:23,1,1,en,30-10-2015,Restricted
+1133415,करवा चौथ,"करवा चौथ
+",/node/1133415,22-07-2014 17:23,1,1,hi,30-10-2015,Restricted
+1133416,Deepavali (South India),"Deepavali (South India)
+",/content/deepavali-south-india-0,22-07-2014 17:25,1,1,en,10-11-2015,Restricted
+1133417,दीपावली(दक्षिण भारत),"दीपावली(दक्षिण भारत)
+",/node/1133417,22-07-2014 17:25,1,1,hi,10-11-2015,Restricted
+1133418,Naraka Chaturdasi,"Naraka Chaturdasi
+",/content/naraka-chaturdasi-1,22-07-2014 17:25,1,1,en,10-11-2015,Restricted
+1133419,नारक चतुर्दशी,"नारक चतुर्दशी
+",/node/1133419,22-07-2014 17:26,1,1,hi,10-11-2015,Restricted
+1133420,Govardhan Puja,"Govardhan Puja
+",/content/govardhan-puja-2,22-07-2014 17:26,1,1,en,12-11-2015,Restricted
+1133421,गोवर्धन पूजा,"गोवर्धन पूजा
+",/node/1133421,22-07-2014 17:27,1,1,hi,12-11-2015,Restricted
+1133422,Bhai Duj,"Bhai Duj
+",/content/bhai-duj-3,22-07-2014 17:27,1,1,en,13-11-2015,Restricted
+1133423,भैयादूज,"भैयादूज
+",/node/1133423,22-07-2014 17:28,1,1,hi,13-11-2015,Restricted
+1133424,Pratihar Sashthi/Surya Sashthi (Chhat Puja),"Pratihar Sashthi/Surya Sashthi (Chhat Puja)
+",/content/pratihar-sashthisurya-sashthi-chhat-puja-3,22-07-2014 17:29,1,1,en,17-11-2015,Restricted
+1133425,प्रतिहार षष्ठी/सूर्य षष्ठी(छठ),"प्रतिहार षष्ठी/सूर्य षष्ठी(छठ)
+",/node/1133425,22-07-2014 17:29,1,1,hi,17-11-2015,Restricted
+1133426,Guru Teg Bahadur's Martyrdom Day,"Guru Teg Bahadur's Martyrdom Day
+",/content/guru-teg-bahadurs-martyrdom-day-3,22-07-2014 17:30,1,1,en,24-11-2015,Restricted
+1133427,गुरु तेग बहादुर शहीद दिवस,"गुरु तेग बहादुर शहीद दिवस
+",/node/1133427,22-07-2014 17:30,1,1,hi,24-11-2015,Restricted
+1133428,Christmas Eve,"Christmas Eve
+",/content/christmas-eve-3,22-07-2014 17:31,1,1,en,24-12-2015,Restricted
+1133429,क्रिसमस पूर्व संध्या,"क्रिसमस पूर्व संध्या
+",/node/1133429,22-07-2014 17:31,1,1,hi,24-12-2015,Restricted
+1133430,Maha Shivaratri,"Maha Shivaratri
+",/content/maha-shivaratri-3,22-07-2014 17:32,1,1,en,17-02-2015,Restricted
+1133431,महा शिवरात्रि,"महा शिवरात्रि
+",/node/1133431,22-07-2014 17:33,1,1,hi,17-02-2015,Restricted
+1163476,Birthday of Dr. B.R. Ambedkar,"Birthday of Dr. B.R. Ambedkar
+",/content/birthday-dr-br-ambedkar-1,30-03-2015 11:57,1,1,en,14-04-2015,Gazetted
+1163477,डॉ. बी.आर. अम्बेडकर का जन्मदिन,"डॉ. बी.आर. अम्बेडकर का जन्मदिन
+",/node/1163477,30-03-2015 12:14,1,1,hi,14-04-2015,Gazetted

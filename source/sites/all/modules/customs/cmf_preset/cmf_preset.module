@@ -1,0 +1,144 @@
+<?php
+function cmf_preset_init(){
+	//echo 123;
+}
+
+/************
+*** function to get data in table form.
+*************/
+function table_list($nid) {
+
+	$header = array('Title', 'Download');
+	$rows = array();
+	$no_yes = array('No', 'Yes');
+	$load_data = node_load($nid);
+	$items = field_get_items('node', $load_data, 'field_proactive_set');
+	foreach ($items as $item) {
+		$fc = field_collection_field_get_entity($item);
+		//print_r($fc);
+		$other_data = '';
+		if(!empty($fc->field_attached)){
+			$other_data.='<ul>';
+			foreach($fc->field_attached['und'] as $attach){
+				$anchore = $attach['uri'];
+                $convert_size =format_size($attach['filesize']);
+                $path = file_create_url($anchore);
+				$title = $attach['description'];
+				$other_data.='<li>'.get_file_icon($path,$convert_size,$title).'</li>';
+			}
+			$other_data.='</ul>';
+		}elseif(!empty($fc->field_link)){
+			$other_data = '<a href="'.$fc->field_link['und'][0]['url'].'">'.$fc->field_link['und'][0]['title'].'</a>';
+		}
+		$rows[] = array($fc->field_proactive_title['und'][0]['value'],
+						$other_data,
+		);
+	}
+	$output = theme('table', array('header' => $header,
+                  	         'rows' => $rows, 'caption' => $load_data->title, ));
+
+  return $output;
+
+}
+
+function cmf_preset_external_links($text){
+	global $base_url;
+	$str = t("External site that opens in a new window ");
+	$text = preg_replace(
+	  '#((href=\"(https?|ftp))(\S*:?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#i',
+	  "href=\"$3$4\" target=\"_BLANK\" title=\"$str\"",
+	  $text
+	);
+	$str = t("The External PDF File that opens in a new window");
+	$text = preg_replace(
+	  '#((href=(\")(https?|ftp))(\S*:?\.\S*?))(\.pdf)([\s)\[\]{},;"\':<]|\.\s|$)#i',
+	  "href=\"$4$5$6\" target=\"_BLANK\" title=\"$str\"",
+	  $text
+	);
+	$str = t("PDF file that opens in a new window.");
+	$text = preg_replace(
+	  '#((href=(\")('.$base_url.'))(\S*:?\S*?))(\.pdf)([\s)\[\]{},;"\':<]|\.\s|$)#i',
+	  "href=\"$4$5$6\" target=\"_BLANK\" title=\"$str\" ",
+	  $text
+	);
+	$str = t("Download the zip file");
+	$text = preg_replace(
+	  '#((href=(\")('.$base_url.'))(\S*:?\S*?))(\.zip)([\s)\[\]{},;"\':<]|\.\s|$)#i',
+	  "href=\"$4$5$6\" target=\"_BLANK\" title=\"$str\" ",
+	  $text
+	);
+	$str = t("Download the rar file");
+	$text = preg_replace(
+	  '#((href=(\")('.$base_url.'))(\S*:?\S*?))(\.rar)([\s)\[\]{},;"\':<]|\.\s|$)#i',
+	  "href=\"$4$5$6\" target=\"_BLANK\" title=\"$str\" ",
+	  $text
+	);
+	$str = t("Download the docs file");
+	$text = preg_replace(
+	  '#((href=(\")('.$base_url.'))(\S*:?\S*?))(\.docs)([\s)\[\]{},;"\':<]|\.\s|$)#i',
+	  "href=\"$4$5$6\" target=\"_BLANK\" title=\"$str\" ",
+	  $text
+	);
+	$str = t("Download the xls file");
+	$text = preg_replace(
+	  '#((href=(\")('.$base_url.'))(\S*:?\S*?))(\.xls)([\s)\[\]{},;"\':<]|\.\s|$)#i',
+	  "href=\"$4$5$6\" target=\"_BLANK\" title=\"$str\" ",
+	  $text
+	);
+	preg_match_all("/[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})/i", $text, $matches);
+	$letters = array('@','.');
+	$replace = array('[at]','[dot]');
+	$old = array();
+	foreach($matches[0] as $val)
+	{
+		$old[] = $val;
+		if(arg(0) == "user" && arg(1) == "reset"){
+			$new[] = $val;
+		}elseif(!form_get_errors()){
+			$new[] = str_replace($letters,$replace,$val);
+		}else{
+			$new[] = $val;
+		}
+	}
+	if(count($old) > 0)
+	{
+		return str_replace($old,$new,$text);
+	}
+	else
+	{
+		return $text;
+	}
+	return $text;
+}
+
+
+function cmf_preset_views_ajax_data_alter(&$commands, $view){
+	$commands[1]['data'] = cmf_preset_external_links($commands[1]['data']);
+}
+
+
+
+
+function cmf_preset_views_email_filter($text)
+{
+	
+	preg_match_all("/[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})/i", $text, $matches);
+	$letters = array('@','.');
+	$replace = array('[at]','[dot]');
+	$old = array();
+	foreach($matches[0] as $val)
+	{
+		$old[] = $val;
+		$new[] = str_replace($letters,$replace,$val);
+	}
+	if(count($old) > 0)
+	{
+		return str_replace($old,$new,$text);
+	}
+	else
+	{
+		return $text;
+	}
+}
+
+?>

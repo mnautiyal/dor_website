@@ -1,0 +1,280 @@
+<?php
+/**
+ * Implementation of hook_install().
+ */
+function webguidlines_init(){
+	variable_set('fb_instant_articles_bypass_composer_manager',TRUE);
+}
+function webguidlines_menu(){
+	$items['admin/config/development/webguidlines'] = array(
+		'title' => 'Web Guidlines Settings',
+		'page callback' => 'webguidlines_settings',
+		'access callback' => 'webguidlines_access',
+		'type' => MENU_NORMAL_ITEM,
+		'file' => 'webguidlines.inc',
+	); 
+	return $items;
+}
+
+function webguidlines_access($account = NULL) {
+	return user_access('administer blocks', $account) && user_access('administer menu', $account);
+}
+
+function webguidlines_help($text='',$type = 0){
+	$external_link = variable_get('external_link');
+	$external_link_msg = variable_get('external_link_msg');
+	$show_download = variable_get('show_download');
+	$show_download_msg = variable_get('show_download_msg');
+	$show_file_icon = variable_get('show_file_icon');
+	$show_file_size = variable_get('show_file_size');	
+	module_load_include("inc","webguidlines","simple_html_dom.php"); 
+	module_load_include("inc","webguidlines","webguidlines");
+	global $base_url;
+	$local_url = str_replace("www.","",str_replace("http://","",str_replace("https://","",$base_url)));
+	$html = str_get_html($text);
+	//$url = $html->find('a', $i)->href;	
+	$html = '';
+	
+	if($type == 1){
+		$html = $text;
+	}else{
+		$html = str_get_html($text);		
+	}
+	$html = str_get_html($text);
+	
+	if(!path_is_admin(current_path())){
+		
+		if($html != ''){			
+			for($i = 0; $i < count($html->find('a')); $i++){
+				$url = $html->find('a', $i)->href;				
+				global $base_url;
+				
+				if(isExternalSite($url,$base_url)){
+					$html->find('a', $i)->target = '_BLANK';
+					//echo $html;
+					if(variable_get('external_link') != 2){
+						$html->find('a', $i)->title = t(variable_get('external_link_msg'));
+					}
+				}else{
+					$path_parts = pathinfo($url);
+					if(array_key_exists('extension',$path_parts)){					
+						$html->find('a', $i)->target = '_BLANK';
+						$html->find('a', $i)->title = t('The '.$path_parts['extension'].' file '.variable_get("show_internal_file_msg"));
+						$file_url = str_replace($base_url."/","",$url);
+						$file_size = '';
+						$innerStr = '';
+						$isText = '';
+						if(variable_get('show_download') != 2){
+							if($path_parts['basename'] ===  $html->find('a', $i)->innertext || $path_parts['dirname'].'/'.$path_parts['basename'] ===  $html->find('a', $i)->innertext || $path_parts['filename'] ===  $html->find('a', $i)->innertext){
+								$innerStr = t(variable_get('show_download_msg'));
+							}else{
+								$innerStr = $html->find('a', $i)->innertext;
+								$isText = 1;
+							}						
+						}else{
+							$innerStr = $html->find('a', $i)->innertext;
+						}
+						if(variable_get('show_file_size') != 2){
+							$file_size = filesize(urldecode($file_url));
+							$convert_size =format_size($file_size);
+							$file_size = '('.$convert_size.')';							
+							if($isText != 1){
+								$innerStr = $innerStr.' '.$file_size;
+								
+							}
+						}
+						$file_icon = '';
+						if(variable_get('show_file_icon') != 2){
+							$file_icon = $base_url.'/'.drupal_get_path("module", "webguidlines").'/images/'.$path_parts['extension'].'.png';
+							$file_headers = @get_headers($file_icon);
+							if($file_headers[0] == 'HTTP/1.0 404 Not Found'){
+								$file_icon = $base_url.'/'.drupal_get_path("module", "webguidlines").'/images/default.png';
+							}
+							if($isText != 1){
+								$str_sms = t($path_parts['extension'].' Icon');
+								$innerStr = $innerStr.' <img src = "'.$file_icon.'" alt="'.$str_sms.'" />';
+								
+							}							
+						}
+						$html->find('a', $i)->innertext =  $innerStr;					
+					}
+				}			
+			}
+		}
+        #  email replace code................
+		preg_match_all("/[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})/i", $html, $matches);
+		$letters = array('@','.');
+		$replace = array('[at]','[dot]');
+		$old = array();
+		foreach($matches[0] as $val){
+			$old[] = $val;
+			if(arg(0) == "user" && arg(1) == "reset"){
+				$new[] = $val;
+			}elseif(!form_get_errors()){
+				$new[] = str_replace($letters,$replace,$val);
+			}else{
+				$new[] = $val;
+			}
+		}
+		if(count($old) > 0){
+			return str_replace($old,$new,$html);
+		}else{
+			return $html;
+		}
+        #....................................
+	}	
+	return $html;	
+}
+function webguidlines_preprocess_page(&$vars)
+{
+    //var_dump($vars); //output: nothings that reference the views!
+	//echo '<pre>';
+	//print_r($vars);
+	//die(2);
+    /*if([view page])
+    {
+        drupal_add_js([...]);
+        drupal_add_css([...]);
+        // Rebuild scripts 
+        $scripts = drupal_get_js();
+        $vars['scripts'] = $scripts;
+        // Same for css
+    }*/
+}
+/*
+
+function webguidlines_views_ajax_data_alter(&$commands, $view){
+	///echo '<pre>';
+	//print_r($commands[1]['data']);
+	//die;
+	//echo $commands[1]['data'];
+	// $commands[1]['data'] = $commands[1]['data'].'=====================';
+	//$commands[1]['data'] = webguidlines_help($commands[1]['data'],1);
+	
+	$external_link = variable_get('external_link');
+	$external_link_msg = variable_get('external_link_msg');
+	$show_download = variable_get('show_download');
+	$show_download_msg = variable_get('show_download_msg');
+	$show_file_icon = variable_get('show_file_icon');
+	$show_file_size = variable_get('show_file_size');	
+	module_load_include("inc","webguidlines","simple_html_dom.php"); 
+	module_load_include("inc","webguidlines","webguidlines");
+	global $base_url;
+	$local_url = str_replace("www.","",str_replace("http://","",str_replace("https://","",$base_url)));
+	//$html = str_get_html($commands[1]['data']);
+	//$url = $html->find('a', $i)->href;	
+	//$text = $commands[1]['data'];
+	//$html = $commands[1]['data'];
+	
+	$html = str_get_html($commands[1]['data']);
+	
+	if(!path_is_admin(current_path())){
+		
+		if($html != ''){			
+			for($i = 0; $i < count($html->find('a')); $i++){
+				
+				$url = $html->find('a', $i)->href;				
+				global $base_url;
+				
+				if(isExternalSite($url,$base_url)){
+					$html->find('a', $i)->target = '_BLANK';
+					//echo $html;
+					if(variable_get('external_link') != 2){
+						$html->find('a', $i)->title = t(variable_get('external_link_msg'));
+					}
+				}else{
+					$path_parts = pathinfo($url);
+					if(array_key_exists('extension',$path_parts)){					
+						$html->find('a', $i)->target = '_BLANK';
+						$html->find('a', $i)->title = t('The '.$path_parts['extension'].' file '.variable_get("show_internal_file_msg"));
+						$file_url = str_replace($base_url."/","",$url);
+						$file_size = '';
+						$innerStr = '';
+						$isText = '';
+						if(variable_get('show_download') != 2){
+							if($path_parts['basename'] ===  $html->find('a', $i)->innertext || $path_parts['dirname'].'/'.$path_parts['basename'] ===  $html->find('a', $i)->innertext || $path_parts['filename'] ===  $html->find('a', $i)->innertext){
+								$innerStr = t(variable_get('show_download_msg'));
+							}else{
+								$innerStr = $html->find('a', $i)->innertext;
+								$isText = 1;
+							}						
+						}else{
+							$innerStr = $html->find('a', $i)->innertext;
+						}
+						if(variable_get('show_file_size') != 2){
+							$file_size = filesize(urldecode($file_url));
+							$convert_size =format_size($file_size);
+							$file_size = '('.$convert_size.')';							
+							if($isText != 1){
+								$innerStr = $innerStr.' '.$file_size;
+								
+							}
+						}
+						$file_icon = '';
+						if(variable_get('show_file_icon') != 2){
+							$file_icon = $base_url.'/'.drupal_get_path("module", "webguidlines").'/images/'.$path_parts['extension'].'.png';
+							$file_headers = @get_headers($file_icon);
+							if($file_headers[0] == 'HTTP/1.0 404 Not Found'){
+								$file_icon = $base_url.'/'.drupal_get_path("module", "webguidlines").'/images/default.png';
+							}
+							if($isText != 1){
+								$str_sms = t($path_parts['extension'].' Icon');
+								$innerStr = $innerStr.' <img src = "'.$file_icon.'" alt="'.$str_sms.'" />';
+								
+							}							
+						}
+						$html->find('a', $i)->innertext =  $innerStr;					
+					}
+				}			
+			}
+		}
+		die;
+		//echo "pokk";
+        #  email replace code................
+		preg_match_all("/[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})/i", $html, $matches);
+		$letters = array('@','.');
+		$replace = array('[at]','[dot]');
+		$old = array();
+		foreach($matches[0] as $val){
+			$old[] = $val;
+			if(arg(0) == "user" && arg(1) == "reset"){
+				$new[] = $val;
+			}elseif(!form_get_errors()){
+				$new[] = str_replace($letters,$replace,$val);
+			}else{
+				$new[] = $val;
+			}
+		}
+		$commands[1]['data'] = '';
+		if(count($old) > 0){
+			//$commands[1]['data'] = $html;
+			return str_replace($old,$new,$html);
+		}else{
+			//$commands[1]['data'] = $html;
+			return $html;
+		}
+        #....................................
+	}
+	//$commands[1]['data'] = $html;
+	return $html;
+}*/
+function isExternalSite1($url,$site_url) {
+	$site_url = str_replace("www.","",str_replace("http://","",str_replace("https://","",$site_url)));
+	$urls = parse_url($url);
+	if(array_key_exists('scheme',$urls)){
+		if(strpos($url,$site_url) !== false || strpos($url,"/") === '0' || $url == "#"){
+			return FALSE;
+		}else{
+			return TRUE;
+		}
+	}else{
+		return FALSE;
+	}
+}
+
+
+/*
+function webguidlines_views_data_alter(&$commands){
+	$commands = webguidlines_help($commands,1);
+	return $commands;
+}*/

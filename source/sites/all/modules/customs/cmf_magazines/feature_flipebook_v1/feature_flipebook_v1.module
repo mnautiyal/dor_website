@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the feature flipebook feature.
+ */
+
+include_once 'feature_flipebook_v1.features.inc';

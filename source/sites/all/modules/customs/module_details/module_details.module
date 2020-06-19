@@ -1,0 +1,65 @@
+<?php
+function module_details_menu(){
+	$items['cmf-module-list'] = array( 
+		'title' => 'CMF Module Details.',
+		'description' => 'CMF Module Details',
+		'page callback' => 'module_details',
+		'access callback' => TRUE,
+		'type' => MENU_NORMAL_ITEM,
+	  );
+  return $items;	
+}
+
+
+//...............
+function authenticate() {
+	header('WWW-Authenticate: Basic realm="Test Authentication System"');
+	header('HTTP/1.0 401 Unauthorized');
+	echo "You must enter a valid login ID and password to access this resource\n";
+	exit;
+}
+
+//..............
+function module_details(){
+ 
+    /*
+    ** test for username/password
+    */
+    if( ( isset($_SERVER['PHP_AUTH_USER'] ) && ( $_SERVER['PHP_AUTH_USER'] == "cmfdetilsmod" ) ) AND
+      ( isset($_SERVER['PHP_AUTH_PW'] ) && ( $_SERVER['PHP_AUTH_PW'] == "MeCMFDetails@123#@CMF123" )) )
+    {
+        startpage();
+    }
+    else
+    {
+        //Send headers to cause a browser to request
+        //username and password from user
+        header("WWW-Authenticate: " .
+            "Basic realm=\"Leon's Protected Area\"");
+        header("HTTP/1.0 401 Unauthorized");
+
+        //Show failure text, which browsers usually
+        //show only after several failed attempts
+        print("This page is protected by HTTP " .
+            "Authentication.");
+    }  
+	
+}
+
+ function startpage() {
+
+   $db_select = db_select("system", "s")
+				->fields("s")
+				->condition("s.type","module")
+				->execute()
+				->fetchAll();
+					
+	
+	foreach($db_select as $key => $val){
+		$data[$val->name] = $val;	           
+	}
+	echo json_encode($data,JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);	
+	
+
+ }
+?>

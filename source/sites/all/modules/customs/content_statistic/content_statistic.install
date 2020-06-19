@@ -1,0 +1,57 @@
+<?php
+
+function content_statistic_install(){
+   
+    drupal_install_schema('content_statistic_table');
+    $query = db_select('node', 'n');
+    $query->groupBy('n.type');
+    $query->fields('n', array('type', 'title','language'));
+    $query->fields('nt', array('name'));
+    $query->condition('n.status','1');
+    $query->join('node_type','nt','n.type = nt.type');
+    $result = $query->execute();
+
+    $query12 = db_insert('content_statistic_table')->fields(array('content_type','is_check'));
+    $notarry = array("Webform","Web Information Manager","Holiday Calendar");
+    foreach ($result as $value) {
+      if(!in_array($value->name,$notarry)) {
+      $query12->values(array('content_type' => $value->name,'is_check'=>0));
+     }
+    }
+    $query12->execute();
+}
+
+function content_statistic_uninstall(){
+ drupal_uninstall_schema('content_statistic_table');
+}
+
+
+function content_statistic_schema(){
+   $schema['content_statistic_table'] = array(
+    'description' => 'Store Content Statistics Settings',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Unique identifier for the {Content Statistic}.',
+      ),   
+	  'content_type' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'Content Type key.',
+      ),   
+      'is_check' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'description' => 'Content Check.',
+      ),
+	  
+    ),
+	'primary key' => array('id'),
+  );
+  
+  return $schema;
+   }

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Custom Feature feature.
+ */
+
+include_once 'custom_feature.features.inc';

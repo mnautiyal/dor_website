@@ -1,0 +1,57 @@
+<?php
+/**
+ * Implementation of hook_install().
+ */
+function guidelines_init(){
+	drupal_add_js(drupal_get_path('module','guidelines').'/js/script.js', 'file');
+}
+
+
+function guidelines_menu(){
+	$items['admin/config/development/cmf/alt-update'] = array(
+		'title' => 'Update alt',
+		'description' => t('Alt Update'),
+		'page callback' => 'alt_updated',
+		'access arguments' => array('user access'),
+		'type' => MENU_NORMAL_ITEM,
+	); 
+return $items;
+}
+
+
+/**
+ * Determine whether the user has permission to use menu_block module.
+ */
+function guidelines_access($account = NULL) {
+	return user_access('administer blocks', $account) && user_access('administer menu', $account);
+}
+
+function alt_updated(){
+	
+	$db_query = db_query("SELECT n.nid as nid, n.title as title,img.field_image_title as imgtitle,img.field_image_alt as imgalt from node as n, field_data_field_image as img where n.nid = img.entity_id");
+	while($row = $db_query->fetchAssoc()){
+		if(trim($row['imgalt']) == ''){
+			db_update('field_data_field_image')
+				->fields(array('field_image_alt' => $row['title']))
+				->condition('entity_id', $row['nid'], '=')
+				->execute();
+			db_update('field_revision_field_image')
+				->fields(array('field_image_alt' => $row['title']))
+				->condition('entity_id', $row['nid'], '=')
+				->execute();
+		}
+		if(trim($row['imgtitle']) == ''){
+			db_update('field_data_field_image')
+				->fields(array('field_image_title' => $row['title']))
+				->condition('entity_id', $row['nid'], '=')
+				->execute();
+			db_update('field_revision_field_image')
+				->fields(array('field_image_title' => $row['title']))
+				->condition('entity_id', $row['nid'], '=')
+				->execute();
+		}
+	}	
+	
+	drupal_set_message(t("The Image alt and title has been updated."));
+	drupal_goto($base_url.'admin/config/development/');
+}

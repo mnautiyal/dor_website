@@ -1,0 +1,205 @@
+<?php
+
+/**
+ * @file
+ * Add text-to-speech function to the website.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function webspeech_menu() {
+  $items['admin/config/services/webspeech'] = array(
+    'title' => 'WebSpeech Configuration',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('webspeech_config'),
+    'access arguments' => array('config webspeech'),
+    'file' => 'webspeech.admin.inc',
+  );
+
+  $items['webspeech/demo'] = array(
+    'title' => 'WebSpeech Voices Demo',
+    'description' => 'Show main voices of WebSpeech.',
+    'page callback' => 'webspeech_demo_voices',
+    'access arguments' => array('access webspeech'),
+    'file' => 'webspeech_demo_voices.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['webspeech/demo/simple'] = array(
+    'title' => 'WebSpeech Simple Demo',
+    'description' => 'Show basic functions of WebSpeech.',
+    'page callback' => 'webspeech_demo_simple',
+    'access arguments' => array('access webspeech'),
+    'file' => 'webspeech_demo_simple.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  $items['webspeech/demo/voices'] = array(
+    'title' => 'WebSpeech Voices Demo',
+    'description' => 'Show main voices of WebSpeech.',
+    'page callback' => 'webspeech_demo_voices',
+    'access arguments' => array('access webspeech'),
+    'file' => 'webspeech_demo_voices.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  $items['webspeech/demo/html'] = array(
+    'title' => 'WebSpeech HTML Demo',
+    'description' => 'Show HTML reading functions of WebSpeech.',
+    'page callback' => 'webspeech_demo_html',
+    'access arguments' => array('access webspeech'),
+    'file' => 'webspeech_demo_html.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_help().
+ */
+function webspeech_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#webspeech':
+      return theme('item_list', array(
+        'items' => array(
+          l(t("WebSpeech Demo"), 'webspeech/demo/simple'),
+        )));
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function webspeech_permission() {
+  return array(
+    'access webspeech' => array('title' => t('Access WebSpeech')),
+    'config webspeech' => array('title' => t('Configure Webspeech')),
+  );
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function webspeech_libraries_info() {
+  $libraries['WebSpeech'] = array(
+    'files' => array(
+      'js' => array(
+        'WebSpeech.js',
+      ),
+    ),
+    'version arguments' => array(
+      'file' => 'WebSpeech.js',
+      'pattern' => '/version\s*:\s*[\"\']([^\"\']+)[\"\']/',
+      'lines' => 40,
+    ),
+    'callbacks' => array(
+      'post-load' => array(
+        'webspeech_add_init_script',
+      ),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Initilize WebSpeech.
+ * @global $base_url
+ */
+function webspeech_initialize() {
+  if (function_exists('libraries_load')) {
+    // For libraries API 2.x
+    $library = libraries_load('WebSpeech');
+    if (empty($library['loaded'])) {
+      return FALSE;
+    }
+    else {
+      return TRUE;
+    }
+  }
+  else {
+    // For libraries API 1.x
+    global $base_path;
+    $library_path = libraries_get_path('WebSpeech', TRUE);
+    drupal_add_js("$library_path/WebSpeech.js", array('preprocess' => FALSE));
+    webspeech_add_init_script();
+    return TRUE;
+  }
+}
+
+/**
+ * Add js to init WebSpeech.
+ */
+function webspeech_add_init_script() {
+  global $base_path;
+  drupal_add_js('jQuery(function() { soundManager.url = "' .
+      libraries_get_path('WebSpeech', TRUE) . '/soundmanager2";
+      WebSpeech.server = "' . variable_get('webspeech_server_url',
+        'http://wa.eguidedog.net/cgi-bin/ekho.pl') . '";
+      WebSpeech.setVoice("' . variable_get('webspeech_default_voice', 'en') . '");
+    });', 'inline');
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function webspeech_block_info() {
+  $blocks['webspeech_block'] = array(
+    'info' => t('WebSpeech Controller'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function webspeech_block_view($delta = '') {
+  $block = array();
+
+  if ($delta === 'webspeech_block' && user_access('access webspeech')) {
+    $str_read_content = 'Read Content';
+
+    $block['content'] = "<button id='sideSprButton' onclick='sideSpr(this);'>" .
+        $str_read_content . "</button>
+    <button id='sideStopButton' onclick='sideStop()'>Stop</button>";
+
+    module_load_include('module', 'webspeech');
+    webspeech_initialize();
+
+    drupal_add_js("
+      function sideSpr(elem) {
+        if (typeof WebSpeech === 'undefined') {
+          return;
+        }
+
+        var value = elem.innerHTML;
+        if (value === '" . $str_read_content . "') {
+          WebSpeech.speakHtml('" . variable_get('webspeech_content_id', 'content') . "');
+          elem.innerHTML = 'Pause';
+          WebSpeech.onfinish = function () {
+            document.getElementById('sideSprButton').innerHTML = '" . $str_read_content . "';
+          }
+        }
+        else if (value === 'Pause') {
+          WebSpeech.pauseHtml();
+          elem.innerHTML = 'Resume';
+        }
+        else if (value === 'Resume') {
+          WebSpeech.resumeHtml();
+          elem.innerHTML = 'Pause';
+        }
+      }
+
+      function sideStop() {
+        if (typeof WebSpeech !== 'undefined') {
+          WebSpeech.stopHtml();
+          document.getElementById('sideSprButton').innerHTML = '" . $str_read_content . "';
+       }
+      }", 'inline');
+  }
+
+  return $block;
+}

@@ -1,0 +1,11 @@
+name = Meta Key words
+package = CMF
+description = CMF Meta Keywords.
+
+version = "7.x-1"
+core = "7.x"
+project = "cmf_metakey"
+datestamp = "1353872502"
+tapas.cse.talukder@gmail.com
+
+

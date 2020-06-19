@@ -1,0 +1,586 @@
+$data = array(
+  'bundles' => array(
+    'related_links' => (object) array(
+      'type' => 'related_links',
+      'name' => 'Related links',
+      'base' => 'node_content',
+      'module' => 'node',
+      'description' => 'Website Related Links',
+      'help' => '',
+      'has_title' => '1',
+      'title_label' => 'Title',
+      'custom' => '1',
+      'modified' => '1',
+      'locked' => '0',
+      'disabled' => '0',
+      'orig_type' => 'related_links',
+      'disabled_changed' => FALSE,
+      'bc_entity_type' => 'node',
+    ),
+  ),
+  'fields' => array(
+    'body' => array(
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'translatable' => '0',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'storage' => array(
+        'type' => 'field_sql_storage',
+        'settings' => array(),
+        'module' => 'field_sql_storage',
+        'active' => '1',
+        'details' => array(
+          'sql' => array(
+            'FIELD_LOAD_CURRENT' => array(
+              'field_data_body' => array(
+                'value' => 'body_value',
+                'summary' => 'body_summary',
+                'format' => 'body_format',
+              ),
+            ),
+            'FIELD_LOAD_REVISION' => array(
+              'field_revision_body' => array(
+                'value' => 'body_value',
+                'summary' => 'body_summary',
+                'format' => 'body_format',
+              ),
+            ),
+          ),
+        ),
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'table' => 'filter_format',
+          'columns' => array(
+            'format' => 'format',
+          ),
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'field_name' => 'body',
+      'type' => 'text_with_summary',
+      'module' => 'text',
+      'active' => '1',
+      'locked' => '0',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'columns' => array(
+        'value' => array(
+          'type' => 'text',
+          'size' => 'big',
+          'not null' => FALSE,
+        ),
+        'summary' => array(
+          'type' => 'text',
+          'size' => 'big',
+          'not null' => FALSE,
+        ),
+        'format' => array(
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => FALSE,
+        ),
+      ),
+      'bundles' => array(
+        'node' => array(
+          0 => 'page',
+          1 => 'article',
+          2 => 'photo_gallery',
+          3 => 'document',
+          4 => 'rti',
+          5 => 'faqs',
+          6 => 'event',
+          7 => 'forms',
+          8 => 'services',
+          9 => 'tender',
+          10 => 'publication',
+          11 => 'parliament_qa',
+          12 => 'announcement',
+          13 => 'slider',
+          14 => 'whos_who',
+          15 => 'press_release',
+          16 => 'webform',
+          17 => 'project',
+          18 => 'webcast',
+          19 => 'proactive_disclosure',
+          20 => 'speeches_interviews',
+          21 => 'related_links',
+          22 => 'banner',
+          23 => 'forum',
+          24 => 'news',
+          25 => 'acts',
+          26 => 'public_grievance',
+          27 => 'schemes',
+          28 => 'minister',
+          29 => 'award',
+          30 => 'newsletter',
+          31 => 'world_bank_projects',
+          32 => 'sacosan',
+        ),
+      ),
+    ),
+    'field_attached' => array(
+      'translatable' => '0',
+      'entity_types' => array(),
+      'settings' => array(
+        'display_field' => 0,
+        'display_default' => 0,
+        'uri_scheme' => 'public',
+        'profile2_private' => FALSE,
+      ),
+      'storage' => array(
+        'type' => 'field_sql_storage',
+        'settings' => array(),
+        'module' => 'field_sql_storage',
+        'active' => '1',
+        'details' => array(
+          'sql' => array(
+            'FIELD_LOAD_CURRENT' => array(
+              'field_data_field_attached' => array(
+                'fid' => 'field_attached_fid',
+                'display' => 'field_attached_display',
+                'description' => 'field_attached_description',
+              ),
+            ),
+            'FIELD_LOAD_REVISION' => array(
+              'field_revision_field_attached' => array(
+                'fid' => 'field_attached_fid',
+                'display' => 'field_attached_display',
+                'description' => 'field_attached_description',
+              ),
+            ),
+          ),
+        ),
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'table' => 'file_managed',
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'field_name' => 'field_attached',
+      'type' => 'file',
+      'module' => 'file',
+      'active' => '1',
+      'locked' => '0',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'columns' => array(
+        'fid' => array(
+          'description' => 'The {file_managed}.fid being referenced in this field.',
+          'type' => 'int',
+          'not null' => FALSE,
+          'unsigned' => TRUE,
+        ),
+        'display' => array(
+          'description' => 'Flag to control whether this file should be displayed when viewing content.',
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 1,
+        ),
+        'description' => array(
+          'description' => 'A description of the file.',
+          'type' => 'text',
+          'not null' => FALSE,
+        ),
+      ),
+      'bundles' => array(
+        'node' => array(
+          0 => 'document',
+          1 => 'event',
+          2 => 'forms',
+          3 => 'services',
+          4 => 'publication',
+          5 => 'tender',
+          6 => 'press_release',
+          7 => 'project',
+          8 => 'speeches_interviews',
+          9 => 'news',
+          10 => 'acts',
+          11 => 'public_grievance',
+          12 => 'schemes',
+          13 => 'related_links',
+          14 => 'award',
+          15 => 'newsletter',
+          16 => 'requirement',
+          17 => 'world_bank_projects',
+          18 => 'sacosan',
+        ),
+        'field_collection_item' => array(
+          0 => 'field_proactive_set',
+        ),
+      ),
+    ),
+    'field_group_field' => array(
+      'translatable' => '0',
+      'entity_types' => array(),
+      'settings' => array(
+        'hide_blank_items' => 1,
+        'profile2_private' => FALSE,
+        'path' => '',
+      ),
+      'storage' => array(
+        'type' => 'field_sql_storage',
+        'settings' => array(),
+        'module' => 'field_sql_storage',
+        'active' => '1',
+        'details' => array(
+          'sql' => array(
+            'FIELD_LOAD_CURRENT' => array(
+              'field_data_field_group_field' => array(
+                'value' => 'field_group_field_value',
+                'revision_id' => 'field_group_field_revision_id',
+              ),
+            ),
+            'FIELD_LOAD_REVISION' => array(
+              'field_revision_field_group_field' => array(
+                'value' => 'field_group_field_value',
+                'revision_id' => 'field_group_field_revision_id',
+              ),
+            ),
+          ),
+        ),
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'revision_id' => array(
+          0 => 'revision_id',
+        ),
+      ),
+      'field_name' => 'field_group_field',
+      'type' => 'field_collection',
+      'module' => 'field_collection',
+      'active' => '1',
+      'locked' => '0',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'columns' => array(
+        'value' => array(
+          'type' => 'int',
+          'not null' => FALSE,
+          'description' => 'The field collection item id.',
+        ),
+        'revision_id' => array(
+          'type' => 'int',
+          'not null' => FALSE,
+          'description' => 'The field collection item revision id.',
+        ),
+      ),
+      'bundles' => array(
+        'node' => array(
+          0 => 'related_links',
+          1 => 'world_bank_projects',
+          2 => 'sacosan',
+        ),
+      ),
+    ),
+    'field_url' => array(
+      'translatable' => '0',
+      'entity_types' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+        'attributes' => array(
+          'target' => 'default',
+          'class' => '',
+          'rel' => '',
+        ),
+        'url' => 0,
+        'title' => 'optional',
+        'title_value' => '',
+        'title_maxlength' => 128,
+        'enable_tokens' => 1,
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+      ),
+      'storage' => array(
+        'type' => 'field_sql_storage',
+        'settings' => array(),
+        'module' => 'field_sql_storage',
+        'active' => '1',
+        'details' => array(
+          'sql' => array(
+            'FIELD_LOAD_CURRENT' => array(
+              'field_data_field_url' => array(
+                'url' => 'field_url_url',
+                'title' => 'field_url_title',
+                'attributes' => 'field_url_attributes',
+              ),
+            ),
+            'FIELD_LOAD_REVISION' => array(
+              'field_revision_field_url' => array(
+                'url' => 'field_url_url',
+                'title' => 'field_url_title',
+                'attributes' => 'field_url_attributes',
+              ),
+            ),
+          ),
+        ),
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'field_name' => 'field_url',
+      'type' => 'link_field',
+      'module' => 'link',
+      'active' => '1',
+      'locked' => '0',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'columns' => array(
+        'url' => array(
+          'type' => 'varchar',
+          'length' => 2048,
+          'not null' => FALSE,
+          'sortable' => TRUE,
+        ),
+        'title' => array(
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => FALSE,
+          'sortable' => TRUE,
+        ),
+        'attributes' => array(
+          'type' => 'text',
+          'size' => 'medium',
+          'not null' => FALSE,
+        ),
+      ),
+      'bundles' => array(
+        'node' => array(
+          0 => 'document',
+          1 => 'rti',
+          2 => 'publication',
+          3 => 'tender',
+          4 => 'forms',
+          5 => 'parliament_qa',
+          6 => 'announcement',
+          7 => 'services',
+          8 => 'banner',
+          9 => 'acts',
+          10 => 'public_grievance',
+          11 => 'press_release',
+          12 => 'speeches_interviews',
+          13 => 'related_links',
+          14 => 'slider',
+          15 => 'world_bank_projects',
+          16 => 'sacosan',
+        ),
+        'field_collection_item' => array(
+          0 => 'field_group_field',
+          1 => 'field_tender_group',
+        ),
+      ),
+    ),
+  ),
+  'instances' => array(
+    'body' => array(
+      0 => array(
+        'label' => 'Description',
+        'widget' => array(
+          'weight' => '1',
+          'type' => 'text_textarea_with_summary',
+          'module' => 'text',
+          'active' => 1,
+          'settings' => array(
+            'rows' => '20',
+            'summary_rows' => 5,
+          ),
+        ),
+        'settings' => array(
+          'text_processing' => '1',
+          'display_summary' => 1,
+          'user_register_form' => FALSE,
+        ),
+        'display' => array(
+          'default' => array(
+            'label' => 'hidden',
+            'type' => 'text_default',
+            'settings' => array(),
+            'module' => 'text',
+            'weight' => 0,
+          ),
+          'teaser' => array(
+            'label' => 'hidden',
+            'type' => 'text_summary_or_trimmed',
+            'settings' => array(
+              'trim_length' => 600,
+            ),
+            'module' => 'text',
+            'weight' => 0,
+          ),
+        ),
+        'required' => 0,
+        'description' => '',
+        'default_value' => NULL,
+        'field_name' => 'body',
+        'entity_type' => 'node',
+        'bundle' => 'related_links',
+        'deleted' => '0',
+      ),
+    ),
+    'field_attached' => array(
+      0 => array(
+        'label' => 'Attachment File',
+        'widget' => array(
+          'weight' => '2',
+          'type' => 'file_generic',
+          'module' => 'file',
+          'active' => 1,
+          'settings' => array(
+            'progress_indicator' => 'throbber',
+          ),
+        ),
+        'settings' => array(
+          'file_directory' => '',
+          'file_extensions' => 'txt pdf excel docs doc xls',
+          'max_filesize' => '',
+          'description_field' => 0,
+          'user_register_form' => FALSE,
+        ),
+        'display' => array(
+          'default' => array(
+            'label' => 'above',
+            'type' => 'file_default',
+            'settings' => array(),
+            'module' => 'file',
+            'weight' => 7,
+          ),
+          'teaser' => array(
+            'type' => 'hidden',
+            'label' => 'above',
+            'settings' => array(),
+            'weight' => 0,
+          ),
+        ),
+        'required' => 0,
+        'description' => '',
+        'field_name' => 'field_attached',
+        'entity_type' => 'node',
+        'bundle' => 'related_links',
+        'deleted' => '0',
+      ),
+    ),
+    'field_group_field' => array(
+      0 => array(
+        'label' => 'Group Field',
+        'widget' => array(
+          'weight' => '4',
+          'type' => 'field_collection_fieldset',
+          'module' => 'field_collection_fieldset',
+          'active' => 1,
+          'settings' => array(
+            'field_as_label' => '',
+            'replace_label' => 0,
+            'collapsed' => 0,
+            'last_item_collapsed' => 0,
+            'new_item_open' => 0,
+          ),
+        ),
+        'settings' => array(
+          'user_register_form' => FALSE,
+        ),
+        'display' => array(
+          'default' => array(
+            'label' => 'above',
+            'type' => 'field_collection_view',
+            'settings' => array(
+              'edit' => 'Edit',
+              'delete' => 'Delete',
+              'add' => 'Add',
+              'description' => TRUE,
+              'view_mode' => 'full',
+            ),
+            'module' => 'field_collection',
+            'weight' => 4,
+          ),
+          'teaser' => array(
+            'type' => 'hidden',
+            'label' => 'above',
+            'settings' => array(),
+            'weight' => 0,
+          ),
+        ),
+        'required' => 0,
+        'description' => '',
+        'default_value' => NULL,
+        'field_name' => 'field_group_field',
+        'entity_type' => 'node',
+        'bundle' => 'related_links',
+        'deleted' => '0',
+      ),
+    ),
+    'field_url' => array(
+      0 => array(
+        'label' => 'Link',
+        'widget' => array(
+          'weight' => '3',
+          'type' => 'link_field',
+          'module' => 'link',
+          'active' => 0,
+          'settings' => array(),
+        ),
+        'settings' => array(
+          'absolute_url' => 1,
+          'validate_url' => 1,
+          'url' => 0,
+          'title' => 'optional',
+          'title_value' => '',
+          'title_label_use_field_label' => 0,
+          'title_maxlength' => '128',
+          'enable_tokens' => 1,
+          'display' => array(
+            'url_cutoff' => '80',
+          ),
+          'attributes' => array(
+            'target' => 'default',
+            'rel' => '',
+            'configurable_class' => 0,
+            'class' => '',
+            'configurable_title' => 0,
+            'title' => '',
+          ),
+          'rel_remove' => 'default',
+          'user_register_form' => FALSE,
+        ),
+        'display' => array(
+          'default' => array(
+            'label' => 'above',
+            'type' => 'link_default',
+            'settings' => array(),
+            'module' => 'link',
+            'weight' => 6,
+          ),
+          'teaser' => array(
+            'type' => 'hidden',
+            'label' => 'above',
+            'settings' => array(),
+            'weight' => 0,
+          ),
+        ),
+        'required' => 0,
+        'description' => '',
+        'default_value' => NULL,
+        'field_name' => 'field_url',
+        'entity_type' => 'node',
+        'bundle' => 'related_links',
+        'deleted' => '0',
+      ),
+    ),
+  ),
+);

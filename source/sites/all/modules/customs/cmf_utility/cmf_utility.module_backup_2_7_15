@@ -1,0 +1,603 @@
+<?php
+/************Webform Dropdown Hook***************/
+
+function cmf_utility_webform_select_options_info() {
+	$items = array();
+	$items['whos_who'] = array(
+			'title' => t('Department / whos who'),
+			'options callback' => 'form_example_options_whos_who'
+	);
+	$items['feedback_topic'] = array(
+			'title' => t('Feedback Topic'),
+			'options callback' => 'form_example_options_topic'
+	);
+	return $items;
+}
+
+function form_example_options_topic(){
+	$options = array();
+	$tree = taxonomy_get_tree(15);
+	foreach($tree as $category) {
+	//print_r($category); die;
+		$options[$category->tid] = $category->name;
+	}
+return $options;
+}
+function form_example_options_whos_who() {
+	$options = array();
+	$sql = db_query("SELECT nid, title FROM {node} WHERE type = :typo AND status <> 0 ORDER BY title ASC", array(":typo" => "whos_who"));
+	foreach($sql as $whos_who) {
+	//print_r($whos_who); die;
+		$options[$whos_who->nid] = $whos_who->title;
+	}
+return $options;
+}
+
+
+
+/**
+ * Modify the drupal mail system to send HTML emails.
+ */
+class ExampleMailSystem implements MailSystemInterface {
+  /**
+   * Concatenate and wrap the e-mail body for plain-text mails.
+   *
+   * @param $message
+   *   A message array, as described in hook_mail_alter().
+   *
+   * @return
+   *   The formatted $message.
+   */
+  public function format(array $message) {
+    $message['body'] = implode("\n\n", $message['body']);
+    return $message;
+  }
+
+  /**
+   * Send an e-mail message, using Drupal variables and default settings.
+   *
+   * @see http://php.net/manual/en/function.mail.php
+   * @see drupal_mail()
+   *
+   * @param $message
+   *   A message array, as described in hook_mail_alter().
+   * @return
+   *   TRUE if the mail was successfully accepted, otherwise FALSE.
+   */
+  public function mail(array $message) {
+    $mimeheaders = array();
+    foreach ($message['headers'] as $name => $value) {
+      $mimeheaders[] = $name . ': ' . mime_header_encode($value);
+    }
+    $line_endings = variable_get('mail_line_endings', MAIL_LINE_ENDINGS);
+    return mail(
+      $message['to'],
+      mime_header_encode($message['subject']),
+      // Note: e-mail uses CRLF for line-endings. PHP's API requires LF
+      // on Unix and CRLF on Windows. Drupal automatically guesses the
+      // line-ending format appropriate for your system. If you need to
+      // override this, adjust $conf['mail_line_endings'] in settings.php.
+      preg_replace('@\r?\n@', $line_endings, $message['body']),
+      // For headers, PHP's API suggests that we use CRLF normally,
+      // but some MTAs incorrectly replace LF with CRLF. See #234403.
+      join("\n", $mimeheaders)
+    );
+  }
+}
+
+/****************
+** webform submit hook to send mail to category email address
+*******************/
+function cmf_utility_webform_submission_insert($node, $submission) {
+	//print_r($submission);  die;
+	variable_set('mail_system', array('default-system' => 'ExampleMailSystem'));
+	$term = $submission->data[4]['value'][0];
+	$get_email = taxonomy_term_load($term);
+	$to = $get_email->field_email_feedback['und'][0]['email'];
+	$email_from = variable_get('site_mail', '');
+	$site_name = variable_get('site_name');
+	$feedback = '<html>
+					<head>
+					  <title>'.$site_name.' Feedback</title>
+					</head>
+					<body>
+						<p>'.$site_name.' Feedback for the '.$get_email->name.'</p>
+						<table>
+							<tr>
+							  <th style="width: 200px; text-align: left;">Name :</th><td> '.$submission->data[1]['value'][0].' </td>
+							</tr>
+							<tr>
+							  <th style="width: 200px; text-align: left;">Email Address :</th><td> '.$submission->data[2]['value'][0].' </td>
+							</tr>
+							<tr>
+							  <th style="width: 200px; text-align: left;">Feedback :</th><td> '.$submission->data[3]['value'][0].' </td>
+							</tr>
+						</table>
+					</body>
+				</html>';
+	$params = array(
+           'body' => $feedback,
+           'subject' => $site_name.' Feedback',
+           'headers'=>'simple',
+     );
+	 
+	 
+	$sent = drupal_mail('myMessageName', 'feedback_msg', $to, language_default(), $params, $email_from, TRUE);
+	 
+	if($sent){
+		$acknowledgement_to =  $submission->data[2]['value'][0];
+		$feedback = '<html>
+					<head>
+					  <title>Feedback Acknowledgement</title>
+					</head>
+					<body>
+						<h3>Dear '.$submission->data[1]['value'][0].'</h3>
+						<p> Thank you for reaching out.<br/> Your feedback regarding the '.$get_email->name.' has been sent to the concerned person .</p>
+					</body>
+				</html>';
+		$params = array(
+			   'body' => $feedback,
+			   'subject' => "Feedback Acknowledgement",
+			   'headers'=>'simple',
+		 );
+		$acknowledgement = drupal_mail('myMessageName', 'acknowledgement_msg', $acknowledgement_to, language_default(), $params, "no-reply@nic.in", TRUE);
+	}
+	
+}
+
+/*
+ *	drupal mail looks for a function that matches the first parameter _ mail to build the message
+ */	
+function myMessageName_mail($key, &$message, $params) {
+	$language = $message['language'];
+	//print_r($message); die;
+	switch ($key) {
+		case 'feedback_msg':				
+			$message['subject']=t($params['subject']);
+			$message['body'][]=$params['body'];
+			$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+		break;
+		case 'acknowledgement_msg':				
+			$message['subject']=t("Feedback Acknowledgement");
+			$message['body'][]=$params['body'];
+			$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+		break;
+    }
+}
+
+
+
+/**
+* Implements hook_block_info().
+*/
+function cmf_utility_block_info() {
+  $blocks = array();
+  /*$blocks['content_taxonomy'] = array(
+    'info' => t('Content Data of the Taxonomy'),
+  );
+  $blocks['left_menu_siblings'] = array(
+    'info' => t('Left Side Menu By First Lavel Taxonomy'),
+  );
+  $blocks['content_taxonomy_category'] = array(
+    'info' => t('Content section category'),
+  );
+  */
+   $blocks['photo_left_menu'] = array(
+    'info' => t('Photo Year Menu'),
+  );
+  $blocks['photo_album_left_menu'] = array(
+    'info' => t('Content section category'),
+  );
+  return $blocks;
+}
+/**
+* Implements hook_block_view().
+*/
+function cmf_utility_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'content_taxonomy':
+      $block['subject'] = '';
+      $block['content'] = _content_data_by_taxonomy();
+    break;
+	case 'left_menu_siblings':
+      $block['subject'] = '';
+      $block['content'] = _leftside_menu_by_siblings_taxonomy();
+    break;
+	case 'content_taxonomy_category':
+      $block['subject'] = '';
+      $block['content'] = _content_taxonomy_category_list();
+    break;
+	case 'photo_album_left_menu':
+      $block['subject'] = '';
+      $block['content'] = _photo_album_left_menu_year();
+    break;
+	case 'photo_left_menu':
+      $block['subject'] = '';
+      $block['content'] = _photo_left_menu_year();
+    break;
+  }
+  return $block;
+}
+function _photo_album_left_menu_year(){
+	
+	global $base_url;
+	$q = "SELECT alb.field_album_tid AS tid FROM field_data_field_album as alb, workflow_node AS wn WHERE alb.bundle ='photo_gallery' AND alb.entity_id = wn.nid  AND wn.sid = 3 GROUP BY alb.field_album_tid ";	
+	
+	$results = db_query($q);
+	$str = '<h2 class="block-title">Album Wise</h2><ul>';
+	$i = 0;
+	$album = '';
+	foreach($results as $row) {
+		$term = taxonomy_term_load($row->tid);
+		$name = $term->name;
+		$str .= '<li><a href="'. $base_url.'/photo-gallery/album/'.$name.'" >'.$name.'</a></li>';
+	}
+	$str .= '</ul>'; 
+	
+	return $str;
+}
+
+function _photo_left_menu_year(){
+	 /*$q = "SELECT DATE_FORMAT(date.field_start_date_value, '%Y') AS YEAR FROM field_data_field_start_date AS DATE,workflow_node AS wn WHERE date.entity_id = wn.nid AND date.bundle ='photo_gallery' AND wn.sid = 3 GROUP BY DATE_FORMAT(date.field_start_date_value, '%Y') ORDER BY DATE_FORMAT(date.field_start_date_value, '%Y') DESC ";	*/ 
+	$q = "SELECT DATE_FORMAT(field_start_date_value, '%Y') as year FROM field_data_field_start_date GROUP BY DATE_FORMAT(field_start_date_value, '%Y') ORDER BY DATE_FORMAT(field_start_date_value, '%Y') DESC";	
+
+	$results = db_query($q);
+	$str = '<h2 class="block-title">Year Wise</h2><ul>';
+	$arg_year = arg(1);
+	global $base_url;
+	$i = 0;
+	foreach($results as $result){
+		$class = '';
+		 $year = $result->year;
+		 if($arg_year == ''){
+		 	if($i == 0){
+			 	$class = 'class="active first"'; 
+			 }
+		 }elseif($year  == $arg_year){
+			if($i == 0){
+			 	$class = 'class="active first"'; 
+			 }else{
+				$class = 'class="active"'; 
+			}
+		 }else{
+		 	 if($i == 0){
+			 	$class = 'class="first"'; 
+			 }
+		 }
+		 $str .= '<li><a href="'. $base_url.'/photo-gallery/'.$year.'" '.$class.'>'.$year.'</a></li>';
+		 $i = 1;
+	}
+	 $str .= '</ul>';
+	return $str;
+}
+function cmf_utility_form_alter(&$form, &$form_state, $form_id) {
+	switch($form_id) {
+	// Field Proactive Title Disabled
+	
+	case 'proactive_disclosure_node_form':
+		for($i=0 ; $i<16 ; $i++) {
+			$form['field_proactive_set']['und'][$i]['field_proactive_title']['und'][0]['value']['#disabled'] = TRUE;
+		}
+		break;
+		
+	case 'field_collection_item_form':
+		$form['field_proactive_title']['und'][0]['value']['#disabled'] = TRUE;
+		break;
+	case 'search_form':
+		$form['basic']['keys']['#attributes']['placeholder'] = t( 'Search' );
+		$form['basic']['keys']['#title'] = t("");
+		//$form['basic']['submit']['#value'] = t("");
+		break;
+	case 'user_login':
+		//print_r($form);
+		$form['name']['#attributes']['autocomplete'] = 'off';
+		$form['pass']['#attributes']['autocomplete'] = 'off';
+		break;
+		
+	case 'webform_client_form_457':
+	    //print_r($form);
+	    $form['#submit'][] = 'search_cadre_allocation';
+		//$form['basic']['keys']['#attributes']['placeholder'] = t("");
+		$form['basic']['keys']['#title'] = t("");
+		//$form['#submit'][] = 'custom_example_some_function';
+		break;
+		
+	}
+}
+
+function search_cadre_allocation(&$form, &$form_state){
+    //Generate HTML
+	//return HTML
+}
+
+
+
+/* Hook menu alter **/
+function  cmf_utility_menu_block_tree_alter(&$tree, &$config) {
+	$arg = arg(0);
+	$get_menu_name =  $config['menu_name'];
+	if($arg == 'gallery') {
+		if ($get_menu_name == 'menu-left-menu') {
+			foreach ($tree as $top_id => $item) {
+				$parent_id_of_gallery = $item['link']['mlid'];
+				if ($parent_id_of_gallery == '1034') {
+					
+					$ls = array(
+					  'menu_name' => $get_menu_name,
+					  'link_title' => 'ddd',
+					  'link_path' => 'hhh',
+					  'plid' => $parent_id_of_gallery,
+					);
+					//$newpid = menu_link_save($ls);
+					//drupal_set_message('<pre>'.print_r($item,TRUE));
+				}
+			}
+		}
+	}
+}
+
+/*
+* Implements hook_menu 
+*/
+function cmf_utility_menu() {
+
+	//$album_wise_gallery = db_query("SELECT alb.field_album_tid AS tid FROM field_data_field_album as alb, workflow_node AS wn WHERE alb.bundle ='photo_gallery' AND alb.entity_id = wn.nid  AND wn.sid = 3 GROUP BY alb.field_album_tid ");	
+	
+	/*$album_wise_gallery = db_query("SELECT alb.field_album_tid AS tid FROM field_data_field_album as alb WHERE alb.bundle ='photo_gallery' GROUP BY alb.field_album_tid ");	
+	
+	foreach($album_wise_gallery as $row) {
+		$term = taxonomy_term_load($row->tid);
+		$name = $term->name;
+		$url = drupal_lookup_path('alias', 'taxonomy/term/'.$term->tid);
+		$items[$url] = array(
+		  'title' => $name ,       
+		  'access callback' => TRUE,
+		  'type' => MENU_NORMAL_ITEM,
+		  'menu_name' => 'menu-left-menu',
+		  'plid' => 1034,
+		);
+		
+	}*/
+		//For Home->Cityzen Corner -> Disclosser Bill pdf
+	    $items['pdfdocs/566'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		//For open Whistle Blowers Act 2011 pdf
+		$items['pdfdocs/644'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		
+		//For open  IAS Promotion Guidelines pdf
+		$items['pdfdocs/505'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		
+		
+		//For open IIPA Study pdf
+		$items['pdfdocs/548'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		//For open Cabinates Notes
+		$items['pdfdocs/556'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		//For open Cabinates Notes
+		$items['pdfdocs/560'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		//For open organization chart
+		$items['pdfdocs/1144'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		//Strategy plan
+		$items['pdfdocs/1282'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+		
+		//For open Cabinates Notes
+		$items['pdfdocs/565'] = array(
+				'page callback' => 'goto_disclousure', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+				'page arguments' => array(1),
+				'access callback' => TRUE,
+		);
+	/*$year_wise_gallery = db_query("SELECT DATE_FORMAT(d.field_start_date_value, '%Y') AS YEAR FROM field_data_field_start_date AS d,workflow_node AS wn WHERE d.entity_id = wn.nid AND d.bundle ='photo_gallery' AND wn.sid = 3 GROUP BY DATE_FORMAT(d.field_start_date_value, '%Y') ORDER BY DATE_FORMAT(d.field_start_date_value, '%Y') DESC ");
+	foreach($year_wise_gallery as $rows) {
+		$year = $rows->YEAR;
+		//drupal_set_message('<pre>'.print_r($rows,TRUE));
+		$items['gallery/yearwise/' . $year] = array(
+		  'title' => $year ,       
+		  'access callback' => TRUE,
+		  'type' => MENU_NORMAL_ITEM,
+		  'menu_name' => 'menu-left-menu',
+		  'plid' => 1034,
+		);  
+	}*/
+	
+  return $items;
+}
+
+/*
+* Implements of hook_views_pre_render
+*/
+function cmf_utility_views_pre_render(&$view) {
+
+	foreach( $view->result as $result )
+	{
+		if (property_exists( $result,'field_field_attached' ))
+		{
+			$document_path = $result->field_field_attached ? 
+				((array_key_exists('#markup',$result->field_field_attached[0]['rendered'])) ? $result->field_field_attached[0]['rendered']['#markup'] :'') 
+				:'';
+			$file_size = $result->field_field_attached ? $result->field_field_attached[0]['raw']['filesize'] :'';
+			if (!empty($result->field_field_attached)) {
+				$convert_size =format_size($file_size);
+				if ($document_path !='') {
+					$result->field_field_attached[0]['rendered']['#markup'] = get_file_icon($document_path,$convert_size);
+				}
+			}
+		}
+	}
+}
+
+function get_file_icon($file_path,$convert_size) {
+	
+	preg_match('/[a-zA-Z]+$/', $file_path, $match);
+	
+	switch(strtolower($match[0])) {
+		case "pdf":
+			$link = create_document_link_with_icon($convert_size,$file_path,'application-pdf.png',$match[0]);
+        break;
+		
+		case "doc":
+			$link = create_document_link_with_icon($convert_size,$file_path,'x-office-document.png',$match[0]);
+        break;
+		
+		case "xls":
+			$link = create_document_link_with_icon($convert_size,$file_path,'x-office-spreadsheet.png',$match[0]);
+        break;
+		
+		case "ppt":
+			$link = create_document_link_with_icon($convert_size,$file_path,'x-office-presentation.png',$match[0]);
+        break;
+		
+		case "txt":
+			$link = create_document_link_with_icon($convert_size,$file_path,'text-plain.png',$match[0]);
+        break;
+		
+	}
+	return $link;
+}
+
+function create_document_link_with_icon($convert_size,$filepath,$icon_name,$alt = NUll) {
+	global $base_path;
+	
+	$path = base_path().  drupal_get_path('module', 'cmf_utility');
+	$document_path = l(t('Download')." ( $convert_size ) <img src='$path/icons/$icon_name' width='16' height='16' alt='$alt' border='0'/>", $filepath, array('attributes' => array('target' => '_blank'), 'html' => TRUE));
+	return $document_path;
+}
+
+function cmf_utility_form_views_exposed_form_alter(&$form, $form_state) {
+  
+	//$year_wise_gallery = db_query("SELECT DATE_FORMAT(d.field_start_date_value, '%Y') AS YEAR FROM field_data_field_start_date AS d,workflow_node AS wn WHERE d.entity_id = wn.nid AND d.bundle ='photo_gallery' AND wn.sid = 3 GROUP BY DATE_FORMAT(d.field_start_date_value, '%Y') ORDER BY DATE_FORMAT(d.field_start_date_value, '%Y') DESC ");
+	
+	$year_wise_gallery = db_query("SELECT DATE_FORMAT(d.field_start_date_value, '%Y') AS YEAR FROM field_data_field_start_date AS d WHERE d.bundle ='photo_gallery' GROUP BY DATE_FORMAT(d.field_start_date_value, '%Y') ORDER BY DATE_FORMAT(d.field_start_date_value, '%Y') DESC ");
+
+	
+	$dateArray = array();
+	$a = '';
+	foreach($year_wise_gallery as $rows) {
+		$dateArray[$rows->YEAR] = $rows->YEAR;
+		$b = $rows->YEAR;
+		$a .= "$b:";
+	}
+
+	$new_min = $dateArray;
+	//drupal_set_message('<pre>'.print_r(arg(2),TRUE));
+    //$form['field_start_date_value']['value']['#date_year_range'] = "2015:2013:";
+}
+
+
+
+function cmf_utility_translate_link(){
+	global $base_url, $language, $user;
+	$new_path = $base_url;
+	if($language->prefix == ''){
+		$new_path .= '/hi';
+		$start = 0;
+		$lan_str = 'हिंदी';
+		$new_lan = 'hi';
+	}else{
+		$start = 1;
+		$lan_str = 'English';
+		$new_lan = 'en';
+	}
+	$url = request_path();
+	$url_break = explode('/', $url);
+	
+	if($_GET['q'] != 'node'){
+		$pathArray = explode("/",$_GET['q']);
+		if($pathArray[0] == 'node'){
+			$results = db_query("SELECT * FROM node WHERE nid = :nid", array(":nid" => $pathArray[1]));
+			$nid_row = $results->fetchAll();
+			if($nid_row[0]->tnid == 0){
+				for($i =$start; $i < (count($url_break) - 1); $i++){
+					$new_path.= "/".htmlentities($url_break[$i]);
+				}
+			}elseif($nid_row[0]->tnid != $pathArray[1]){
+				$new_path .= '/'.drupal_get_path_alias("node/".$nid_row[0]->tnid,$new_lan);
+			}else{
+				$results = db_query("SELECT * FROM node WHERE  nid <> :nid AND tnid = :nid1", array(":nid" => $pathArray[1],":nid1" => $pathArray[1]));
+				if($results->rowCount() > 0){
+					$result = $results->fetchAll();
+					$new_path .= '/'.drupal_get_path_alias("node/".$result[0]->nid,$new_lan);
+				}else{
+					for($i =$start; $i < (count($url_break) - 1); $i++){
+						$new_path.= "/".htmlentities($url_break[$i]);
+					}
+				}
+			}
+		}else {
+		if (($key = array_search('hi', $url_break)) !== false) {
+			unset($url_break[$key]);
+		}
+		
+		foreach($url_break as $key => $value) {
+		
+			$new_path.= "/".htmlentities($url_break[$key]);
+		}
+		  /* for($i = 0; $i < (count($url_break)); $i++){
+				if($url_break[$i] == 'hi') {
+                                    //$url_break[$i] = '';
+                                }
+                                else {
+                                	//print 'Eng url';
+                                } 
+				$new_path.= "/".htmlentities($url_break[$i]);
+			}*/
+			
+		}
+	}
+	$str = '<a  href="'.$new_path.'" class="alink">'.$lan_str.'</a>';
+	return $str;	
+}
+
+function cmf_utility_menu_alter(&$item) {
+  // Hide the "Create new account" tab
+  $item['user/register']['type'] = MENU_CALLBACK;
+  $item['user/login']['type'] = MENU_CALLBACK;
+  $item['user/password']['type'] = MENU_CALLBACK;
+}
+
+function goto_disclousure($node){
+	global $language;
+	$_pdf_node = node_load($node);
+	echo $language->language;
+	echo $file_location = file_create_url($_pdf_node->field_pdf['und'][0]['uri']);
+	drupal_goto($file_location);
+	exit;
+}
+

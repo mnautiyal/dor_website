@@ -1,0 +1,62 @@
+<?php
+function cache_clear_menu(){
+	$items['admin/config/development/cache_clear_form'] = array(
+		'title' => t('Clear Cache Form'),
+		'description' => t('Clear cache for specific page'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('clear_page_cache'),
+        'access arguments' => array('access administration pages'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+  	return $items;	
+}
+
+// Function for clearing cache for specific page
+function clear_page_cache()
+{
+	$form = array();
+	$form['pages']= array(
+		'#type' => 'textfield',
+		'#title' => t('Enter page URLs'),
+		'#cols' => 30,
+		'#rows' => 3,
+		'#required' => TRUE,
+		'#description' => t('Enter * after URLs for clear main and its sub page clear chache. Enter comma separated URLs for multiple page.'),
+  	);
+	// submit buton
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+	return $form;
+}
+function clear_page_cache_submit($form, &$form_state){
+  $values = $form_state['values'];
+  $urls = $values['pages'];
+ 
+  if(strstr($urls,','))
+  {
+  	$arrUrl = explode(',',$urls);
+	foreach($arrUrl as $url){
+		if (strpos($url,'*') === false) {
+			$sql = "delete from cache_page where cid = '".$url."'";			
+     		db_query($sql);
+		}else{
+			$sql = "delete from cache_page where cid like '".$url."%'";
+     		db_query($sql);
+		}
+		
+	}
+  }else{
+  	if (strpos($url,'*') === false) {
+		$sql = "delete from cache_page where cid = '".$urls."'";
+		db_query($sql);
+	}else{
+		$sql = "delete from cache_page where cid like '".$urls."%'";			
+		db_query($sql);
+	}	
+  }
+  drupal_set_message(t('Successfully cleared the cache.'));
+}
+
+?>

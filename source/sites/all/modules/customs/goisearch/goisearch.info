@@ -1,0 +1,12 @@
+name = GOI Search
+package = CMF
+description = Allows Developer to define custom Code.
+configure = admin/config/development/search-config
+
+version = "7.x-1.1"
+core = "7.x"
+project = "goisearch"
+datestamp = "1353872502"
+tapas.cse.talukder@gmail.com
+
+

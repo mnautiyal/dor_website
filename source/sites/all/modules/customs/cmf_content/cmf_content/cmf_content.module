@@ -1,0 +1,971 @@
+﻿<?php
+/******* Function for the cache desible  ********/
+function cmf_security_suit_nocache(){
+  header("Expires: Sun, 01 Jan 2012 06:00:00 GMT");
+  header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+  header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+  header("Cache-Control: post-check=0, pre-check=0", false);
+  header("Cache-Control = 'private'");
+  header("Pragma: no-cache");
+}
+
+function cmf_security_suit_cache(){
+  if(arg(0) != 'user') {
+    $ExpireTime = 6*3600;
+    header('Expires: '.gmdate('D, d M Y H:i:s', time()+$ExpireTime).' GMT');
+    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+    header("Cache-Control: public, max-age=" . $ExpireTime);
+  }
+  header("Pragma: public");
+}
+
+
+function cmf_content_init(){
+
+	global $base_url, $user;
+	global $theme;
+	
+	$themePath = drupal_get_path('theme', $theme);
+	$modulePath = drupal_get_path('module', 'cmf_content');
+	$newpath = $base_url.'/'.$modulePath;
+	drupal_add_js('var base_url ="'.$base_url.'"; var themePath = "'.$themePath.'"; var modulePath = "'.$modulePath.'";', 'inline');
+	drupal_add_css(drupal_get_path('module', 'cmf_content') . '/assets/css/base.css');
+	drupal_add_css(drupal_get_path('module', 'cmf_content') . '/assets/css/font.css');
+	drupal_add_css(drupal_get_path('module', 'cmf_content') . '/assets/css/flexslider.css'); 
+	drupal_add_css(drupal_get_path('module', 'cmf_content') . '/assets/css/base-responsive.css');
+	drupal_add_css(drupal_get_path('module', 'cmf_content') . '/assets/css/font-awesome.min.css');
+	
+	#...
+	drupal_add_js(drupal_get_path('module', 'cmf_content') . '/assets/js/font-size.js');
+	drupal_add_js(drupal_get_path('module', 'cmf_content') . '/assets/js/framework.js');
+	drupal_add_js(drupal_get_path('module', 'cmf_content') . '/assets/js/swithcer.js');
+	#...
+    if($user->uid){
+    	cmf_security_suit_nocache();
+  	}else{
+    	cmf_security_suit_cache();
+  	}
+	
+	
+}
+
+
+function cmf_content_menu(){
+	$items['admin/config/system/site-hindi-name'] = array(
+		'title' => t('CMF Site Settings'),
+		'page callback' => '_add_site_hindi_name',
+		'access callback' => 'cmf_content_access',
+		'type' => MENU_NORMAL_ITEM,
+	);
+	
+	$items['admin/config/system/site-hindi-name/%/delete'] = array(
+		'title' => t('Delete Social Media'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('site_hindi_name_social_media_delete', 2),
+		'access callback' => 'cmf_content_access',
+		'type' => MENU_NORMAL_ITEM,
+		);
+	$items['admin/config/system/site-hindi-name/%/deletestqc'] = array(
+		'title' => t('Delete STQC Certificate'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('site_hindi_name_stqc', 2),
+		'access callback' => 'cmf_content_access',
+		'type' => MENU_NORMAL_ITEM,
+		);
+	return $items;
+}
+
+function _add_site_stqc_logo() {
+
+	return drupal_get_form('stqc_logo_form');
+}
+
+function stqc_logo_form($form, &$form_state) {
+   //echo "hello";
+   //die;
+}
+
+/**
+ * Determine whether the user has permission to use menu_block module.
+ */
+function cmf_content_access($account = NULL) {
+	return user_access('administer blocks', $account) && user_access('administer menu', $account);
+}
+
+function _add_site_hindi_name(){
+	return drupal_get_form('hindi_sitename_form');
+}
+
+function hindi_sitename_form($form, &$form_state){
+	
+	$form = array();
+	if(variable_get('footer_hindi_sitename')!= NULL){
+		$default_sitename = variable_get('footer_hindi_sitename');	
+	}
+	if(variable_get('header_hindi_sitename')!= NULL){
+		$header_sitename = variable_get('header_hindi_sitename');	
+	}
+	if(variable_get('header_eng_sitename')!= NULL){
+		$header_eng_sitename = variable_get('header_eng_sitename');	
+	}
+	if(variable_get('header_hindi_goi_text')!= NULL){
+		$header_hindi_goi_text = variable_get('header_hindi_goi_text');	
+	}
+	if(variable_get('header_eng_goi_text')!= NULL){
+		$header_eng_goi_text = variable_get('header_eng_goi_text');	
+	}
+	if(variable_get('site_meta_keywords')!= NULL){
+		$site_meta_keywords = variable_get('site_meta_keywords');	
+	}
+	if(variable_get('site_meta_description')!= NULL){
+		$site_meta_description = variable_get('site_meta_description');	
+	}
+	if(variable_get('facebook_url')!= NULL){
+		$facebook_url = variable_get('facebook_url');	
+	}
+	if(variable_get('twitter_url')!= NULL){
+		$twitter_url = variable_get('twitter_url');	
+	}
+	if(variable_get('youtube_url')!= NULL){
+		$youtube_url = variable_get('youtube_url');	
+	}
+	//.....date-2-15-2015....................
+	if(variable_get('header_hindi_sitename_url')!= NULL){
+		$header_sitename_url = variable_get('header_hindi_sitename_url');	
+	}
+	if(variable_get('header_eng_sitename_url')!= NULL){
+		$header_eng_url = variable_get('header_eng_sitename_url');	
+	}
+	if(variable_get('header_hindi_goi_text_url')!= NULL){
+		$goi_hindi_url = variable_get('header_hindi_goi_text_url');	
+	}
+	if(variable_get('header_eng_goi_text_url')!= NULL){
+		$goi_eng_url = variable_get('header_eng_goi_text_url');	
+	}
+	if(variable_get('stqc_certificate_url')!= NULL){
+		$stqc_certificate_url = variable_get('stqc_certificate_url');	
+	}
+	//......................................
+	$form['footer_hindi_sitename'] = array(
+		'#title' => t('Enter Sitename for Footer Section'),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the Hindi sitename of your website.'),
+		'#required' => false,
+		'#default_value' => @$default_sitename,
+	);
+	$form['header_hindi_sitename'] = array(
+		'#title' => t('Enter Hindi Header Title for Minister'),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the Hindi sitename for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$header_sitename,
+	);
+	$form['header_hindi_sitename_url'] = array(
+		'#title' => t('Enter Hindi Header URL for Minister '),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the URl of Hindi sitename for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$header_sitename_url,
+	);
+
+
+	$form['header_eng_sitename'] = array(
+		'#title' => t('Enter English Header Title for Minister '),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the English sitename for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$header_eng_sitename,
+	);
+	$form['header_eng_sitename_url'] = array(
+		'#title' => t('Enter English Header URL for Minister'),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the URL of English sitename for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$header_eng_url,
+	);
+	$form['header_hindi_goi_text'] = array(
+		'#title' => t('Enter Hindi Header Title For Govt '),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the Hindi GOI  for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$header_hindi_goi_text,
+	);
+	$form['header_hindi_goi_text_url'] = array(
+		'#title' => t('Enter Hindi Header URL For Govt'),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the Hindi GOI URL for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$goi_hindi_url,
+	);
+	$form['header_eng_goi_text'] = array(
+		'#title' => t('Enter English Header Title For Govt'),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the English GOI  for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$header_eng_goi_text,
+	);
+	$form['header_eng_goi_text_url'] = array(
+		'#title' => t('Enter English Header URL For Govt'),
+		'#type' => 'textfield',
+		'#description' => t('Please enter the English GOI URL for Header Section of your website.'),
+		'#required' => false,
+		'#default_value' => @$goi_eng_url,
+	);
+
+	$form['site_meta_keywords'] = array(
+		'#title' => t('Enter your Site Meta Keywords'),
+		'#type' => 'textfield',
+		'#description' => t('Enter your Site Meta Keywords.'),
+		'#required' => false,
+		'#default_value' => @$site_meta_keywords,
+	);
+	$form['site_meta_description'] = array(
+		'#title' => t('Enter your Site Meta Description'),
+		'#type' => 'textfield',
+		'#description' => t('Enter your Site Meta Description.'),
+		'#required' => false,
+		'#default_value' => @$site_meta_description,
+	);
+
+	$form['facebook_url'] = array(
+		'#title' => t('Enter your Facebook Page'),
+		'#type' => 'textfield',
+		'#description' => t('Enter your Facebook Page.'),
+		'#required' => false,
+		'#default_value' => @$facebook_url,
+	);
+	$form['twitter_url'] = array(
+		'#title' => t('Enter your Twitter Page'),
+		'#type' => 'textfield',
+		'#description' => t('Enter your Facebook Page.'),
+		'#required' => false,
+		'#default_value' => @$twitter_url,
+	);
+	$form['youtube_url'] = array(
+		'#title' => t('Enter your Youtube Page'),
+		'#type' => 'textfield',
+		'#description' => t('Enter your Youtube Page.'),
+		'#required' => false,
+		'#default_value' => $youtube_url,
+	);
+	$form['stqc_certificate_url'] = array(
+		'#title' => t('Enter Stqc Certificate PDF URL'),
+		'#type' => 'textfield',
+		'#description' => t('Enter Stqc Certificate PDF URL.'),
+		'#required' => false,
+		'#default_value' => $stqc_certificate_url,
+	);
+
+
+	$form['submit_button'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+	#
+	#
+	
+	$form['social_media']['some_text'] = array(
+		'#markup' => t("<h1>Add New Social Media</h1>")
+	);
+	$form['social_media']['social_title'] = array(
+		'#title' => t('Enter your Social Media Name'),
+		'#type' => 'textfield',
+		'#description' => t('Enter your Social Media Name.'),
+		'#element_validate' => array('social_media_title_element_validate'),
+		'#default_value' => @variable_get('social_media_title_name'),
+	);
+	$form['social_media']['social_url'] = array(
+		'#title' => t('Enter your Social Media URl'),
+		'#type' => 'textfield',
+		'#description' => t('Enter your Social Media URL.'),
+		'#element_validate' => array('social_media_url_element_validate'),
+		'#default_value' => @variable_get('social_media_title_url'),
+	);
+
+	if(variable_get('social_media_title_image_fid')!=NULL) {
+		$deleteid =base_path()."admin/config/system/site-hindi-name/".variable_get('social_media_title_image_fid')."/delete";
+		$form['social_media']['submit_socialmedia_file'] = array(
+			'#markup' => t("<img  width='104px;' src=".file_create_url(variable_get('social_media_title_image')).">")
+		); 
+		$form['social_media']['socialmedia_file_delete'] = array(
+			'#markup' => t("<a href=".$deleteid.">Delete</a>")
+		);
+
+	}else {
+		$form['social_media']['newsocial_file'] = array (
+			'#type' => 'file',
+			'#title' => t('Image'),
+			'#description' => t('Allowed extensions: gif png jpg jpeg.'),
+			"#upload_validators"  => array("file_validate_extensions" => array("png gif jpg  jpeg")),
+		);
+		$form['submit_socialmedia'] = array(
+			'#type' => 'submit',
+			'#value' => t('Add Social Media'),
+		);
+	}
+
+
+	       $form['stqc_logo']['some_text'] = array(
+		       '#markup' => t("<h1>Add STQC Certificate</h1>")
+	        );
+	
+		if(variable_get('stqc_logo_file_fid')!='') {
+
+			$delfidpdf =  variable_get('stqc_logo_file_fid');
+			//echo "</br>";
+			//echo file_create_url(variable_get('stqc_logo_file'));
+
+			$deletefid =base_path()."admin/config/system/site-hindi-name/".variable_get('stqc_logo_file_fid')."/deletestqc";
+			$form['stqc_logo']['stqc_logo_file'] = array(
+			'#markup' => t("<a href=".file_create_url(variable_get('stqc_logo_file')).">pdf</a></br>")
+			);
+			
+			$form['stqc_logo']['stqc_logo_file_delete'] = array(
+			'#markup' => t("<a href=".$deletefid.">Delete</a>")
+			);
+			
+
+		} else {
+        
+        $form['stqc_logo']['stqc_logo_file'] = array (
+			'#type' => 'file',
+			'#title' => t('PDF'),
+			'#description' => t('Allowed pdf.'),
+			"#upload_validators"  => array("file_validate_extensions" => array("pdf")),
+		  );
+		  $form['submit_stqc_logo'] = array(
+			'#type' => 'submit',
+			'#value' => t('Add Stqc Certificates'),
+		 );	
+
+		}
+				
+	
+	return $form;
+ }
+
+ # function for validate 
+ #social media title
+ function social_media_title_element_validate($element, &$form_state, $form) {
+  if($form_state['input']['op']=='Add Social Media') {
+  	if(trim($element['#value'])=='') {
+       form_error($element, 'Please Enter Social Media Name'); 
+    }
+  }
+
+ }
+ # function for validate 
+ #social media URL
+ function social_media_url_element_validate($element, &$form_state, $form) {
+  if($form_state['input']['op']=='Add Social Media') {
+  	if(trim($element['#value'])=='') {
+       form_error($element, 'Please Enter Social Media URL'); 
+    }else if(!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$element['#value'])) {
+		   form_error($element, t('Please enter Valid Social Media URL.'));
+	     }
+  }
+
+ }
+
+ # stqc delete
+ function site_hindi_name_stqc($form, &$form_state, $the_id) {
+ 	  
+	$form = array();
+	$form['the_id'] = array(
+		'#type' => 'value',
+		'#value' => $the_id,
+	);
+
+	$form['stqc_certificate_delete_confirm'] = array(
+		'#type' => 'value',
+		'#value' => arg(4),
+	);
+
+	return confirm_form(
+		$form,
+		t('Are you sure you want to delete this item?'),
+		'admin/config/system/site-hindi-name/',
+		t('This action cannot be undone.'),
+		t('Delete'),
+		t('Cancel')
+	);
+	return $form;
+ }
+
+  function site_hindi_name_stqc_submit ($form, &$form_state) {
+
+	$fid12 = $form_state['values']['stqc_certificate_delete_confirm'];
+
+	if(is_numeric($fid12)) {
+		$fileqw = file_load($fid12);
+		file_delete($fileqw);
+		
+		variable_del('stqc_logo_file');
+		variable_del('stqc_logo_file_fid');
+		
+		drupal_set_message('File Delete Successfully');
+		$form_state['redirect'] = 'admin/config/system/site-hindi-name'; 
+	   
+	} else {
+		drupal_set_message('Invalid Argument supplied.');
+		$form_state['redirect'] = 'admin/config/system/site-hindi-name';   
+	}
+
+ }
+
+ # function for delete social media icon
+
+ function site_hindi_name_social_media_delete($form, &$form_state, $the_id) {
+ 	  
+	$form = array();
+	$form['the_id'] = array(
+		'#type' => 'value',
+		'#value' => $the_id,
+	);
+
+	$form['sociual_media_image_delete_confirm'] = array(
+		'#type' => 'value',
+		'#value' => arg(4),
+	);
+
+	return confirm_form(
+		$form,
+		t('Are you sure you want to delete this item?'),
+		'admin/config/system/site-hindi-name/',
+		t('This action cannot be undone.'),
+		t('Delete'),
+		t('Cancel')
+	);
+	return $form;
+ }
+
+ function site_hindi_name_social_media_delete_submit ($form, &$form_state) {
+
+	$fid12 = $form_state['values']['sociual_media_image_delete_confirm'];
+
+	if(is_numeric($fid12)) {
+		$fileqw = file_load($fid12);
+		file_delete($fileqw);
+		
+		variable_del('social_media_title_name');
+		variable_del('social_media_title_url');
+		variable_del('social_media_title_image');
+		variable_del('social_media_title_image_fid');
+		drupal_set_message('File Delete Successfully');
+		$form_state['redirect'] = 'admin/config/system/site-hindi-name'; 
+	   
+	} else {
+		drupal_set_message('Invalid Argument supplied.');
+		$form_state['redirect'] = 'admin/config/system/site-hindi-name';   
+	}
+
+ }
+
+function hindi_sitename_form_submit($form, &$form_state){
+	global $base_url;
+
+	if($form_state['input']['op']=='Submit') {
+	variable_set('footer_hindi_sitename', $form_state['input']['footer_hindi_sitename']);
+	variable_set('header_hindi_sitename', $form_state['input']['header_hindi_sitename']);
+	//..........................
+	variable_set('header_hindi_sitename_url', $form_state['input']['header_hindi_sitename_url']);
+	//..................
+	variable_set('header_eng_sitename', $form_state['input']['header_eng_sitename']);
+	variable_set('header_eng_sitename_url', $form_state['input']['header_eng_sitename_url']);
+
+	variable_set('header_hindi_goi_text', $form_state['input']['header_hindi_goi_text']);
+	variable_set('header_hindi_goi_text_url', $form_state['input']['header_hindi_goi_text_url']);
+
+	variable_set('header_eng_goi_text', $form_state['input']['header_eng_goi_text']);
+	variable_set('header_eng_goi_text_url', $form_state['input']['header_eng_goi_text_url']);
+
+	variable_set('site_meta_keywords', $form_state['input']['site_meta_keywords']);
+	variable_set('site_meta_description', $form_state['input']['site_meta_description']);
+	variable_set('facebook_url', $form_state['input']['facebook_url']);
+	variable_set('twitter_url', $form_state['input']['twitter_url']);
+	variable_set('youtube_url', $form_state['input']['youtube_url']);
+	variable_set('stqc_certificate_url', $form_state['input']['stqc_certificate_url']);
+	drupal_set_message(t('Your Hindi Sitename has been saved.'));
+	drupal_goto($base_url.'/admin/config/system/site-hindi-name');
+
+	}
+	if($form_state['input']['op']=='Add Social Media') {
+     
+
+     $file = file_save_upload('newsocial_file', array(
+	'file_validate_is_image' => array('jpg jpeg png gip'),
+	), 'public://',FILE_EXISTS_RENAME);
+       
+	    if($file){
+		variable_set('social_media_title_name', $form_state['input']['social_title']);
+	    variable_set('social_media_title_url', $form_state['input']['social_url']);
+	    variable_set('social_media_title_image', $file->uri);
+	    variable_set('social_media_title_image_fid', $file->fid);
+	    drupal_set_message(t('Image successfully uploaded.'), 'status');	
+	    } else {
+	    form_set_error('image', t('Image was not uploaded Please Try Again.'));	
+	    }
+    }
+
+    if($form_state['input']['op']='Add Stqc Certificates') {
+       /*
+        $file = file_save_upload('stqc_logo_file', array(
+	'file_validate_is_image' => array('pdf'),
+	), 'public://',FILE_EXISTS_RENAME);
+	*/
+       $file = file_save_upload( 'stqc_logo_file' , array(),  'public://', FILE_EXISTS_RENAME);
+
+	    if($file){
+	
+	    variable_set('stqc_logo_file', $file->uri);
+	    variable_set('stqc_logo_file_fid', $file->fid);
+	    drupal_set_message(t('File successfully uploaded.'), 'status');	
+	    } else {
+	    form_set_error('PDF', t('File was not uploaded Please Try Again.'));	
+	    }	
+    }
+	
+}
+
+
+
+/********Block to create header and footer************/
+function cmf_content_block_info() {
+	$blocks = array();
+	$blocks['header_region_block'] = array(
+		'info' => t('Header Region Block'),
+	);
+	$blocks['footer_region_block'] = array(
+		'info' => t('Footer Region Block'),
+	);
+	return $blocks;
+}
+function cmf_content_block_view($delta = ''){
+	$block = array();
+	switch ($delta) {
+	case 'header_region_block':
+		$block['subject'] = '';
+		$block['content'] = _header_block_data();
+		break;
+	case 'footer_region_block':
+		$block['subject'] = '';
+		$block['content'] = _footer_block_data();
+		break;
+	}
+  return $block;
+}
+
+
+function _header_block_data(){
+	global $base_url, $language, $user, $theme;
+	$url_sub = '';
+	if( $language->language == 'hi'){
+		$url_sub = '/hi';
+	}
+	$output = '';
+	 # date 2-16-2016
+     # code for check javascript disable from javascript
+         
+     $output.='<noscript class="no_scr">"JavaScript is a standard programming language that is included to provide interactive features, Kindly enable Javascript in your browser. For details visit help page"
+     </noscript>';
+     
+         
+    #... end code for check javascript disable from browser
+	#date  2/15/16....
+
+     if(variable_get('header_hindi_sitename')!= NULL){
+		$head_hindi_stname = variable_get('header_hindi_sitename');	
+	}
+	if(variable_get('header_eng_sitename')!= NULL){
+		$head_eng_stname = variable_get('header_eng_sitename');	
+	}
+	if(variable_get('header_hindi_goi_text')!= NULL){
+		$head_hindi_goi = variable_get('header_hindi_goi_text');	
+	}
+	if(variable_get('header_eng_goi_text')!= NULL){
+		$Head_eng_goi = variable_get('header_eng_goi_text');	
+	}
+
+	if(variable_get('header_hindi_sitename_url')!= NULL){
+		$header_sitename_url = variable_get('header_hindi_sitename_url');	
+	}
+	if(variable_get('header_eng_sitename_url')!= NULL){
+		$header_eng_url = variable_get('header_eng_sitename_url');	
+	}
+	if(variable_get('header_hindi_goi_text_url')!= NULL){
+		$goi_hindi_url = variable_get('header_hindi_goi_text_url');	
+	}
+	if(variable_get('header_eng_goi_text_url')!= NULL){
+		$goi_eng_url = variable_get('header_eng_goi_text_url');	
+	}
+
+	#..................
+	
+	
+	
+	$str = '';
+	if(variable_get('facebook_url')!= NULL){
+		$str .= ' <li><a target="_blank" title="'.t('External Link that opens in a new window').'" href="'.variable_get('facebook_url').'"><img alt="Facebook Page" src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-facebook.png"></a></li>';	
+	}
+	if(variable_get('twitter_url')!= NULL){
+		$str .= '<li><a target="_blank" title="'.t('External Link that opens in a new window').'" href="'.variable_get('twitter_url').'"><img alt="Twitter Page" src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-twitter.png"></a></li>';	
+	}
+	if(variable_get('youtube_url')!= NULL){
+		$str .='<li><a target="_blank" title="'.t('External Link that opens in a new window').'" href="'.variable_get('youtube_url').'"><img alt="youtube Page" src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-youtube.png"></a></li>';
+	}
+	if(variable_get('social_media_title_image')!= NULL){
+		$str .='<li><a target="_blank" title="External Link that opens in a new window" href="'.variable_get('social_media_title_url').'"><img alt="'.variable_get('social_media_title_name').' Page" src="'.file_create_url(variable_get('social_media_title_image')).'"></a></li>';
+	}
+	if($str != ''){
+		$str = '<li class="ico-social cf"><a href="javascript:void(0);" id="toggleSocial" title="'.t('Social Medias').'">
+				<img class="top" src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-social.png" alt="Social Medias" /></a>
+                <ul>'.$str.'</ul>
+                </li>';
+	}
+
+	
+	if($Head_eng_goi != NULL) {
+      $classer = "common-container four_content";
+
+	} else {
+	 $classer = "common-container";	
+	}
+	 
+     $output.='<div class="wrapper common-wrapper">
+  <div class="container '.$classer.' ">
+      <div class="common-left clearfix">
+          <ul>
+              <li class="gov-india">';
+			   
+             if(@$goi_hindi_url != NULL) {
+				$output.='<span class="responsive_go_hindi"  lang="hi"><a target="_blank" href="'.@$goi_hindi_url.'" title="'.@$head_hindi_goi.' ( बाहरी वेबसाइट जो एक नई विंडो में खुलती है)">'.@$head_hindi_goi.'</a></span>';
+             }else{
+				if(@$head_hindi_goi != NULL){
+					$output.='<span class="responsive_go_hindi" lang="hi">'.@$head_hindi_goi.'</span>';
+				}				
+            }
+			if(@$head_eng_stname==NULL && @$head_hindi_stname==NULL) {
+				$output.= '</li><li class="ministry">';
+			}
+            if(@$goi_eng_url!=NULL) {
+				$output.='<span class="li_eng responsive_go_eng"><a target="_blank" href="'.@$goi_eng_url.'" title="'.@$Head_eng_goi.',External Link that opens in a new window">'.@$Head_eng_goi.'</a></span>';
+            } else{
+				if(@$Head_eng_goi != NULL){
+					$output.='<span class="li_eng responsive_go_eng">'.@$Head_eng_goi.'</span>';
+				}
+            }
+
+              
+
+		if(@$head_eng_stname!=NULL || @$head_hindi_stname!=NULL) {
+				$output.= '</li><li class="ministry">';
+			}
+        if(@$header_sitename_url!=NULL) {
+			$output.='<span class="responsive_minis_hi" lang="hi"><a target="_blank" href="'.@$header_sitename_url.'" title="'.@$head_hindi_stname.' (बाहरी वेबसाइट जो एक नई विंडो में खुलती है)">'.@$head_hindi_stname.'</a></span>';	
+        } else{
+			if(@$head_hindi_stname != NULL){
+				$output.='<span class="responsive_minis_hi"  lang="hi">'.@$head_hindi_stname.'</span>';
+			}
+        }
+        if(@$header_eng_url!=NULL) {
+	$output.='<span class="li_eng responsive_minis_eng"><a target="_blank" href="'.@$header_eng_url.'" title="'.@$head_eng_stname.',External Link that opens in a new window">'.@$head_eng_stname.'</a></span>';	
+        } else{
+			if(@$head_eng_stname != NULL){
+				$output.='<span class="li_eng responsive_minis_eng">'.@$head_eng_stname.'</span>';
+			}
+        }
+        
+        $output.='</li></ul>';
+       
+        
+        $output.='
+
+        </div>
+        <div class="common-right clearfix">
+          <ul id="header-nav">
+              <li class="ico-skip cf"><a href="#skipCont" title="">Skip to main content</a>
+		      </li>';
+			  
+		$searh_array = explode("/",current_path());
+		if(trim(current_path()) != 'goisearch' && $searh_array[0] != 'search'){
+			$output.=' <li class="ico-site-search cf"><a href="javascript:void(0);" id="toggleSearch" title="'.t('Site Search').'">
+			
+			<img class="top" src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-site-search.png" alt="'.t('Site Search').'" /></a>
+			 
+						';
+						$output1 = '';
+						$var = 0;
+						$class = '';
+						$mcnt = 0;
+						
+						if (module_exists('google_search')) { 
+							$block = module_invoke('google_search', 'block_view', 'google_search_box');
+							$output1.=render($block['content']);
+							$class = 'google-search';
+							$mcnt++;
+						}
+						
+						if (module_exists('goisearch')) { 
+							$block = module_invoke('goisearch', 'block_view', 'goisearch_box');
+							$output1.=render($block['content']);
+							$class = 'goi-search';
+							$mcnt++;
+						}
+						
+						if($mcnt == 0){ 
+							$block = module_invoke('search', 'block_view', 'form');
+							$output1.=render($block['content']);
+						}
+						if($mcnt == 2){
+							$class = 'both-search';
+						}
+							
+					$output.=' <div class="search-drop '.$class.'">'.$output1.'</div>
+			</li>';
+							
+					
+		}	  
+		$output.='<li class="ico-accessibility cf"><a href="javascript:void(0);" id="toggleAccessibility" title="'.t('Accessibility Dropdown').'">
+				
+				<img class="top" src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-accessibility.png" alt="'.t('Accessibility Dropdown').'" />
+				
+				</a>
+                  <ul>
+                     <li> <a onclick="set_font_size(\'increase\')" title="'.t('Increase font size').'" href="javascript:void(0);">A<sup>+</sup>
+					  </a> </li>
+                        <li> <a onclick="set_font_size()" title="'.t('Reset font size').'" href="javascript:void(0);">A<sup>&nbsp;</sup></a> </li>
+                        <li> <a onclick="set_font_size(\'decrease\')" title="'.t('Decrease font size').'" href="javascript:void(0);">A<sup>-</sup></a> </li>
+        <li> <a href="javascript:void(0);" class="high-contrast dark" title="'.t('High Contrast').'">A</a> </li>
+       <li> <a href="javascript:void(0);" class="high-contrast light" title="'.t('Normal Contrast').'" style="display: none;">A</a> </li>
+                     
+                    </ul>
+                </li>
+                 '.$str;
+				
+
+                if(module_exists('cmf_sitemap')) { 
+					 $output.=' <li class="ico-sitemap cf"><a href="'.$base_url.$url_sub.'/site-map" title="'.t('Sitemap').'">
+					 
+					  <img class="top" src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-sitemap.png" alt="'.t('Sitemap').'" /></a></li>';
+				}else{ 
+					// $output.=' <li class="ico-sitemap"><a href="'.$base_url.$url_sub.'/sitemap" title="'.t('Sitemap').'"><img src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/ico-sitemap.png" alt="'.t('Sitemap').'" /></a></li>';
+				}
+				if(_count_enabled_language() > 1){
+					$output.=' <li class="hindi cmf_lan">'._create_translate_menu().'</li>';
+				} 
+					
+           $output.=' </ul>
+        </div>
+    </div>
+</div>';
+return $output;
+}
+
+function _footer_block_data(){
+	global $base_url, $language, $user;
+	
+	$site_name = variable_get('site_name');
+	if(drupal_is_front_page()){ 
+		$date =  get_site_last_update();
+	}else{
+		$date =  get_node_last_update();
+	}
+	 
+	 $output = '';
+     $output.='<div class="wrapper footer-wrapper">
+	<div class="footer-top-wrapper">
+    	<div class="container footer-top-container">';
+                $block = module_invoke('menu', 'block_view', 'menu-footer-menu');
+                $output.=render($block['content']);
+        $output.='</div>
+    </div>
+    <div class="footer-bottom-wrapper">
+    	<div class="container footer-bottom-container">
+        	<div class="footer-content clearfix ">
+			 <div class="logo-cmf">
+            	<a href="http://cmf.gov.in/" target="_blank"><img src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/cmf-logo.png" alt="Built on Common Minimum Framework"></a>
+            </div> ';     
+        	$output.='<div class="copyright-content">
+            	'.t("Website Content Managed by").'  <strong>'.t(variable_get('footer_hindi_sitename')).'</strong>
+            <span>'.t("Designed, Developed and Hosted by").'  <a href="http://www.nic.in/" title="'.t("NIC, External Link that opens in a new window").'" target="_blank"><strong>'.t("National Informatics Centre( NIC )").'</strong></a> </span> '.get_node_last_update().'
+            </div>';
+             if (module_exists('gtranslate')) { 
+				$block = module_invoke('gtranslate', 'block_view', 'gtranslate');
+				$output.='<div class="gtranslate skiptranslate">'.render($block['content']).' </div>';
+			} 
+             
+           $output.='</div>
+        </div>
+    </div>';
+    if(variable_get('stqc_logo_file_fid')!= NULL) {
+      $output.='<div class="stqc-logo"><a target="_blank" title="STQC Certificate" href="'.file_create_url(variable_get('stqc_logo_file')).'"><img src="'.$base_url.'/'.drupal_get_path("module", "cmf_content").'/assets/images/cqw_logo.png" alt="STQC Certificate" /></a></div>';
+
+    }
+ $output.='</div>'; 
+return $output;
+}
+
+
+function get_site_last_update(){
+	$timestamp = db_select('node', 'n')
+		->fields('n', array('changed'))
+		->condition('status', 1)
+		->orderBy('changed', 'DESC')
+		->range(0,1)
+		->execute()
+		->fetchField();
+	$date = date('d M Y', $timestamp);
+	return $date;
+}
+
+function get_node_last_update(){
+	$arg0 = arg(0);
+	$arg1 = arg(1);
+	$arg2 = arg(2);
+	if($arg0 == "node" && is_numeric($arg1)){  
+		$load_node = node_load($arg1);
+		$timestamp = $load_node->changed;
+		$date = date('d M Y', $timestamp);
+	}elseif($arg0 == "taxonomy" && $arg1 == "term" & is_numeric($arg2)){ 
+		$query = db_select('node', 'n');
+	    $query->join('taxonomy_index', 't', 'n.nid = t.nid'); //JOIN node with users
+	    $query->fields('n',array('changed'))//SELECT the fields from node
+			  ->condition('t.tid',$arg2,'=')
+			  ->orderBy('changed', 'DESC')//ORDER BY created
+			  ->range(0,1);//LIMIT to 2 records
+
+	    $result = $query->execute()->fetchField();
+	    $date = date('d M Y', $result);
+	    
+	}else{ 
+		$timestamp = db_select('node', 'n')
+							->fields('n', array('changed'))
+							->condition('status', 1)
+							->condition('type', $arg0)
+							->orderBy('changed', 'DESC')
+							->range(0,1)
+							->execute()
+							->fetchField();
+		if($timestamp){
+			$date = date('d M Y', $timestamp);
+		}else{
+			$date = get_site_last_update();
+		}
+		
+	}
+	return '<span class="lastupdated">Last Updated: <strong>'.$date.'</strong></span>';
+}
+
+
+function _create_translate_menu(){
+	global $base_url, $language, $user;
+	$default_labguage = $language->provider;
+	
+	$languages = language_list();
+	
+	$str = '<a href="javascript:;" title="'.t('Select Language').'">'.t('Language').'</a><ul>';
+	foreach($languages as $key => $val){
+		if($language->prefix != $val->prefix && $val->enabled == 1){
+			$lan_str = $val->native;
+			$new_lan = $val->name;
+			$new_path = $base_url;
+			if($val->prefix != ''){
+				$new_path .= "/".$val->prefix;				
+			}			
+			$start = 1;
+			if($language->prefix == ''){
+				$start = 0;
+			}			
+			$url = request_path();
+			$url_break = explode('/', $url);
+			if($_GET['q'] != 'node'){
+				$pathArray = explode("/",$_GET['q']);
+				if($pathArray[0] == 'node'){
+					$results = db_query("SELECT * FROM node WHERE nid = :nid", array(":nid" => $pathArray[1]));
+					$nid_row = $results->fetchAll();
+					if($nid_row[0]->tnid == 0){
+						for($i = $start; $i < (count($url_break) - 1); $i++){
+							$new_path.= "/".htmlentities($url_break[$i]);
+						}
+					}elseif($nid_row[0]->tnid != $pathArray[1]){
+						$new_path .= '/'._get_alias("node/".$nid_row[0]->tnid);
+					}else{
+						$results = db_query("SELECT * FROM node WHERE  nid <> :nid AND tnid = :nid1 AND language = :lan", array(":nid" => $pathArray[1],":nid1" => $pathArray[1], ":lan" => $val->prefix));
+						if($results->rowCount() > 0){
+							$result = $results->fetchAll();
+							$new_path .= '/'._get_alias("node/".$result[0]->nid);
+						}else{
+							$res = db_select("node", "n")
+									->condition('n.tnid', $pathArray[1], '=')
+									->condition('n.language', $default_labguage, '=')
+									->fields('n', array('nid'))
+									->execute();
+							$num = $res->rowCount();
+							
+							if($num > 0){
+								global $base_url;
+								//echo $num.'=============<br /><pre>'.$base_url;
+								$result = $res->fetchAssoc();
+								//print_r($result);
+								$new_path = '';
+								$new_path .= $base_url.'/'._get_alias("node/".$result['nid']);
+							}else{
+								for($i =$start; $i < (count($url_break) - 1); $i++){
+									$new_path.= "/".htmlentities($url_break[$i]);
+								}
+
+							}
+						}
+					}
+				}elseif($pathArray[0] == 'taxonomy'){
+				$tid = trim($pathArray[2]);
+					$results = db_query("SELECT * FROM taxonomy_term_data WHERE tid = :tid", array(":tid" => $tid));
+					$tid_row = $results->fetchAll();
+					if($tid_row[0]->language != 'und'){			
+						if($tid_row[0]->i18n_tsid != 0){
+							$res = db_query("SELECT * FROM taxonomy_term_data WHERE i18n_tsid = :i18n AND tid <> :tid", array(":i18n" => $tid_row[0]->i18n_tsid, ":tid" => $tid));
+							$row = $res->fetchAll();
+							$new_path .= '/'._get_alias("taxonomy/term/".$row[0]->tid);
+						}else{
+							for($i =$start; $i < (count($url_break) - 1); $i++){
+								$new_path.= "/".htmlentities($url_break[$i]);
+							}
+						}
+					}else{
+						 for($i =$start; $i < (count($url_break)); $i++){
+							$new_path.= "/".htmlentities($url_break[$i]);
+						}
+					}
+				}else {
+				   for($i =$start; $i < (count($url_break)); $i++){
+						$new_path.= "/".htmlentities($url_break[$i]);
+					}
+					
+				}
+			}
+			if($val->prefix != '') {
+                $strLan = 'lang="'.$val->prefix.'"';
+			} else {
+				$strLan = '';
+
+			}
+			$str .= '<li><a target="_blank" href="'.$new_path.'" '.$strLan.' class="alink" title="'.t('Click here for '.$lan_str.' version.').'">'.$lan_str.'</a></li>';				
+		}
+	}
+	$str .= '</ul>';
+	
+	return $str;
+}
+function _count_enabled_language(){
+	$languages = language_list();
+	$cnt = 0;
+	foreach($languages as $key => $val){
+		if($val->enabled == 1){
+			$cnt =$cnt + 1;			
+		}
+		if($cnt > 1){
+			break;	
+		}
+	}
+	return $cnt;
+}

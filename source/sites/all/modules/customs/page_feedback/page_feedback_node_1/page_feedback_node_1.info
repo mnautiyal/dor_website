@@ -1,0 +1,17 @@
+name = Page Feedback Node
+description = This is required for page feedback module to show all comments
+core = 7.x
+package = Features
+version = 7.x-1.0
+project = page_feedback_node_1
+dependencies[] = email
+dependencies[] = features
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = field_email_feedback
+features[field_base][] = field_name
+features[field_instance][] = node-page_feedback-body
+features[field_instance][] = node-page_feedback-field_email_feedback
+features[field_instance][] = node-page_feedback-field_name
+features[node][] = page_feedback

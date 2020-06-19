@@ -1,0 +1,396 @@
+@charset "utf-8";
+/*@import url(../../theme/css/site-change.css); */
+body {
+	background:#000;
+	color:#fff;
+}
+body a, .footer-bottom-wrapper a {
+	color:#ffff00;
+}
+
+.top-wrapper {
+	background:#000;
+}
+
+.common-wrapper{background:#000;}
+ .toggle-nav-bar .menu-icon {
+background:url(../dark-images/toggle-bar-light.png) no-repeat;
+}
+
+.nav-wrapper {
+	background:#2b2b2b;
+}
+.logo {
+	background:url(../dark-images/emblem-light.png) no-repeat;
+}
+.top-left a span {
+	background:url(../dark-images/ico-link-light.png) no-repeat;
+}
+.logo a {
+	color:#fff;
+}
+.footer-top-wrapper {
+	background:#2b2b2b;
+	border-top:1px solid #fff;
+}
+.footer-bottom-wrapper {
+	background-color:#000;
+	color:#fff;
+}
+.nav-wrapper ul li {
+	border-left:1px solid #3b3b3b;
+}
+.nav-wrapper ul ul li {
+	border-bottom:1px solid #666;
+}
+.nav-wrapper ul ul {
+	background:#3b3b3b;
+}
+.nav-wrapper ul ul ul {
+	background:#3b3b3b;
+}
+
+.nav-wrapper ul li:hover a, .nav-wrapper ul li.hover a, .nav-wrapper ul li.active a {
+	background:#3b3b3b;
+}
+.nav-wrapper ul ul li.active a, .nav-wrapper ul ul li.hover a, .nav-wrapper ul ul li a:hover {
+	background:#1a1a1a;
+	color: #ff0;
+}
+.nav-wrapper ul ul ul li.active a, .nav-wrapper ul ul ul li.hover a, .nav-wrapper ul ul ul li a:hover {
+	background:#3b3b3b;
+	color: #ff0;
+}
+.bttn {
+	background:#000;
+	border:1px solid #fff;
+	padding:4px 9px;
+}
+.bttn:hover {
+	background:#000;
+	color:#fff;
+}
+.inp-search {
+	background:#000;
+	border:1px solid #fff;
+	color:#fff;
+}
+.bttn-search {
+	background-color:#303030;
+}
+.lan select, .ft-lan select {
+	background:#000;
+	color:#fff;
+	border:1px solid #fff;
+}
+
+.common-right ul li a{opacity:1 !important; color:#ffff00;}
+/*.common-right ul li.ico-skip a{background:url(../dark-images/ico-skip-y.png) no-repeat;}
+.common-right ul li.ico-skip a img {display: none;}
+.common-right ul li.ico-accessibility a{background:url(../dark-images/ico-accessibility-y.png) no-repeat;}
+.common-right ul li.ico-accessibility a img {display: none;}
+.common-right ul li.ico-social a{background:url(../dark-images/ico-social-y.png) no-repeat;}
+.common-right ul li.ico-social > a img {display: none;}
+.common-right ul li.ico-login a{background:url(../dark-images/ico-login-y.png) no-repeat;}
+.common-right ul li.ico-login a img {display: none;}
+.common-right ul li.ico-site-search a{background:url(../dark-images/ico-site-search-y.png) no-repeat;}
+.common-right ul li.ico-site-search a img {display: none;}
+.common-right ul li.ico-sitemap a{background:url(../dark-images/ico-sitemap-y.png) no-repeat;}
+.common-right ul li.ico-sitemap a img {display: none;}
+*/
+
+.quickbox ul.menu li {
+    background: url("../dark-images/blt-link.png") no-repeat 0px 17px;
+}
+ul.overview li {
+    background: url("../dark-images/whtRblt.png") no-repeat 0px center;
+}
+.quickbox ul.menu li a, ul.overview li a {
+    color: #ff0;
+}
+ul.overview li a:hover {color: #ff0;}
+.whatsNewCaption { background: #333;}
+.external-link, .whatsNew {
+    background: #666 none repeat scroll 0% 0% !important;
+}
+.home-btm-slider { background: #000; border-top: 1px solid #333}
+.pressbox h2 {
+    color: #fff;
+}
+.top-left-panel h2 {
+    color: #fff;
+}
+.pressbox a.more:hover{
+	background-color:#000;
+}
+.eServices, .dataServices {
+    background: #000;
+	border: 1px solid #333;
+}
+.eServices h1, .dataServices h1 { color: #fff;}
+.minister-panel { background: #000; border: 1px solid #333;}
+.minister-panel .min-box h4 {
+    color: #fff;
+}
+.otherLink ul li a,.otherLink ul li a:hover {
+    color: #ff0;
+}
+.bluebox ul li span a:hover { color: #ff0}
+.bluebox ul li:hover { color: #ff0}
+.bluebox ul li, .otherLink ul li {
+    background: transparent url("../dark-images/whtRblt.png") no-repeat scroll 0px 5px;
+}
+.carousel-wrapper {
+    background: #000;
+    border-top: 1px solid #D2D2D2;
+}
+.flex-direction-nav a {
+    color: #fff;
+}
+.footer-top-wrapper ul li a, .footer-top-wrapper ul li a:hover {
+    color: #ff0;
+}
+.nav-wrapper ul li a {
+    color: #FF0;
+}
+.nav-wrapper ul li:hover a, .nav-wrapper ul li.hover a, .nav-wrapper ul li.active a {
+    color: #FF0;
+	background: #000;
+}
+
+.logo {
+    background: url(../dark-images/emblem-light.png) no-repeat 3px;
+}
+
+.logo a {
+    color: #FF0;
+}
+.quickbox ul.menu li:hover a, ul.overview li:hover a {
+    color: #FF0 !important;
+}
+.bluebox ul li:hover a {
+    color: #ff0 !important;
+}
+.bluebox a.more {
+    background: transparent url("../dark-images/blt-link.png") no-repeat scroll 89% center;
+    color: rgb(255, 255, 0);
+}
+.bluebox a.more:hover {
+    background: transparent url("../dark-images/blt-link.png") no-repeat scroll 89% center;
+    color: #ff0;
+}
+.whatsNewLists a {
+    color: #FF0;
+}
+.mid-bg-wrapper h2, .white-container h2 {
+    color: #fff;
+}
+.whatsNewCaption h2 span {
+    background: transparent url("../dark-images/leftarw-white.png") no-repeat scroll 0px 0px;
+}
+.footer-top-wrapper ul li:hover a { color: #ff0}
+.inner-content h2, .inner-content h3 {
+    color: #fff;
+}
+.inner-content ul li {
+    background: transparent url("../dark-images/ico-list-grey.png") no-repeat scroll 0px 8px;
+	color: #fff;
+}
+.color-border {
+    background: #fff;
+}
+.block-webspeech button {
+    background: #333;
+}
+.left-menu ul li a {
+    background: transparent url("../dark-images/ico-list-grey.png") no-repeat scroll 9px 16px;
+}
+.left-menu ul > li:hover > ul > li > a {
+	background: url("../dark-images/ico-list-grey.png") no-repeat 9px 16px;
+}
+.left-menu ul > li > ul > li > a.active {
+    color: #000 !important;
+    background: url("../dark-images/ico-list-grey.png") no-repeat #fff 9px 16px;
+}
+.left-menu ul li:hover a, .left-menu ul li a.active {
+	background: url("../dark-images/ico-list-grey.png") no-repeat #fff 9px 16px;
+	color: #000;
+}
+.left-menu ul li ul li:hover a{
+	background: url("../dark-images/ico-list-grey.png") no-repeat 9px 16px;
+	color: #ff0;
+}
+th {
+    background: #333;
+}
+.content{
+	color: #fff !important;
+}
+table tr td div span {font-size: 100% !important; color: #fff !important;}
+.form_outer input[type="submit"] {
+	background: #333;
+}
+.sw-logo { background:url("../dark-images/swach-bharat1_with high-contrast.png") no-repeat; display: inline-block; width: 187px; height: 95px}
+.pressbox h2 {
+    background: transparent url("../dark-images/pressh2-w.png") no-repeat 0px 3px;
+}
+.eServices h1 {
+    background: transparent url("../dark-images/emailIco-w.png") no-repeat 0px center;
+}
+.dataServices h1 {
+    background: transparent url("../dark-images/dataicon-w.png") no-repeat 0px center;
+}
+.otherLink h1, .otherLink h2 {
+    color: #fff;
+}
+.left-menu ul li ul li a {
+    color: #FF0 !important;
+}
+.views-submit-button input[type="submit"] {
+    background: #333;
+	color: #ff0;
+}
+#quicktabs-container-home_gallery_landing #quicktabs-tabpage-home_gallery_landing-1 ul.list-gallery li p {
+    color: #fff;
+}
+#quicktabs-container-home_gallery_landing #quicktabs-tabpage-home_gallery_landing-1 ul.list-gallery li h2 {
+	color: #fff;
+}
+.page-gallery-landing ul.quicktabs-tabs li a {
+    background: #333;
+}
+.left-menu h3 {
+    background: #333 url("../dark-images/whtWblt.png") no-repeat right 10px center;
+}
+.search-drop form #edit-submit--3, .search-drop form #edit-submit--3:hover {
+    background: #d8d8d8 url("../dark-images/ico-search.png") no-repeat center center;
+}
+.common-right ul li.ico-site-search input[type="text"], .main-goi-form input[type="text"] {
+    border: 2px solid #d8d8d8;
+}
+.inner-content h1, .inner-content h2 { color: #fff !important}
+.find .bttn-search, .find .bttn-search:hover {
+    background: #000 url("../dark-images/ico-search.png") no-repeat scroll center center;
+}
+ul#nav li a i.fa-home { color: #ff0}
+.pressbox a.more, .otherLink a.more {  
+	background: transparent url("../dark-images/blt-link.png") no-repeat scroll 89% center;
+    color: yellow;
+    font-size: 16px;
+    font-weight: bold;
+}
+.pressbox a.more, .otherLink a.more {  
+	background: transparent url("../dark-images/blt-link.png") no-repeat scroll 89% center;
+    color: yellow;
+    font-size: 16px;
+    font-weight: bold;
+}
+.page-gallery-landing ul.quicktabs-tabs li a {color:#ff0}
+.nav-wrapper ul li span.nolink { background:#2b2b2b !important}		
+.nav-wrapper ul li:hover span.nolink {		
+	background: #000 !important;		
+}		
+.nav-wrapper ul li span.nolink, .nav-wrapper ul li:hover span.nolink, .nav-wrapper ul li.hover span.nolink, .nav-wrapper ul li.active span.nolink {		
+	color: #ff0;		
+}		
+.common-right ul li.cmf_lan ul { background:#535353}
+.logo {padding: 14px 0 0 72px;}
+
+
+@media all and (max-width : 940px) {
+#nav li{background:#3B3B3B;}
+.nav-wrapper ul li.open ul li a {background:#454545 !important;}
+.nav-wrapper ul li.open ul li:hover a {
+background:#353535 !important;
+}
+
+ul#nav ul#nav {
+    border-top: 1px solid #333232;
+}
+
+
+ .nav-wrapper ul li:hover a {
+background:#212121 !important;
+}
+.nav-wrapper ul li.open ul li a{color:#ffff00 !important;}
+
+.logo {
+    background: url(../dark-images/emblem-light.png) no-repeat 3px;
+    background-size: 42px !important;
+	padding: 5px 0 0 60px;
+}
+
+}
+@media all and (max-width : 639px) {
+.logo {
+    background-size: 32px !important;
+	padding: 5px 0 0 43px;
+}
+}
+
+.common-right ul li.ico-accessibility ul li a.light{background:#e0e0e0; color:#000;}
+
+a:focus{outline:1px dotted #fff !important;}
+.common-left ul li.gov-india a:hover
+{color:#ffff00 !important;}
+.common-left ul li.gov-india a:focus
+{color:#ffff00 !important;}
+/*.common-left a{display:inline-block;} */
+.common-left a:focus{color:#ffff00 !important;}
+
+.quickbox h2.home-division {
+	background: url(../dark-images/ico-division-white.png) no-repeat 0px 2px;
+}
+.subheadTxt {
+    background: #242424;
+}
+.accOutDrop p {
+    border: 1px solid #242424;
+}
+
+
+.color-border{background:#666 !important;}
+.inner-wrapper .left-menu {border-right: 4px solid #666 !important;}
+.left-menu #block-menu-menu-home-right-menu- {border-top: 4px solid #666;}
+.breadcam, .quickbox h2, .pressbox h2, .header-wrapper, .common-wrapper, .quickbox ul.menu li.last a { border-bottom: 1px solid #666 !important;}
+.quickbox ul.menu li a, .carousel-wrapper, .footer-top-wrapper {border-top: 1px solid #666 !important;}
+.inner-wrapper {border-bottom:none;}
+.common-left ul li.ministry, .common-right ul li {border-left: 1px solid #666;}
+#backtotop {background: url(../dark-images/backtotop-hc.png) no-repeat center center; background-size: 40px;}
+
+.whatsNewLists a.view-all, .pressbox a.more, .otherLink a.more {
+	border: 2px solid #ff0;
+	background: none;
+	background-color: #454545;
+	color: #ff0;
+}
+.whatsNewLists a.view-all:hover, .pressbox a.more:hover, .otherLink a.more:hover {
+	color: #ff0;
+    border: 2px solid #ff0;
+    background: none;
+}
+.bluebox a.more, .pressbox a.more, .otherLink a.more {
+    padding: 4px 10px;
+}
+
+#main-menu ul li.active-trail { background: #000;}
+#main-menu ul li.active-trail li.active-trail {background: #lalala;}
+#main-menu ul li.active-trail li.active-trail li.active-trail {background: #000;}
+
+.inner-content table tbody tr td ul {padding-bottom: 0;}
+td, th{ border:1px solid #666; }
+.flex-pauseplay a{ color:#fff; }
+::selection{ background:#879607; color:#fff;   }
+
+.inner-content table.contact tr td {
+    background: #999999;
+    border: none;
+}
+.quickbox ul li:hover a, ul.overview li:hover a, .otherLink ul li:hover a, .whatsNewLists ul li:hover a, .footer-top-wrapper ul li:hover a{
+	text-decoration:underline !important;
+}
+.whatsNewLists ul li, .footer-top-wrapper ul li a {color:#FF0 !important;}
+.breadcam a { color: #fff; }
+.inner-content a { color: #ff0 !important; }
+.guide-text, .toggle-nav-bar span{ color: #fff; }
+.logo img { display:none}

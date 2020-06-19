@@ -1,0 +1,273 @@
+<?php
+
+
+function content_statistic_init(){
+ 
+  drupal_add_css(drupal_get_path('module', 'content_statistic') . '/css/content_statistic.css');
+ 
+}
+function content_statistic_menu(){
+
+	$items['admin/config/development/content-statics-config'] = array(
+		'title' => 'Content Statistics Configuration',
+		'page callback' => 'set_site_for_content_statistic',
+		'access callback' => 'content_statistic_access',
+		'type' => MENU_NORMAL_ITEM,
+	); 
+	/*$items['admin/reports/content_statistic'] = array(
+		'title' => 'Content Statistics Menu',
+		'page callback' => 'drupal_get_form',
+        'page arguments' => array('content_statistic_table'),
+		'access callback' => 'content_statistic_access',
+		'type' => MENU_CALLBACK,
+	);*/
+	$items['admin/reports/content_statistic/content-list'] = array(
+		'title' => 'Content Report',
+        'description' => 'Create the custom form.',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('content_statistic_table'),
+		'access arguments' => array('access administration pages'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	$items['admin/reports/content_statistic/content-list/section-wise'] = array(
+		'title' => 'Section Wise',
+		'description' => 'Create the custom form.',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('content_statistic_table'),
+		'access arguments' => array('access administration pages'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	$items['admin/reports/content_statistic/content-list/user-content'] = array(
+		'title' => 'Creator Wise',
+		'page callback' => 'content_statistic_user_table',
+    	'access arguments' => array('access administration pages'),
+    	'type' => MENU_NORMAL_ITEM,
+	);
+	
+	return $items;
+}
+
+
+
+
+function content_statistic_table($form, &$form_state) {
+
+		$query = db_select('node', 'n');
+		$query->groupBy('n.type');
+		$query->fields('n', array('type', 'title','language'));
+		$query->fields('nt', array('name'));
+		$query->condition('n.status','1');
+		$query->condition('nt1.is_check','1');
+	    $query->join('node_type','nt','n.type = nt.type');
+	    $query->join('content_statistic_table','nt1','nt.name = nt1.content_type');
+		$result = $query->execute();
+      
+		foreach ($result as $value) {
+			// english content count
+			$q = db_select('node', 'n1');
+			$q->fields('n1', array('nid'));
+			$q->condition('n1.type', $value->type);
+			$q->condition('n1.language', 'en');
+			$count = $q->execute()->rowCount();
+            // Hindi content count
+            $q1 = db_select('node', 'n2');
+			$q1->fields('n2', array('nid'));
+			$q1->condition('n2.type', $value->type);
+			$q1->condition('n2.language', 'hi');
+			$count1 = $q1->execute()->rowCount();
+            // no language content count
+            $q2 = db_select('node', 'n3');
+			$q2->fields('n3', array('nid'));
+			$q2->condition('n3.type', $value->type);
+			$q2->condition('n3.language', 'und');
+			$count2 = $q2->execute()->rowCount();
+			//................................................
+			@$data[] = array('type'=>$value->name,'english'=>$count,'Hindi'=>$count1,'und'=>$count2);
+			
+		}
+        //echo "<pre>";
+        //print_r($data);
+        //die;
+        $form['some_text'] = array(
+             '#markup' => t("<h1>Section Wise</h1>")
+        );
+		$form['table'] = array(
+		'#theme' => 'table',
+		'#header' => array(t('Section'), t('English'),t('Hindi'),t('No Language Specified')),
+		// Rows in the form table
+        '#rows' =>@$data
+		);
+ 
+        return $form;
+}
+
+function content_statistic_user_table() {
+
+	$query = db_select('node', 'n');
+	$query->groupBy('n.type');
+	$query->fields('n', array('type', 'title','language','uid'));
+	$query->fields('nt', array('name'));
+	$query->condition('n.status','1');
+	$query->condition('nt1.is_check','1');
+	$query->join('node_type','nt','n.type = nt.type');
+	$query->join('content_statistic_table','nt1','nt.name = nt1.content_type');
+	$result = $query->execute();
+	
+    @$output.='<h1>'.t('Creator Wise').'</h1>';
+	@$output.='<table class="content_statistic_table">
+              <tr>
+                 <th width="20%">'.t('Section').'</th>
+                 <th width="20%">'.t('User').'</th>
+                 <th width="20%">'.t('English').'</th>
+                 <th width="20%">'.t('Hindi').'</th>
+                 <th width="20%">'.t('No Language Specified').'</th>
+                </tr>';
+       foreach ($result as $value) {
+    //$data[] = array($value->type,$value->title,$value->language,$value->uid);
+			$q = db_select('node', 'n1');
+			$q->groupBy('n1.uid');
+			$q->fields('n1', array('uid'));
+			$q->condition('n1.type', $value->type);
+			$qres = $q->execute();
+            foreach($qres as $qval) {
+             $userid[] = $qval->uid; 	
+			}
+            $u = db_select('users', 'u');
+			$u->condition('u.uid',$userid,'IN');
+			$u->fields('u', array('name','uid'));
+			$uq = $u->execute();
+			foreach($uq as $uval) {
+	        $username[] = array($uval->uid=>$uval->name);
+      
+			}
+			//echo "<pre>";
+			//print_r($username); die;
+             @$output.= '<tr>
+             <td align="center">'.$value->name.'</td>';
+             
+             @$output.='<td colspan="4">';
+              foreach ($username as $uuid => $uuname) {
+             	$ff= key($uuname);
+             	
+             	// english content count
+				$qe = db_select('node', 'une');
+				$qe->fields('une', array('nid'));
+				$qe->condition('une.type', $value->type);
+				$qe->condition('une.uid', $ff);
+				$qe->condition('une.language', 'en');
+				$counte = $qe->execute()->rowCount(); 
+				
+	            // Hindi content count
+	            $qh = db_select('node', 'unh');
+				$qh->fields('unh', array('nid'));
+				$qh->condition('unh.type', $value->type);
+				$qh->condition('unh.uid', $ff);
+				$qh->condition('unh.language', 'hi');
+				$counth = $qh->execute()->rowCount();
+	            // no language content count
+	            
+	            $qno = db_select('node', 'nuno');
+				$qno->fields('nuno', array('nid'));
+				$qno->condition('nuno.type', $value->type);
+				$qno->condition('nuno.uid', $ff);
+				$qno->condition('nuno.language', 'und');
+				$countno = $qno->execute()->rowCount();
+             
+              @$output.='<table style="border:none;" class="content_statistic_table_sub">
+               <tr width="100%">
+               <td width="25%" align="right">'.$uuname[$ff].'</td>
+               <td width="25%" align="right">'.$counte.'</td>
+               <td width="25%" align="right">'.$counth.'</td>
+               <td width="25%" align="right">'.$countno.'</td>
+               </tr>
+              </table>';
+              }         
+            
+            @$output.= '</td></tr>';
+             unset($userid);
+             unset($username);
+                 }
+           @$output.= '</table>';
+   	
+
+   return $output;
+}
+
+/**
+ * Determine whether the user has permission to use menu_block module.
+ */
+function content_statistic_access($account = NULL) {
+	return user_access('administer blocks', $account) && user_access('administer menu', $account);
+}
+
+function set_site_for_content_statistic() {
+ drupal_add_js(drupal_get_path('module', 'content_statistic') . '/js/content_statistic.js');	
+ return drupal_get_form('custom_statics_setting_form');
+}
+
+function custom_statics_setting_form($form, &$form_state) {
+	$form = array();
+	$query = db_select('content_statistic_table', 'c');
+	$query->fields('c', array('content_type', 'is_check'));
+	$result = $query->execute(); 
+    foreach ($result as $value) {
+    $datrr[$value->content_type]= $value->content_type;
+     if($value->is_check!=0) {
+     @$optival[] = $value->content_type;
+     }
+    }
+    @$rr=  implode(",",$optival);
+    //echo "<pre>";
+    //print_r($optival); die;
+    $optionArr = array('All' => 'All');
+    $form['select_all'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Content Type'),
+    '#options' => $optionArr,
+   );
+
+   $form['hidden_id'] = array(
+      '#type' => 'hidden',
+      '#value' =>$rr ,
+      '#attributes' => array(
+      'id' => 'hidden_id'
+       )
+    ); 
+
+   $form['content_type'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t(''),
+    '#options' => $datrr,
+   ); 
+
+
+	$form['submit_button'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+   return $form;
+
+}
+
+function custom_statics_setting_form_submit($form, &$form_state) {
+ global $base_url;	
+ db_update('content_statistic_table') 
+ ->fields(array('is_check' =>0))
+ ->execute();
+ $chckbox = $form_state['values']['content_type'];
+ //echo "<pre>";
+ //print_r($chckbox);
+ //die;
+ foreach($chckbox as $chk) {
+      if(!is_int($chk)) {
+         db_update('content_statistic_table') 
+         ->fields(array('is_check' =>1))
+         ->condition('content_type',$chk)
+         ->execute();
+       }
+ }
+ 
+ drupal_set_message(t('Your configuration has been saved.'));
+ drupal_goto($base_url.'/admin/config/development/content-statics-config');
+ 
+}
